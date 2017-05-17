@@ -1,0 +1,13 @@
+#!/bin/bash
+
+trash="/home/sakkaku/.local/share/Trash"
+files="$trash/files"
+info="$trash/info"
+
+if [ ! -z "$(ls -A $files)" ]; then
+	rm $files/* -r
+fi
+
+if [ ! -z "$(ls -A $info)"]; then
+	rm $info/* -r
+fi
