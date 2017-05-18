@@ -8,6 +8,6 @@ if [ ! -z "$(ls -A $files)" ]; then
 	rm $files/* -r
 fi
 
-if [ ! -z "$(ls -A $info)"]; then
+if [ ! -z "$(ls -A $info)" ]; then
 	rm $info/* -r
 fi
