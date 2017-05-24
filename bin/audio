@@ -2,7 +2,7 @@
 
 function selectDevice {
 	# Get Devices
-	DEVICES=($(pactl list short | grep alsa_output | grep -v monitor | awk '/alsa_output/{print $2}'))
+	DEVICES=($(pactl list sink short | grep alsa_output | awk '/alsa_output/{print $2}'))
 	local COUNT=0
 	local answer
 
@@ -24,18 +24,23 @@ function selectDevice {
 
 function selectDeviceGUI {
 	# Get Devices
-	DEVICES=($(pactl list short | grep alsa_output | grep -v monitor | awk '/alsa_output/{print $2}'))
-	local COUNT=0
+	DEVICES=($(pactl list sinks short | awk '/alsa_output/{print $1}'))
+	IFS=$'\n' && DEV_DESC=($(pactl list sinks | awk '/Description/{$1="";print $0}' | awk '{$1=$1};1'))
 	local array=()
 	local answer
+	local COUNTER=0
 
 	for dev in "${DEVICES[@]}"; do
-		array+=($COUNT "$dev")
-		((COUNT++))
+		array+=($COUNTER "${DEV_DESC[$COUNTER]}")
+		((COUNTER++))
 	done
 
 	answer=$(zenity --list --text="Choose Default Sink" --width=700 --height=300 \
 		--column="Index" --column="Name" "${array[@]}")
+	
+	if [[ $? -eq 1 ]]; then
+		exit 1
+	fi
 	
 	DEV=${DEVICES[$answer]}
 
@@ -114,10 +119,37 @@ function changeInput {
 	fi
 }
 
-function open-gui {
+function displayGUI {
+	local KEY=1026
+	local SUBKEY=1025
+
+	res1=$(mktemp --tmpdir iface1.XXXXXXXX)
+	#res2=$(mktemp --tmpdir iface2.XXXXXXXX)
+	#res3=$(mktemp --tmpdir iface3.XXXXXXXX)
+
+	yad --plug=$KEY --tabnum=1 --scale --print-partial > $res1 &
+
+		#DEV_INDEX=($(pactl list sinks short | awk '/alsa_output/{print $1}'))
+		#IFS=$'\n' && DEV_DESC=($(pactl list sinks | awk '/Description/{$1="";print $0}' | awk '{$1=$1};1'))
+		#VOLUMES=($(pactl list sinks | grep "^[[:space:]]Volume:" | awk '{print $5}'))
+
+		#MIC_INDEX=($(pactl list sources short | awk '/alsa_input/{print $1}'))
+		#MIC_STATUS=($(pacmd list-sources | grep mute | cut -f2))
+
+	yad --notebook --key=$KEY --tab="Volume"
+
+	while true; do
+		
+		eval TAB1=($(< $res1))
+
+		echo $res1;
+
+		if [ $? -eq 0 ]; then
+			exit 1
+		fi
+	done
 
 }
-
 
 
 case "$1" in
@@ -157,6 +189,10 @@ case "$1" in
 	selectDevice
 	selectInput
 	changeInput
+	;;
+
+"open-gui")
+	displayGUI
 	;;
 
 *) echo "HELP";;
