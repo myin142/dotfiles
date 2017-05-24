@@ -1,0 +1,18 @@
+*termName: xterm-256color
+*dynamicColors: true
+*background: rgb:18/18/18
+*foreground: white
+*utf8: 2
+*locale: true
+*eightBitInput: true
+*saveLines: 5000
+*scrollTtyKeypress: true
+!*scrollTtyOutput: false
+*scrollBar: false
+*loginShell: true
+*faceName: DejaVu Sans Mono for Powerline
+*faceNameDoublesize: Noto Sans Mono CJK TC
+*faceSize: 10
+*jumpScroll: true
+*multiScroll: true
+*toolBar: false

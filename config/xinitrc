@@ -1,0 +1,19 @@
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
+xset s off
+xset -dpms
+
+#xrandr --output HDMI1 --auto --left-of eDP1
+
+redstart &
+
+session=${1:-i3}
+
+case $session in
+	i3) exec i3;;
+	budgie)
+		export XDG_CURRENT_DESKTOP=Budgie:GNOME
+		exec budgie-desktop
+		;;
+	*) exec $1;;
+esac

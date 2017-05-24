@@ -1,0 +1,105 @@
+set autoread                " detect when a file is changed
+set history=100             " change history to 1000
+set clipboard=unnamedplus
+set encoding=utf-8
+colorscheme base16-default-dark
+
+" Turn of Backup
+set nobackup
+set nowb
+set noswapfile
+
+if (empty($TMUX) && has("termguicolors"))
+  set termguicolors
+endif
+if has('mouse')
+  set mouse=a
+endif
+
+syntax on
+set number                  " show line numbers
+set relativenumber          " show relative line numbers
+set wrap                    " turn on line wrapping
+set linebreak               " set soft wrapping
+set autoindent              " automatically set indent of new line
+set showmatch               " show matching braces
+set laststatus=2
+
+" toggle invisible characters
+set list
+set listchars=tab:\|\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+set showbreak=↪
+
+" make backspace behave in a sane manner
+set backspace=indent,eol,start
+
+" Tab control
+set noexpandtab             " insert tabs rather than spaces for <Tab>
+set smarttab                " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+set tabstop=4               " the visible width of tabs
+set softtabstop=4           " edit as if the tabs are 4 characters wide
+set shiftwidth=4            " number of spaces to use for indent and unindent
+set shiftround              " round indent to a multiple of 'shiftwidth'
+set scrolloff=3             " lines of text around cursor
+
+" Searching
+set ignorecase              " case insensitive searching
+set smartcase               " case-sensitive if expresson contains a capital letter
+set hlsearch                " highlight search results
+set incsearch               " set incremental search
+set lazyredraw				" Do not redraw whiel executing macros
+
+"""""""""""
+" PLUGINS "
+"""""""""""
+
+" Set Runtimepath
+set runtimepath+=~/.vim/bundle/ctrlp.vim		" File Finder
+set runtimepath+=~/.vim/bundle/dwm.vim			" Window Management
+set runtimepath+=~/.vim/bundle/nerdtree			" Tree Explorer
+set runtimepath+=~/.vim/bundle/vim-signify		" Git Diff
+set runtimepath+=~/.vim/bundle/vim-airline		" Statusline
+set runtimepath+=~/.vim/bundle/vim-airline-themes " Airline Themes
+
+" Use Powerline fonts
+let g:airline_theme='wombat'
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" Enable Airline Tabs
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 0
+let airline#extensions#tabline#show_buffers = 0
+
+" Ignore files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o	" MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe		" Windows
+let g:ctrp_custom_ignore = '\v[\/]\.(git|hg|svn|o)$'
+let g:ctrp_custom_ignore = {
+\ 'dir': '\v[\/]\.(git|hg|svn)$',
+\ 'file': '\v\.(exe|so|dll|o)$',
+\ }
+
+"""""""""""""
+" SHORTCUTS "
+"""""""""""""
+
+" Remove Highlight
+noremap <space> :noh<cr>
+
+" Save / Quit
+noremap ,, :w<cr>
+
+" Tabs
+noremap <C-t> :tabnew<cr>
+noremap <C-w> :tabclose<cr>
+noremap <A-LEFT> :tabN<cr>
+noremap <A-RIGHT> :tabn<cr>
+
+" scroll the viewport faster
+noremap <C-e> 5<C-e>
+noremap <C-y> 5<C-y>
+
+noremap <C-S> :NERDTreeToggle<cr>
