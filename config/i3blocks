@@ -2,6 +2,10 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=20
 color=#E0E0E0
 
+[weather]
+command=/home/safe/config/scripts/weather
+interval=3600
+
 [battery]
 command=/home/safe/config/scripts/battery
 interval=1
@@ -26,11 +30,8 @@ command=/home/safe/config/scripts/disk
 interval=1
 label=
 
-[weather]
-command=/home/safe/config/scripts/weather
-interval=3600
-
-[date]
-command=date '+%b %d %H:%M'
+[time]
+command=date +' %H:%M   %a %d %b %Y '
 interval=1
+markup=pango
 label=
