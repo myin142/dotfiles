@@ -95,8 +95,8 @@ noremap ,, :w<cr>
 " Tabs
 noremap <C-t> :tabnew<cr>
 noremap <C-w> :tabclose<cr>
-noremap <A-LEFT> :tabN<cr>
-noremap <A-RIGHT> :tabn<cr>
+noremap <A-h> :tabN<cr>
+noremap <A-l> :tabn<cr>
 
 " scroll the viewport faster
 noremap <C-e> 5<C-e>
