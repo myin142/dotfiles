@@ -1,5 +1,20 @@
 command=$SCRIPT_DIR/$BLOCK_NAME
+separator_block_width=15
 color=#E0E0E0
+
+[battery]
+command=/home/safe/config/scripts/battery
+interval=1
+label=
+
+[wifi]
+command=/home/safe/config/scripts/iface
+interval=1
+label=
+
+[volume]
+command=/home/safe/config/scripts/volume
+interval=1
 
 [load]
 command=/home/safe/config/scripts/load_average
@@ -10,11 +25,6 @@ label=
 command=/home/safe/config/scripts/disk
 interval=1
 label=
-
-[volume]
-command=/home/safe/config/scripts/volume
-label=
-interval=1
 
 [date]
 command=date '+%b %d %H:%M'

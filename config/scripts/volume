@@ -3,6 +3,20 @@
 DEFAULT=$(pactl info | awk '/Default Sink/{print $3}')
 INDEX=$(pactl list sinks short | awk "/$DEFAULT/"'{print $1}')
 
+# Get Volume
 VOLUME=$(pactl list sinks | grep "Sink #$INDEX\|^[[:space:]]Volume:" | grep -A 1 "Sink #$INDEX" | grep "^[[:space:]]Volume" | awk '{print $5}');
 
-echo $VOLUME
+# Get Mute Status
+MUTE=$(pactl list sinks | grep "Sink #$INDEX\|Mute" | grep -A 1 "Sink #$INDEX" | grep Mute | awk '/Mute/{print $2}')
+
+ICON=
+COLOR="#FFFFFF"
+
+if [ $MUTE == "yes" ]; then
+	ICON=
+	COLOR="#FFFF00"
+fi
+
+echo "$ICON  $VOLUME"
+echo "$ICON  $VOLUME"
+echo $COLOR
