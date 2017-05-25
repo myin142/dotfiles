@@ -28,7 +28,7 @@ label=
 
 [weather]
 command=/home/safe/config/scripts/weather
-interval=1
+interval=3600
 
 [date]
 command=date '+%b %d %H:%M'
