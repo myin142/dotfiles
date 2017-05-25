@@ -149,11 +149,9 @@ bindsym F12 exec audio change-sink-gui
 # Touchpad controls
 bindsym Shift+F12 exec toggletouchpad
 
-set $lockColor 475263
-
 # Suspend / Lock
-bindsym XF86Sleep exec i3lock --color $lockColor && systemctl suspend
-bindsym $mod+Shift+x exec i3lock --color $lockColor
+bindsym XF86Sleep exec lock /home/safe/lock.png && systemctl suspend
+bindsym $mod+Shift+x exec lock /home/safe/lock.png
 
 # Add Second Monitor
 exec_always xrandr --output HDMI2 --off --output HDMI1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP1 --off --output eDP1 --primary --mode 1920x1080 --pos 0x608 --rotate normal --output VIRTUAL1 --off
