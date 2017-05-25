@@ -26,6 +26,10 @@ command=/home/safe/config/scripts/disk
 interval=1
 label=
 
+[weather]
+command=/home/safe/config/scripts/weather
+interval=1
+
 [date]
 command=date '+%b %d %H:%M'
 interval=1
