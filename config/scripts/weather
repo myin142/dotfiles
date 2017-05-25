@@ -4,6 +4,12 @@ full=""
 short=""
 status=0
 
+# Check if network is available
+IF=$(ip route | awk '/^default/ { print $5 ; exit }')
+if [[ -z $IF ]]; then
+  exit
+fi
+
 URL='http://www.accuweather.com/en/at/vienna/31868/weather-forecast/31868'
 SITE="$(curl -s "$URL")"
 
