@@ -1,5 +1,5 @@
 command=$SCRIPT_DIR/$BLOCK_NAME
-separator_block_width=15
+separator_block_width=20
 color=#E0E0E0
 
 [battery]
