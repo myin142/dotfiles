@@ -10,11 +10,11 @@ VOLUME=$(pactl list sinks | grep "Sink #$INDEX\|^[[:space:]]Volume:" | grep -A 1
 MUTE=$(pactl list sinks | grep "Sink #$INDEX\|Mute" | grep -A 1 "Sink #$INDEX" | grep Mute | awk '/Mute/{print $2}')
 
 ICON=
-COLOR="#FFFFFF"
+COLOR="#E0E0E0"
 
 if [ $MUTE == "yes" ]; then
 	ICON=
-	COLOR="#FFFF00"
+	COLOR="#E0E000"
 fi
 
 echo "$ICON  $VOLUME"
