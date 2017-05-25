@@ -164,8 +164,8 @@ assign [class="Google-chrome"] $ws1
 assign [class="Steam"] $ws10
 assign [class="Thunderbird"] $ws7
 
-for_window [class="Nautilus"] floating enable
 for_window [window_role="pop-up"] floating enable
 
 exec_always xrandr --output HDMI2 --off --output HDMI1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP1 --off --output eDP1 --primary --mode 1920x1080 --pos 0x608 --rotate normal --output VIRTUAL1 --off
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper.jpg
+exec compton -c
