@@ -4,6 +4,7 @@ i3lock
 rofi
 compton
 acpi
+dunst
 
 feh
 qtfm
@@ -14,6 +15,7 @@ arc-gtk-theme
 aria2
 scrot
 
+ranger
 gvim
 git
 redshift
