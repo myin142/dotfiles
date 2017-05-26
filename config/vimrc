@@ -22,18 +22,6 @@ set relativenumber          " show relative line numbers
 set wrap                    " turn on line wrapping
 set linebreak               " set soft wrapping
 set autoindent              " automatically set indent of new line
-set showmatch               " show matching braces
-set laststatus=2
-
-" toggle invisible characters
-set list
-set listchars=tab:\|\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-set showbreak=↪
-
-" make backspace behave in a sane manner
-set backspace=indent,eol,start
-
-" Tab control
 set noexpandtab             " insert tabs rather than spaces for <Tab>
 set smarttab                " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set tabstop=4               " the visible width of tabs
@@ -58,20 +46,6 @@ set runtimepath+=~/.vim/bundle/ctrlp.vim		" File Finder
 set runtimepath+=~/.vim/bundle/dwm.vim			" Window Management
 set runtimepath+=~/.vim/bundle/nerdtree			" Tree Explorer
 set runtimepath+=~/.vim/bundle/vim-signify		" Git Diff
-set runtimepath+=~/.vim/bundle/vim-airline		" Statusline
-set runtimepath+=~/.vim/bundle/vim-airline-themes " Airline Themes
-
-" Use Powerline fonts
-let g:airline_theme='wombat'
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" Enable Airline Tabs
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_splits = 0
-let airline#extensions#tabline#show_buffers = 0
 
 " Ignore files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o	" MacOSX/Linux
