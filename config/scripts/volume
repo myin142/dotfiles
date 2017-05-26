@@ -31,4 +31,6 @@ elif [ "$BLOCK_BUTTON" -eq 4 ]; then
 	pactl set-sink-volume $INDEX +5%
 elif [ "$BLOCK_BUTTON" -eq 5 ]; then
 	pactl set-sink-volume $INDEX -5%
+elif [ "$BLOCK_BUTTON" -eq 3 ]; then
+	audio change-sink-gui
 fi

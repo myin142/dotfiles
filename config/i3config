@@ -111,8 +111,7 @@ bindsym XF86Sleep exec lock ~/.lock.png && systemctl suspend
 bindsym $mod+Shift+x exec lock ~/.lock.png
 
 # Extra Keys
-bindsym F12 exec audio change-sink-gui
-bindsym Shift+F12 exec toggletouchpad
+bindsym F12 exec toggletouchpad
 
 #########
 # MODES #
