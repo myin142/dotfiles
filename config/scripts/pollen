@@ -1,0 +1,36 @@
+#!/bin/bash
+
+FULL=""
+SHORT=""
+COLOR=""
+
+URL="https://www.pollenwarndienst.at/prognose/3-tages-prognose.html?tx_scload_load%5B__referrer%5D%5B%40extension%5D=ScLoad&tx_scload_load%5B__referrer%5D%5B%40vendor%5D=Screencode&tx_scload_load%5B__referrer%5D%5B%40controller%5D=Load&tx_scload_load%5B__referrer%5D%5B%40action%5D=startpagesearchform&tx_scload_load%5B__referrer%5D%5Barguments%5D=YTowOnt931f91268ac9faaadcce4fa5ba74b5e8759ba6f42&tx_scload_load%5B__referrer%5D%5B%40request%5D=a%3A4%3A%7Bs%3A10%3A%22%40extension%22%3Bs%3A6%3A%22ScLoad%22%3Bs%3A11%3A%22%40controller%22%3Bs%3A4%3A%22Load%22%3Bs%3A7%3A%22%40action%22%3Bs%3A19%3A%22startpagesearchform%22%3Bs%3A7%3A%22%40vendor%22%3Bs%3A10%3A%22Screencode%22%3B%7Db59e46bfea0c592a055e15c7d7da9ee1687a0e5a&tx_scload_load%5B__trustedProperties%5D=a%3A2%3A%7Bs%3A3%3A%22zip%22%3Bi%3A1%3Bs%3A4%3A%22city%22%3Bi%3A1%3B%7D6b8fc83a8d914cb886de83aad1219b2fee8bf357&tx_scload_load%5Bzip%5D=&tx_scload_load%5Bcity%5D=9#breadcrumb"
+SITE="$(curl -s "$URL")"
+
+LEVEL="$(echo "$SITE" | grep -v -e '^[[:space:]]*$' | grep -A 3 'Poaceae' | grep number | cut -d '>' -f 2 | cut -d '<' -f 1)"
+
+case "$LEVEL" in
+	1)
+	FULL="Niedrig"
+	COLOR="#00FF00"
+	;;
+	2)
+	FULL="Mittel"
+	COLOR="#FFFF00"
+	;;
+	3)
+	FULL="Hoch"
+	COLOR="#FF8800"
+	;;
+	4)
+	FULL="Sehr Hoch"
+	COLOR="#FF2222"
+	;;
+	*) echo "Unknown";;
+esac
+
+SHORT="$FULL";
+
+echo " $FULL";
+echo " $SHORT";
+echo "$COLOR";
