@@ -15,19 +15,19 @@ LEVEL="$(echo "$SITE" | grep -v -e '^[[:space:]]*$' | grep -A 3 'Poaceae' | grep
 
 case "$LEVEL" in
 	1)
-	FULL="Niedrig"
+	FULL="Low"
 	COLOR="#00FF00"
 	;;
 	2)
-	FULL="Mittel"
+	FULL="Medium"
 	COLOR="#FFFF00"
 	;;
 	3)
-	FULL="Hoch"
+	FULL="High"
 	COLOR="#FF8800"
 	;;
 	4)
-	FULL="Sehr Hoch"
+	FULL="Very High"
 	COLOR="#FF2222"
 	;;
 	*) FULL="UNK";;
