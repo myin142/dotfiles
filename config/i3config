@@ -159,7 +159,7 @@ client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color				$bg-color
 # ASSIGNMENT / WINDOW / EXECUTE #
 #################################
 
-assign [class="Google-chrome"] $ws1
+#assign [class="Google-chrome"] $ws1
 assign [class="Steam"] $ws10
 assign [class="Thunderbird"] $ws7
 
