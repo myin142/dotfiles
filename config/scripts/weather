@@ -39,10 +39,10 @@ else
 	fi
 fi
 
-full="$icon $temp°"
+full="$icon  $temp°"
 short="$temp°"
 
-echo $full
+echo "$full"
 echo $short
 echo $color
 exit $status
