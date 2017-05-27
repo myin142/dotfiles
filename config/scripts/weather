@@ -13,6 +13,10 @@ fi
 URL='http://www.accuweather.com/en/at/vienna/31868/weather-forecast/31868'
 SITE="$(curl -s "$URL")"
 
+if [ "$BLOCK_BUTTON" -eq 1 ]; then
+	google-chrome-stable $URL >/dev/null
+fi
+
 weather="$(echo "$SITE" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $13 }'| head -1)"
 temp="$(echo "$SITE" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $10 }'| head -1)"
 
