@@ -45,8 +45,10 @@ if [ "$temp" == "" ]; then
 	color="#FFFFFF"
 fi
 
-full="$icon  $temp°"
-short="$temp°"
+temp="$temp°"
+
+full="$icon  $temp"
+short="$temp"
 
 echo "$full"
 echo $short
