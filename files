@@ -34,6 +34,7 @@ npm
 nodejs
 openssh
 pkgfile
+pkg-config
 
 aseprite
 krita

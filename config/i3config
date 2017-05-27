@@ -18,7 +18,7 @@ set $ws2 "2: "
 set $ws3 "3: "
 set $ws4 "4: "
 set $ws5 "5: "
-set $ws6 "6: "
+set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
 set $ws9 "9: "
@@ -162,6 +162,8 @@ client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color				$bg-color
 #assign [class="Google-chrome"] $ws1
 assign [class="Steam"] $ws10
 assign [class="Thunderbird"] $ws7
+assign [class="krita"] $ws6
+assign [class="Allegro"] $ws6
 
 for_window [window_role="pop-up"] floating enable
 
