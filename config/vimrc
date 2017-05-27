@@ -22,6 +22,18 @@ set relativenumber          " show relative line numbers
 set wrap                    " turn on line wrapping
 set linebreak               " set soft wrapping
 set autoindent              " automatically set indent of new line
+set showmatch               " show matching braces
+set laststatus=2
+
+" toggle invisible characters
+set list
+set listchars=tab:\|\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+set showbreak=↪
+
+" make backspace behave in a sane manner
+set backspace=indent,eol,start
+
+" Tab control	
 set noexpandtab             " insert tabs rather than spaces for <Tab>
 set smarttab                " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set tabstop=4               " the visible width of tabs
