@@ -80,7 +80,7 @@ noremap ,, :w<cr>
 
 " Tabs
 noremap <C-t> :tabnew<cr>
-noremap <C-w> :tabclose<cr>
+noremap <A-t> :tabclose<cr>
 noremap <A-h> :tabN<cr>
 noremap <A-l> :tabn<cr>
 
