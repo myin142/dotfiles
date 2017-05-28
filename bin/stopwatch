@@ -7,13 +7,22 @@ fi
 
 notify-send -t 1 "Stopwatch" "Stopwatch starting!"
 
-date1=`date +%s`; 
-while [ -z $(pgrep stopwatch_stop) ]; do 
+date1=`date +%s`;
+while [ -z $(pgrep stopwatch_stop) ]; do
+	if [ ! -z $(pgrep stopwatch_pause) ]; then
+		pause_time=$((`date +%s`))
+		while [ ! -z $(pgrep stopwatch_pause) ]; do
+			sleep 1
+			if [ -z $(pgrep stopwatch_pause) ]; then
+				diff=$((`date +%s` - $pause_time))
+				date1=$(($date1 + $diff))
+			fi
+		done
+	fi
+
 	TIME="$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)"
 	echo $TIME > /tmp/stopwatch
 	sleep 0.5
 done
 
 notify-send "Stopwatch" "Stopwatch stopped!\nTime: $TIME"
-
-rm /tmp/stopwatch

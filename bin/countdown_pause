@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -z $(pgrep countdown) ]; then
+	exit
+fi
+
+while [ -z $(pgrep countdown_resum) ]; do
+	sleep 1
+done
