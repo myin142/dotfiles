@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -f /tmp/stopwatch ]; then
+	notify-send "Stopwatch" "Stopwatch already running!"
+	exit
+fi
+
+notify-send -t 1 "Stopwatch" "Stopwatch starting!"
+
+date1=`date +%s`; 
+while [ -z $(pgrep stopwatch_stop) ]; do 
+	TIME="$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)"
+	echo $TIME > /tmp/stopwatch
+	sleep 0.5
+done
+
+notify-send "Stopwatch" "Stopwatch stopped!\nTime: $TIME"
+
+rm /tmp/stopwatch

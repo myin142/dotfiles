@@ -1,0 +1,20 @@
+#!/bin/bash
+
+pID="/tmp/stopwatch"
+
+if [ ! -f "$pID" ]; then
+	exit
+fi
+
+if [ "$BLOCK_BUTTON" -eq 1 ]; then
+	stopwatch_stop
+	echo "Stopping"
+	echo
+	echo "#FFFFFF"
+fi
+
+TIME="$(awk '/./{line=$0} END{print line}' $pID)"
+
+echo " $TIME";
+echo " $TIME"
+echo "#FFFFFF";

@@ -2,6 +2,16 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=20
 color=#E0E0E0
 
+[countdown]
+command=/home/safe/config/scripts/countdown
+interval=1
+label=
+
+[stopwatch]
+command=/home/safe/config/scripts/stopwatch
+interval=1
+label=
+
 [pollen]
 command=/home/safe/config/scripts/pollen
 interval=3600
