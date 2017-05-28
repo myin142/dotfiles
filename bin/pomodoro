@@ -1,0 +1,49 @@
+#!/bin/bash
+
+WORK=${1:-1500}
+BREAK=${2:-300}
+STATUS=0
+START=0
+
+if [ -f /tmp/pomodoro ]; then
+	notify-send "Pomodoro" "Pomodoro already running!"
+	exit
+fi
+
+notify-send -t 1 "Pomodoro" "Pomodoro starting!"
+
+while true; do
+	[ $STATUS -eq 0 ] && START=$WORK || START=$BREAK
+
+	date1=$((`date +%s` + $START)); 
+	while [ "$date1" -ge `date +%s` ]; do 
+		if [ ! -z $(pgrep pomodoro_stop) ]; then
+			break 2;
+		fi
+
+		if [ ! -z $(pgrep pomodoro_pause) ]; then
+			pause_time=$((`date +%s`))
+			while [ ! -z $(pgrep pomodoro_pause) ]; do
+				sleep 1
+				if [ -z $(pgrep pomodoro_pause) ]; then
+					diff=$((`date +%s` - $pause_time))
+					date1=$(($date1 + $diff))
+				fi
+			done
+		fi
+
+		TIME="$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)"
+		echo "$TIME $STATUS" > /tmp/pomodoro
+		sleep 0.5
+	done
+
+	if [ $STATUS -eq 0 ]; then
+		notify-send "Pomodoro" "Time for a break!"
+		STATUS=1
+	else
+		notify-send "Pomodoro" "Back to work!"
+		STATUS=0
+	fi
+done
+
+notify-send "Pomodoro" "Pomodoro stopped!"
