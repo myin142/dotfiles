@@ -44,13 +44,13 @@ bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -bw 0 
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exit i3
+bindsym $mod+Shift+q kill
 bindsym $mod+f fullscreen toggle
 bindsym $mod+a focus parent
 
 # Mode Binding
 bindsym $mod+r mode "resize"
-bindsym $mod+Shift+q mode "quit"
+bindsym $mod+Shift+e mode "quit"
 
 # change focus
 bindsym $mod+h focus left
@@ -128,7 +128,7 @@ mode "resize" {
 }
 
 mode "quit" {
-	bindsym $mod+Shift+q exit i3
+	bindsym $mod+Shift+e exit i3
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -176,6 +176,7 @@ assign [class="dontstarve_steam"] $ws9
 assign [class="csgo_linux64"] $ws9
 
 for_window [window_role="pop-up"] floating enable
+for_window [class="qtfm"] floating enable
 
 exec_always xrandr --output HDMI1 --mode 1920x1080 --pos 1920x0 --rotate normal --output eDP1 --primary --mode 1920x1080 --pos 0x608 --rotate normal
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper.jpg
