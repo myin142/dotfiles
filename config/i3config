@@ -172,13 +172,9 @@ assign [class="Thunderbird"] $ws7
 assign [class="krita"] $ws6
 assign [class="Allegro"] $ws6
 
-assign [class="dontstarve_steam"] $ws9
-assign [class="csgo_linux64"] $ws9
-
 for_window [window_role="pop-up"] floating enable
 for_window [class="qtfm"] floating enable
 
-exec_always xrandr --output HDMI1 --mode 1920x1080 --pos 1920x0 --rotate normal --output eDP1 --primary --mode 1920x1080 --pos 0x608 --rotate normal
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper.jpg
 exec --no-startup-id compton -c
 exec --no-startup-id dunst -conf ~/.dunstrc
