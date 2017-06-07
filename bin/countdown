@@ -13,7 +13,7 @@ fi
 
 notify-send -t 1 "Countdown" "Countdown starting!"
 
-date1=$((`date +%s` + $1)); 
+date1=$((`date +%s` + $1 * 60)); 
 while [ "$date1" -ge `date +%s` ]; do 
 	if [ ! -z $(pgrep countdown_stop) ]; then
 		break;
