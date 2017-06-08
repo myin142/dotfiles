@@ -1,7 +1,7 @@
 #!/bin/bash
 
-WORK=${1:-1500}
-BREAK=${2:-300}
+WORK=${1:-25}
+BREAK=${2:-5}
 STATUS=0
 START=0
 
@@ -15,7 +15,7 @@ notify-send -t 1 "Pomodoro" "Pomodoro starting!"
 while true; do
 	[ $STATUS -eq 0 ] && START=$WORK || START=$BREAK
 
-	date1=$((`date +%s` + $START)); 
+	date1=$((`date +%s` + $START * 60)); 
 	while [ "$date1" -ge `date +%s` ]; do 
 		if [ ! -z $(pgrep pomodoro_stop) ]; then
 			break 2;
