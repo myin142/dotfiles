@@ -7,15 +7,11 @@ acpi
 dunst
 
 feh
-qtfm
-apvlv
-arandr
-lxappearance
-arc-gtk-theme
+nautilus
+evince
 aria2
 scrot
 
-ranger
 gvim
 git
 redshift
@@ -38,11 +34,8 @@ pkg-config
 
 aseprite
 krita
-inkscape
-gimp
 blender
 unity
-unreal-editor
 qt5-base
 jdk8-openjdk
 jre8-openjdk-headless
@@ -91,10 +84,6 @@ unzip
 unrar
 zip
 
-xsane
 sane
 hplip
 cups
-
-wine
-winetricks
