@@ -5,10 +5,16 @@ rofi
 compton
 acpi
 dunst
-
 feh
+
+lxappearance
+arc-gtk-themes
+arc-icon-themes
+xcursor-comix
+
 nautilus
 evince
+eog
 aria2
 scrot
 
