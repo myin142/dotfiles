@@ -17,6 +17,8 @@ if has('mouse')
 endif
 
 syntax on
+au BufNewFile,BufRead *.aspx set syntax=aspvbs
+
 set number                  " show line numbers
 set relativenumber          " show relative line numbers
 set wrap                    " turn on line wrapping
