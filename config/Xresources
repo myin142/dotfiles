@@ -16,16 +16,3 @@
 *jumpScroll: true
 *multiScroll: true
 *toolBar: false
-
-#define bg_color #00000000
-#define text_color #E0E0E0
-#define window_color #CC2f233f
-#define strong #A966A9
-
-! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-rofi.color-normal: bg_color,  text_color, bg_color, bg_color, strong
-rofi.color-urgent: bg_color,  text_color, bg_color, bg_color, text_color
-rofi.color-active: bg_color,  strong, bg_color, bg_color, bg_color
-
-!                  'background', 'border', 'separator'
-rofi.color-window: window_color, bg_color, bg_color

@@ -1,7 +1,7 @@
 i3-wm
 i3blocks
 i3lock
-rofi
+dmenu
 compton
 acpi
 dunst
