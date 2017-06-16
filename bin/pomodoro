@@ -24,7 +24,6 @@ while true; do
 		if [ ! -z $(pgrep pomodoro_pause) ]; then
 			pause_time=$((`date +%s`))
 			while [ ! -z $(pgrep pomodoro_pause) ]; do
-				sleep 1
 				if [ -z $(pgrep pomodoro_pause) ]; then
 					diff=$((`date +%s` - $pause_time))
 					date1=$(($date1 + $diff))
