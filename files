@@ -1,8 +1,6 @@
 i3-wm
 i3blocks
 i3lock
-lightdm
-lightdm-gtk-greeter
 dmenu
 compton
 acpi
