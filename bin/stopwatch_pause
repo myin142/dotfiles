@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [ -z $(pgrep stopwatch) ]; then
-	exit
-fi
-
-while [ -z $(pgrep stopwatch_resum) ]; do
-	sleep 1
-done

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ -f "/tmp/pomodoro" ]; then
-	pomodoro_resume
-	sleep 1
-	rm /tmp/pomodoro
-fi

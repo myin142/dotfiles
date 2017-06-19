@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ -f "/tmp/stopwatch" ]; then
-	stopwatch_resume
-	sleep 0.5
-	rm /tmp/stopwatch
-fi

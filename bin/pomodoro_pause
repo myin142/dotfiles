@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [ -z $(pgrep pomodoro) ]; then
-	exit
-fi
-
-while [ -z $(pgrep pomodoro_resume) ]; do
-	sleep 1
-done
