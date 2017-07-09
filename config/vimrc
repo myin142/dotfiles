@@ -19,6 +19,7 @@ endif
 syntax on
 au BufNewFile,BufRead *.aspx set syntax=aspvbs
 au BufNewFile,BufRead *.cshtml set syntax=html
+au BufNewFile,BufRead *.ts set syntax=typescript
 
 set number                  " show line numbers
 set relativenumber          " show relative line numbers
