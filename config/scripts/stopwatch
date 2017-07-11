@@ -1,0 +1,28 @@
+#!/bin/bash
+
+pID="/tmp/stopwatch"
+
+if [ ! -f "$pID" ]; then
+	exit
+fi
+
+if [ "$BLOCK_BUTTON" -eq 1 ]; then
+	if [ -z $(pgrep stopwatch_pause) ]; then
+		notify-send -t 2 "Stopwatch" "Stopwatch Paused"
+		nohup stopwatch_pause &>/dev/null &
+	else
+		notify-send -t 2 "Stopwatch" "Stopwatch Resumed"
+		stopwatch_resume
+	fi
+elif [ "$BLOCK_BUTTON" -eq 3 ]; then
+	stopwatch_stop
+	echo "Stopping"
+	echo
+	echo "#FFFFFF"
+fi
+
+TIME="$(awk '/./{line=$0} END{print line}' $pID)"
+
+echo " $TIME";
+echo " $TIME"
+echo "#FFFFFF";

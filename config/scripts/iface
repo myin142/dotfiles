@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Use the provided interface, otherwise the device used for the default route.
+if [[ -n $BLOCK_INSTANCE ]]; then
+  IF=$BLOCK_INSTANCE
+else
+  IF=$(ip route | awk '/^default/ { print $5 ; exit }')
+fi
+
+#------------------------------------------------------------------------
+
+# As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
+# connection (think desktop), the corresponding block should not be displayed.
+[[ ! -d /sys/class/net/${IF} ]] && exit
+
+if [[ -z $IF ]]; then
+  echo " Down"
+  echo " Down"
+  echo "#FF0000"
+  exit
+fi
+
+# if no interface is found, use the first device with a global scope
+IPADDR=$(ip route get 1 | awk '{print $7;exit}')
+
+QUALITY=$(grep $IF /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+
+echo " $IPADDR - $QUALITY%" # full text
+echo " $IPADDR - $QUALITY%" # short text
+
+# color
+if [[ $QUALITY -ge 80 ]]; then
+    echo "#00FF00"
+elif [[ $QUALITY -ge 60 ]]; then
+    echo "#FFF600"
+elif [[ $QUALITY -ge 40 ]]; then
+    echo "#FFAE00"
+else
+    echo "#FF0000"
+fi

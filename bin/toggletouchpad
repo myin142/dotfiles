@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TOUCH_ID=$(xinput list | grep TouchPad | cut -d "=" -f 2 | awk '{print $1}')
+TOUCH_ENABLE=$(xinput list-props $TOUCH_ID | awk '/Device Enabled/{print $NF}')
+TOUCH_DEVICE=$(xinput list-props 13 | grep "Device Enabled" | cut -d ":" -f 1 | sed 's/[^0-9]//g');
+
+if [ $TOUCH_ENABLE -eq 0 ]; then
+	xinput set-prop $TOUCH_ID $TOUCH_DEVICE 1
+else
+	xinput set-prop $TOUCH_ID $TOUCH_DEVICE 0
+fi

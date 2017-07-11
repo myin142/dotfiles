@@ -1,0 +1,163 @@
+#!/bin/bash
+
+function selectDevice {
+	# Get Devices
+	DEVICES=($(pactl list sink short | grep alsa_output | awk '/alsa_output/{print $2}'))
+	local COUNT=0
+	local answer
+
+	echo "Select default device:"
+	for dev in "${DEVICES[@]}"; do
+		echo "#$COUNT $dev"
+		((COUNT++))
+	done
+	
+	read answer
+
+	if [ -z "${DEVICES[$answer]}" ]; then
+		echo "Device not found"
+		exit 1
+	fi
+
+	DEV=${DEVICES[$answer]}
+}
+
+function selectDeviceGUI {
+	# Get Devices
+	DEVICES=($(pactl list sinks short | awk '/alsa_output/{print $1}'))
+	IFS=$'\n' && DEV_DESC=($(pactl list sinks | awk '/Description/{$1="";print $0}' | awk '{$1=$1};1'))
+	local array=()
+	local answer
+	local COUNTER=0
+
+	for dev in "${DEVICES[@]}"; do
+		array+=($COUNTER "${DEV_DESC[$COUNTER]}")
+		((COUNTER++))
+	done
+
+	answer=$(zenity --list --text="Choose Default Sink" --width=700 --height=300 \
+		--column="Index" --column="Name" "${array[@]}")
+	
+	if [[ $? -eq 1 ]]; then
+		exit 1
+	fi
+	
+	DEV=${DEVICES[$answer]}
+
+	# Move Inputs to device
+	INPUTS_INDEX=($(pacmd list-sink-inputs | grep index | awk '{print $2}'))
+	for item in "${INPUTS_INDEX[@]}"; do
+		pacmd move-sink-input $item $DEV
+	done
+}
+
+function selectMic {
+	MICS=($(pactl list short | grep alsa_input | awk '/alsa_input/{print $2}'))
+	local COUNT=0
+	local answer
+
+	echo "Select default mic:"
+	for mic in "${MICS[@]}"; do
+		echo "#$COUNT $mic"
+		((COUNT++))
+	done
+
+	read answer
+
+	if [ -z "${MICS[$answer]}" ]; then
+		echo "Microphone not found"
+		exit 1
+	fi
+
+	MIC=${MICS[$answer]}
+}
+
+function selectInput {
+	# Get inputs
+	INPUTS_INDEX=($(pacmd list-sink-inputs | grep index | awk '{print $2}'))
+
+	if [ ${#INPUTS_INDEX[@]} -eq 0 ]; then
+		echo "No sink inputs found"
+		exit 1
+	else
+		local INPUTS_NAME=($(pacmd list-sink-inputs | grep "application.name = " | cut -d '"' -f2 ))
+		local COUNT=0
+		local answer
+
+		echo "Select input application:"
+		for input in "${INPUTS_NAME[@]}"; do
+			echo "#$COUNT $input"
+			((COUNT++))
+		done
+
+		echo "#$COUNT All inputs"
+		read answer
+
+		if [ -z "${INPUTS_NAME[$answer]}" ]; then
+			if [ ! "$answer" -eq "$COUNT" ]; then
+				echo "Input not found"
+				exit 1
+			fi
+		fi
+
+		if [ $COUNT -eq $answer ]; then
+			INPUT=(${INPUTS_INDEX[@]})
+		else
+			INPUT=${INPUTS_INDEX[$answer]}
+		fi
+	fi
+}
+
+function changeInput {
+	local is_array=$(declare -p INPUT 2> /dev/null | grep -q 'declare -a' && echo 1 || echo 0)
+	if [ $is_array -eq 1 ]; then
+		for item in "${INPUT[@]}"; do
+			pacmd move-sink-input $item $DEV
+		done
+	else
+		pacmd move-sink-input $INPUT $DEV
+	fi
+}
+
+case "$1" in
+
+"change-sink")
+	selectDevice
+	pacmd set-default-sink $DEV
+	;;
+
+"change-sink-gui")
+	selectDeviceGUI
+	pacmd set-default-sink $DEV
+	;;
+
+"change-source")
+	selectMic
+	pacmd set-default-source $MIC
+	;;
+
+"volume-up")
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
+	;;
+	
+"volume-down")
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
+	;;
+
+"toggle-mute")
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+	;;
+
+"toggle-mute-mic")
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+	;;
+
+"move-input")
+	selectDevice
+	selectInput
+	changeInput
+	;;
+
+*) echo "HELP";;
+
+esac

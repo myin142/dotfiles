@@ -1,0 +1,60 @@
+#!/bin/bash
+
+full=""
+short=""
+status=0
+
+# Check if network is available
+IF=$(ip route | awk '/^default/ { print $5 ; exit }')
+
+URL='http://www.accuweather.com/en/at/vienna/31868/weather-forecast/31868'
+SITE="$(curl -s "$URL")"
+
+if [ -z $SITE ]; then
+	exit
+fi
+
+if [ "$BLOCK_BUTTON" -eq 1 ]; then
+	google-chrome-stable $URL >/dev/null
+fi
+
+weather="$(echo "$SITE" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $13 }'| head -1)"
+temp="$(echo "$SITE" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $10 }'| head -1)"
+
+if [[ $weather == *thunder* || $weather == *Thunder* ]]; then
+	icon=""
+	color="#FFFAAA"
+else
+	if [[ $weather == *rain* || $weather == *Rain* ]]; then
+		icon=""
+		color="#0088FF"
+	else
+		if [[ $weather == *snow* || $weather == *Snow* ]]; then
+			icon="❄"
+			color="#82EAFF"
+		else
+			if [[ $weather == *cloud* || $weather == *Cloud* ]]; then
+				icon=""
+				color="#969696"
+			else
+				icon=""
+				color="#FFFF00"
+			fi
+		fi
+	fi
+fi
+
+if [ "$temp" == "" ]; then
+	temp="UNK"
+	color="#FFFFFF"
+fi
+
+temp="$temp°"
+
+full="$icon  $temp"
+short="$temp"
+
+echo "$full"
+echo $short
+echo $color
+exit $status
