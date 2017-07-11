@@ -3,49 +3,49 @@ separator_block_width=20
 color=#E0E0E0
 
 #[pomodoro]
-#command=/home/safe/config/scripts/pomodoro
+#command=/home/safe/dotfiles/config/scripts/pomodoro
 #interval=1
 #label=
 #
 #[countdown]
-#command=/home/safe/config/scripts/countdown
+#command=/home/safe/dotfiles/config/scripts/countdown
 #interval=1
 #label=
 #
 #[stopwatch]
-#command=/home/safe/config/scripts/stopwatch
+#command=/home/safe/dotfiles/config/scripts/stopwatch
 #interval=1
 #label=
 #
 #[pollen]
-#command=/home/safe/config/scripts/pollen
+#command=/home/safe/dotfiles/config/scripts/pollen
 #interval=3600
 #
 #[weather]
-#command=/home/safe/config/scripts/weather
+#command=/home/safe/dotfiles/config/scripts/weather
 #interval=3600
 
 [battery]
-command=/home/safe/config/scripts/battery
+command=/home/safe/dotfiles/config/scripts/battery
 interval=1
 label=
 
 [wifi]
-command=/home/safe/config/scripts/iface
+command=/home/safe/dotfiles/config/scripts/iface
 interval=1
 label=
 
 [volume]
-command=/home/safe/config/scripts/volume
+command=/home/safe/dotfiles/config/scripts/volume
 interval=1
 
 [load]
-command=/home/safe/config/scripts/load_average
+command=/home/safe/dotfiles/config/scripts/load_average
 interval=1
 label=
 
 [disk]
-command=/home/safe/config/scripts/disk
+command=/home/safe/dotfiles/config/scripts/disk
 interval=1
 label=
 
