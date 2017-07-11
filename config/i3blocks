@@ -2,8 +2,6 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=20
 color=#E0E0E0
 
-
-
 #[pomodoro]
 #command=/home/safe/config/scripts/pomodoro
 #interval=1
@@ -28,26 +26,26 @@ color=#E0E0E0
 #interval=3600
 
 [battery]
-command=./scripts/battery
+command=/home/safe/config/scripts/battery
 interval=1
 label=
 
 [wifi]
-command=./scripts/iface
+command=/home/safe/config/scripts/iface
 interval=1
 label=
 
 [volume]
-command=./scripts/volume
+command=/home/safe/config/scripts/volume
 interval=1
 
 [load]
-command=./scripts/load_average
+command=/home/safe/config/scripts/load_average
 interval=1
 label=
 
 [disk]
-command=./scripts/disk
+command=/home/safe/config/scripts/disk
 interval=1
 label=
 
