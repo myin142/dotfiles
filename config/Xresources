@@ -7,7 +7,7 @@
 *eightBitInput: true
 *saveLines: 5000
 *scrollTtyKeypress: true
-!*scrollTtyOutput: false
+*scrollTtyOutput: false
 *scrollBar: false
 *loginShell: true
 *faceName: System San Francisco Display

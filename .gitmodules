@@ -1,0 +1,11 @@
+[submodule "ctrlp.vim"]
+	path = vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
+
+[submodule "dwm.vim"]
+	path = vim/bundle/dwm.vim
+	url = https://github.com/spolu/dwm.vim.git
+
+[submodule "vim-signify"]
+	path = vim/bundle/vim-signify
+	url = https://github.com/mhinz/vim-signify.git

@@ -1,21 +1,21 @@
 #!/bin/bash
 
-safe="/home/safe"
+safe="/home/sakkaku/.dotfiles"
 config="$safe/config"
 
-ln -s "$config/bashrc" ~/.bashrc
-ln -s "$config/dunstrc" ~/.dunstrc
-ln -s "$safe/fonts" ~/.fonts
-ln -s "$config/gtkrc-2.0" ~/.gtkrc-2.0
-ln -s "$safe/img/lock.png" ~/.lock.png
-ln -s "$safe/vim" ~/.vim
-ln -s "$config/vimrc" ~/.vimrc
-ln -s "$safe/img/wallpaper.jpg" ~/.wallpaper.jpg
-ln -s "$config/xinitrc" ~/.xinitrc
-ln -s "$config/Xresources" ~/.Xresources
+ln -sf "$config/bashrc" ~/.bashrc
+ln -sf "$config/dunstrc" ~/.dunstrc
+ln -sf "$safe/fonts" ~/.fonts
+ln -sf "$config/gtkrc-2.0" ~/.gtkrc-2.0
+ln -sf "$safe/img/lock.png" ~/.lock.png
+ln -sf "$safe/vim" ~/.vim
+ln -sf "$config/vimrc" ~/.vimrc
+ln -sf "$safe/img/wallpaper.jpg" ~/.wallpaper.jpg
+ln -sf "$config/xinitrc" ~/.xinitrc
+ln -sf "$config/Xresources" ~/.Xresources
 
-ln -s "$config/i3config" ~/.config/i3/config
-ln -s "$config/i3blocks" ~/.config/i3/i3blocks
+ln -sf "$config/i3config" ~/.config/i3/config
+ln -sf "$config/i3blocks" ~/.config/i3/i3blocks
 
-ln -s "$config/monitor" /etc/X11/xorg.conf.d/10-monitor.conf
-ln -s "$config/synaptics" /etc/X11/xorg.conf.d/40-libinput.conf
+sudo ln -sf "$config/monitor" /etc/X11/xorg.conf.d/10-monitor.conf
+sudo ln -sf "$config/synaptics" /etc/X11/xorg.conf.d/40-libinput.conf

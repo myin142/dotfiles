@@ -60,7 +60,6 @@ set lazyredraw				" Do not redraw whiel executing macros
 " Set Runtimepath
 set runtimepath+=~/.vim/bundle/ctrlp.vim		" File Finder
 set runtimepath+=~/.vim/bundle/dwm.vim			" Window Management
-set runtimepath+=~/.vim/bundle/nerdtree			" Tree Explorer
 set runtimepath+=~/.vim/bundle/vim-signify		" Git Diff
 
 " Ignore files
@@ -91,5 +90,3 @@ noremap <A-l> :tabn<cr>
 " scroll the viewport faster
 noremap <C-e> 5<C-e>
 noremap <C-y> 5<C-y>
-
-noremap <C-S> :NERDTreeToggle<cr>

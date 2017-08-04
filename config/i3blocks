@@ -26,26 +26,26 @@ color=#E0E0E0
 #interval=3600
 
 [battery]
-command=/home/safe/dotfiles/config/scripts/battery
+command=$DOTFILES/config/scripts/battery
 interval=1
 label=
 
 [wifi]
-command=/home/safe/dotfiles/config/scripts/iface
+command=$DOTFILES/config/scripts/iface
 interval=1
 label=
 
 [volume]
-command=/home/safe/dotfiles/config/scripts/volume
+command=$DOTFILES/config/scripts/volume
 interval=1
 
 [load]
-command=/home/safe/dotfiles/config/scripts/load_average
+command=$DOTFILES/config/scripts/load_average
 interval=1
 label=
 
 [disk]
-command=/home/safe/dotfiles/config/scripts/disk
+command=$DOTFILES/config/scripts/disk
 interval=1
 label=
 

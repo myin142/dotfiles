@@ -7,9 +7,11 @@ acpi
 dunst
 feh
 
+base-devel
+
 lxappearance
-arc-gtk-themes
-arc-icon-themes
+arc-gtk-theme
+arc-icon-theme
 xcursor-comix
 
 nautilus
@@ -39,25 +41,18 @@ openssh
 pkgfile
 pkg-config
 
-aseprite
 krita
 blender
-unity
 qt5-base
 jdk8-openjdk
 jre8-openjdk-headless
 
-google-chrome
-yaourt
-thunderbird
+chromium
 steam
-steam-native-runtime
 libreoffice-fresh
 noto-fonts-cjk
-vlc
 
 xf86-video-intel
-xf86-video-ati
 xf86-input-libinput
 xf86-input-wacom
 mesa
@@ -68,9 +63,9 @@ ibus-anthy
 ibus-rime
 
 xorg-server
-xorg-server-utils
 xorg-xinit
 xorg-xprop
+xorg-xinput
 xterm
 
 dialog

@@ -1,7 +1,7 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-xset s off
-xset -dpms
+#xset s off
+#xset -dpms
 
 #xrandr --output HDMI1 --auto --left-of eDP1
 
