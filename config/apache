@@ -1,0 +1,16 @@
+// Load Module
+#LoadModule mpm_event_module modules/mod_mpm_event.so
+LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
+
+// Load PHP
+LoadModule php7_module modules/libphp7.so
+AddHandler php7-script php
+Include conf/extra/php7_module.conf
+
+// Get .htaccess working
+AllowOverride All
+
+// Permission for Laravel
+chgrp -R http bootstrap/cache/ storage/
+chmod -R ug+rwx bootrap/cache/ storage/
+cp .env.example .env

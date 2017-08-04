@@ -1,18 +1,15 @@
-*termName: xterm_256color
-*dynamicColors: true
-*background: rgb:18/18/18
-*foreground: white
-*utf8: 2
-*locale: true
-*eightBitInput: true
-*saveLines: 5000
-*scrollTtyKeypress: true
-*scrollTtyOutput: false
-*scrollBar: false
-*loginShell: true
-*faceName: System San Francisco Display
-*faceNameDoublesize: Noto Sans Mono CJK TC
-*faceSize: 10
-*jumpScroll: true
-*multiScroll: true
-*toolBar: false
+xterm*termName: xterm_256color
+xterm*dynamicColors: true
+xterm*background: rgb:18/18/18
+xterm*foreground: white
+xterm*utf8: 2
+xterm*locale: true
+xterm*eightBitInput: true
+xterm*saveLines: 30000
+xterm*scrollTtyKeypress: false
+xterm*scrollTtyOutput: true
+xterm*scrollBar: false
+xterm*loginShell: true
+xterm*faceName: System San Francisco Display
+xterm*faceNameDoublesize: Noto Sans Mono CJK TC
+xterm*faceSize: 10
