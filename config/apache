@@ -1,6 +1,7 @@
 // Load Module
 #LoadModule mpm_event_module modules/mod_mpm_event.so
 LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
+LoadModule rewrite_module modules/mod_rewrite.so
 
 // Load PHP
 LoadModule php7_module modules/libphp7.so
