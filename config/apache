@@ -14,3 +14,8 @@ AllowOverride All
 chgrp -R http bootstrap/cache/ storage/
 chmod -R ug+rwx bootrap/cache/ storage/
 cp .env.example .env
+
+// MYSQL Setup
+mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+// NOW START MYSQL
+mysql_secure_installation
