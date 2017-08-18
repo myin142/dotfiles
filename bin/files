@@ -54,6 +54,7 @@ steam-native-runtime
 libreoffice-fresh
 noto-fonts-cjk
 
+xf86-video-ati
 xf86-video-intel
 xf86-input-libinput
 xf86-input-wacom
