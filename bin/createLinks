@@ -3,19 +3,31 @@
 safe="/home/sakkaku/.dotfiles"
 config="$safe/config"
 
+mkdir ~/.config
+mkdir ~/.config/i3
+
 ln -sf "$config/bashrc" ~/.bashrc
 ln -sf "$config/dunstrc" ~/.dunstrc
-ln -sf "$safe/fonts" ~/.fonts
 ln -sf "$config/gtkrc-2.0" ~/.gtkrc-2.0
 ln -sf "$safe/img/lock.png" ~/.lock.png
-ln -sf "$safe/vim" ~/.vim
 ln -sf "$config/vimrc" ~/.vimrc
 ln -sf "$safe/img/wallpaper.jpg" ~/.wallpaper.jpg
 ln -sf "$config/xinitrc" ~/.xinitrc
 ln -sf "$config/Xresources" ~/.Xresources
-
 ln -sf "$config/i3config" ~/.config/i3/config
 ln -sf "$config/i3blocks" ~/.config/i3/i3blocks
 
+# Double Run will create duplicate inside the folder if it exists
+if [ ! -f ~/.fonts ]; then
+	ln -sf "$safe/fonts" ~/.fonts
+fi
+
+if [ ! -f ~/.vim ]; then
+	ln -sf "$safe/vim" ~/.vim
+fi
+
 sudo ln -sf "$config/monitor" /etc/X11/xorg.conf.d/10-monitor.conf
 sudo ln -sf "$config/synaptics" /etc/X11/xorg.conf.d/40-libinput.conf
+
+sudo ln -sf "$config/vimrc" /root/.vimrc
+sudo ln -sf "$safe/vim" /root/.vim
