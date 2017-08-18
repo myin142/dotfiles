@@ -16,5 +16,5 @@ makepkg -si
 cd ..
 rm package-query -r
 rm yaourt -r
-
-yaourt -S aseprite
+rm package-query.tar.gz
+rm yaourt.tar.gz
