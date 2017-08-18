@@ -71,13 +71,7 @@ xorg-xprop
 xorg-xinput
 xterm
 
-dialog
-wireless_tools
-wpa_supplicant
-wpa_actiond
 gcc-multilib
-grub
-sudo
 wget
 
 ttf-dejavu
