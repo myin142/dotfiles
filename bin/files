@@ -15,6 +15,10 @@ arc-gtk-theme
 arc-icon-theme
 xcursor-comix
 
+ifuse
+ntfs-3g
+android-file-transfer
+
 ntp
 nautilus
 evince
@@ -49,7 +53,8 @@ qt5-base
 jdk8-openjdk
 jre8-openjdk-headless
 
-chromium
+gtk3-print-backends
+firefox
 steam
 steam-native-runtime
 libreoffice-fresh
