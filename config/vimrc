@@ -9,17 +9,16 @@ set nobackup
 set nowb
 set noswapfile
 
-if (empty($TMUX) && has("termguicolors"))
-  set termguicolors
-endif
-if has('mouse')
-  set mouse=a
-endif
+set termguicolors
+set mouse=a
 
 syntax on
 au BufNewFile,BufRead *.aspx set syntax=aspvbs
 au BufNewFile,BufRead *.cshtml set syntax=html
 au BufNewFile,BufRead *.ts set syntax=typescript
+
+execute pathogen#infect()
+filetype plugin indent on
 
 set number                  " show line numbers
 set relativenumber          " show relative line numbers
@@ -51,16 +50,6 @@ set ignorecase              " case insensitive searching
 set smartcase               " case-sensitive if expresson contains a capital letter
 set hlsearch                " highlight search results
 set incsearch               " set incremental search
-set lazyredraw				" Do not redraw whiel executing macros
-
-"""""""""""
-" PLUGINS "
-"""""""""""
-
-" Set Runtimepath
-set runtimepath+=~/.vim/bundle/ctrlp.vim		" File Finder
-set runtimepath+=~/.vim/bundle/dwm.vim			" Window Management
-set runtimepath+=~/.vim/bundle/vim-signify		" Git Diff
 
 " Ignore files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o	" MacOSX/Linux
@@ -78,15 +67,15 @@ let g:ctrp_custom_ignore = {
 " Remove Highlight
 noremap <space> :noh<cr>
 
-" Save / Quit
-noremap ,, :w<cr>
+" Equal Windows
+noremap <A-w> <C-w>=
 
 " Tabs
 noremap <C-t> :tabnew<cr>
-noremap <A-t> :tabclose<cr>
-noremap <A-h> :tabN<cr>
-noremap <A-l> :tabn<cr>
+noremap <C-w> :tabclose<cr>
+noremap <C-h> :tabN<cr>
+noremap <C-l> :tabn<cr>
 
 " scroll the viewport faster
-noremap <C-e> 5<C-e>
-noremap <C-y> 5<C-y>
+noremap <C-d> 5<C-e>
+noremap <C-u> 5<C-y>
