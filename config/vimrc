@@ -1,5 +1,5 @@
 set autoread                " detect when a file is changed
-set history=100             " change history to 1000
+set history=100             " change history to 100
 set clipboard=unnamedplus
 set encoding=utf-8
 colorscheme base16-default-dark
@@ -9,17 +9,21 @@ set nobackup
 set nowb
 set noswapfile
 
+" Use Better Colors + Mouse Support
 set termguicolors
 set mouse=a
 
+" Syntax Highlighting
 syntax on
 au BufNewFile,BufRead *.aspx set syntax=aspvbs
 au BufNewFile,BufRead *.cshtml set syntax=html
 au BufNewFile,BufRead *.ts set syntax=typescript
 
+" Plugin Installer
 execute pathogen#infect()
 filetype plugin indent on
 
+" Line Numbers and wrapping
 set number                  " show line numbers
 set relativenumber          " show relative line numbers
 set wrap                    " turn on line wrapping
@@ -34,14 +38,14 @@ set listchars=tab:\|\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 
 " make backspace behave in a sane manner
-set backspace=indent,eol,start
+" set backspace=indent,eol,start
 
-" Tab control	
+" Tab control
 set noexpandtab             " insert tabs rather than spaces for <Tab>
 set smarttab                " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set tabstop=4               " the visible width of tabs
-set softtabstop=4           " edit as if the tabs are 4 characters wide
 set shiftwidth=4            " number of spaces to use for indent and unindent
+set softtabstop=4           " edit as if the tabs are 4 characters wide
 set shiftround              " round indent to a multiple of 'shiftwidth'
 set scrolloff=3             " lines of text around cursor
 
@@ -73,8 +77,8 @@ noremap <A-w> <C-w>=
 " Tabs
 noremap <C-t> :tabnew<cr>
 noremap <C-w> :tabclose<cr>
-noremap <C-h> :tabN<cr>
-noremap <C-l> :tabn<cr>
+noremap <A-h> :tabN<cr>
+noremap <A-l> :tabn<cr>
 
 " scroll the viewport faster
 noremap <C-d> 5<C-e>
