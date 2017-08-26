@@ -10,6 +10,6 @@ xterm*scrollTtyKeypress: false
 xterm*scrollTtyOutput: true
 xterm*scrollBar: false
 xterm*loginShell: true
-xterm*faceName: System San Francisco Display
+xterm*faceName: Monaco
 xterm*faceNameDoublesize: Noto Sans Mono CJK TC
 xterm*faceSize: 10
