@@ -4,7 +4,6 @@ i3lock
 dmenu
 compton
 acpi
-acpid
 dunst
 feh
 
@@ -77,6 +76,7 @@ xorg-xinit
 xorg-xprop
 xorg-xinput
 xterm
+arandr
 
 gcc-multilib
 wget

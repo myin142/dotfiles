@@ -3,7 +3,6 @@
 pacman -S - < files
 
 sudo systemctl enable ntpd
-sudo systemctl enable acpid
 
 curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
 tar -xvzf package-query.tar.gz
