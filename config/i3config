@@ -140,7 +140,7 @@ mode "quit" {
 
 bar {
 	status_command i3blocks -c ~/.config/i3/i3blocks
-	tray_output eDP1
+	tray_output primary
 
 	colors {
 		background $bg-color
@@ -179,3 +179,5 @@ for_window [class="qtfm"] floating enable
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper.jpg
 exec --no-startup-id compton -c
 exec --no-startup-id dunst -conf ~/.dunstrc
+
+exec xrandr --output HDMI1 --primary --auto --output eDP1 --auto --right-of HDMI1
