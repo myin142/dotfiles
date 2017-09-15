@@ -71,6 +71,7 @@ ibus
 ibus-anthy
 ibus-rime
 
+xorg-xbacklight
 xorg-server
 xorg-xinit
 xorg-xprop
