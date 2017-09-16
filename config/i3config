@@ -168,7 +168,7 @@ client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color				$bg-color
 assign [class="Steam"] $ws10
 assign [class="Thunderbird"] $ws7
 assign [class="krita"] $ws6
-assign [class="gimp"] $ws6
+assign [class="Gimp"] $ws6
 assign [class="Allegro"] $ws6
 assign [class="Lutris"] $ws9
 
