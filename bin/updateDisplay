@@ -1,0 +1,19 @@
+#!/bin/bash
+
+MONITORS=$(xrandr --listmonitors | tail -n 1)
+MONITORS_COUNT=$(echo $MONITORS | wc -l)
+
+if [ $MONITORS_COUNT -eq 1 ]; then
+	MONITOR=$(echo $MONITORS | awk '{print $NF}')
+	xrandr --output $MONITOR --auto --primary
+elif [ $MONITORS_COUNT -gt 1]; then
+	MONITOR_ARRAY=($(echo $MONITORS | awk '{print $NF}'))
+
+	for monitor in "${MONITOR_ARRAY[@]}"; do
+		if [ $monitor == "HDMI1" ]; then
+			xrandr --output $monitor --auto --primary
+		elif [$monitor == "eDP1" ]; then
+			xrandr --output $monitor --auto --right-of HDMI1
+		fi
+	done
+fi
