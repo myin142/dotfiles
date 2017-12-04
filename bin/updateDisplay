@@ -1,19 +1,19 @@
 #!/bin/bash
 
-MONITORS=$(xrandr --listmonitors | tail -n 1)
-MONITORS_COUNT=$(echo $MONITORS | wc -l)
+MONITORS=($(xrandr | grep -v disconnected | grep connected | awk '{print $1}'))
+MONITORS_COUNT=${#MONITORS[@]}
 
+# If no external monitor connected, use laptop as primary
 if [ $MONITORS_COUNT -eq 1 ]; then
-	MONITOR=$(echo $MONITORS | awk '{print $NF}')
-	xrandr --output $MONITOR --auto --primary
-elif [ $MONITORS_COUNT -gt 1]; then
-	MONITOR_ARRAY=($(echo $MONITORS | awk '{print $NF}'))
+	xrandr --output $MONITORS --auto --primary
 
-	for monitor in "${MONITOR_ARRAY[@]}"; do
-		if [ $monitor == "HDMI1" ]; then
-			xrandr --output $monitor --auto --primary
-		elif [$monitor == "eDP1" ]; then
-			xrandr --output $monitor --auto --right-of HDMI1
+# if more are connected use HDMI1 as primary and laptop is right of HDMI1
+elif [ $MONITORS_COUNT -gt 1 ]; then
+	for monitor in "${MONITORS[@]}"; do
+		if [ "$monitor" == "HDMI1" ]; then
+			xrandr --output "$monitor" --auto --primary
+		elif [ "$monitor" == "eDP1" ]; then
+			xrandr --output "$monitor" --auto --right-of HDMI1
 		fi
 	done
 fi
