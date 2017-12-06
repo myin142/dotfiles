@@ -5,7 +5,7 @@ MONITORS_COUNT=${#MONITORS[@]}
 
 # If no external monitor connected, use laptop as primary
 if [ $MONITORS_COUNT -eq 1 ]; then
-	xrandr --output $MONITORS --auto --primary
+	xrandr --output $MONITORS --auto --primary --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --off --output DP1 --off
 
 # if more are connected use HDMI1 as primary and laptop is right of HDMI1
 elif [ $MONITORS_COUNT -gt 1 ]; then
