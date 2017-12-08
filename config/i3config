@@ -108,7 +108,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 
 # Extra Keys / Shortcuts
 bindsym F12 exec toggleDisplay eDP1 right HDMI1
-bindsym F3 exec lock ~/.lock.png && systemctl suspend
+bindsym Ctrl+F3 exec lock ~/.lock.png && systemctl suspend
 bindsym F11 exec updateDisplay
 bindsym $mod+Shift+x exec lock ~/.lock.png
 

@@ -25,7 +25,6 @@ evince
 eog
 aria2
 scrot
-hardinfo
 
 gvim
 git
@@ -54,7 +53,8 @@ jdk8-openjdk
 jre8-openjdk-headless
 
 gtk3-print-backends
-firefox
+chromium
+chromium-widevine
 steam
 steam-native-runtime
 libreoffice-fresh
