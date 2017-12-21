@@ -40,11 +40,9 @@ if [ "$STATUS" == "" ]; then
 	fi
 
 	xrandr --output $1 --auto $COMMAND $3
+	toggletouchpad 1
 # CONNECTED
 else
 	xrandr --output $1 --off
-fi
-
-if [ $ONBOARD -eq 1 ]; then
-	toggletouchpad
+	toggletouchpad 0
 fi

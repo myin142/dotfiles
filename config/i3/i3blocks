@@ -26,26 +26,26 @@ color=#E0E0E0
 #interval=3600
 
 [battery]
-command=$DOTFILES/config/scripts/battery
+command=$HOME/.config/i3/scripts/battery
 interval=1
 label=
 
 [wifi]
-command=$DOTFILES/config/scripts/iface
+command=$HOME/.config/i3/scripts/iface
 interval=1
 label=
 
 [volume]
-command=$DOTFILES/config/scripts/volume
+command=$HOME/.config/i3/scripts/volume
 interval=1
 
 [load]
-command=$DOTFILES/config/scripts/load_average
+command=$HOME/.config/i3/scripts/load_average
 interval=1
 label=
 
 [disk]
-command=$DOTFILES/config/scripts/disk
+command=$HOME/.config/i3/scripts/disk
 interval=1
 label=
 

@@ -37,10 +37,11 @@ floating_modifier $mod
 # KEY BINDINGS#
 ###############
 
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+t focus mode_toggle
 bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec rofi -show drun
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -151,6 +152,9 @@ bar {
 	}
 }
 
+# Disable system titlebar
+#new_window none
+
 ###########
 # COLOURS #
 ###########
@@ -168,14 +172,12 @@ client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color				$bg-color
 #assign [class="Google-chrome"] $ws1
 assign [class="Steam"] $ws10
 assign [class="Thunderbird"] $ws7
-assign [class="krita"] $ws6
-assign [class="Gimp"] $ws6
-assign [class="Allegro"] $ws6
 assign [class="Lutris"] $ws9
 
 for_window [window_role="pop-up"] floating enable
 for_window [class="qtfm"] floating enable
 
+#exec_always --no-startup-id polybarStart
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper.jpg
 exec --no-startup-id compton -c
 exec --no-startup-id dunst -conf ~/.dunstrc
