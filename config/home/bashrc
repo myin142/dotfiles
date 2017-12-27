@@ -12,7 +12,9 @@ PS1='[\u@\h \W]\$ '
 
 export EDITOR=vim
 export VISUAL=$EDITOR
-export DOTFILES=/home/sakkaku/.dotfiles
+export DOTFILES=$HOME/.dotfiles
+export WINEPATH=$HOME/.wineFolder
+
 PATH=$PATH:$DOTFILES/bin
 
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo
