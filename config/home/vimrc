@@ -23,6 +23,10 @@ au BufNewFile,BufRead *.ts set syntax=typescript
 execute pathogen#infect()
 filetype plugin indent on
 
+" Latex Live Preview
+let g:livepreview_previewer = 'zathura'
+let g:livepreview_engine = 'lualatex'
+
 " Line Numbers and wrapping
 set number                  " show line numbers
 set relativenumber          " show relative line numbers
