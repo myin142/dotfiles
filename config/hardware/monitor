@@ -1,6 +1,6 @@
 Section "Monitor"
 	Identifier		"eDP1"
-	Option			"Rightof" "HDMI1"
+	Option			"Leftof" "HDMI1"
 EndSection
 
 Section "Monitor"
