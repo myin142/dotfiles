@@ -1,0 +1,3 @@
+#!/bin/bash
+
+killall Battle.net.exe Agent.exe

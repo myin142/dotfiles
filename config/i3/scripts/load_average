@@ -31,7 +31,3 @@ awk -v cpus=$cpus -v cpuload=$load '
         }
     }
 '
-
-if [ "$BLOCK_BUTTON" -eq 1 ]; then
-	xterm -e "htop"
-fi
