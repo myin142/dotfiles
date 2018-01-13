@@ -42,7 +42,7 @@ set listchars=tab:\|\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 
 " make backspace behave in a sane manner
-" set backspace=indent,eol,start
+set backspace=indent,eol,start
 
 " Tab control
 set noexpandtab             " insert tabs rather than spaces for <Tab>
