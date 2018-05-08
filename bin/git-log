@@ -2,7 +2,7 @@
 
 if [ -z "$1" ]
 	then
-		git log --oneline --graph --decorate
+		git log --all --oneline --graph --decorate
 	else
-		git log --oneline --graph --decorate -$1
+		git log --all --oneline --graph --decorate -$1
 fi
