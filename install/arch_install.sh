@@ -51,8 +51,10 @@ fi
 echo ""
 echo "First of all, you need to partition your disk."
 echo "If you want to dual-boot with Windows, we highly recommend installing Windows first."
-echo "Otherwise Windows might override the Linux bootloader."
+echo "Otherwise Windows will override the Linux bootloader."
 echo ""
+
+lsblk
 
 ANS=$(askBinaryQuestion "Do you want us to do the partitioning of the disk?")
 
