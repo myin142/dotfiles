@@ -92,18 +92,21 @@ echo "Root Password:"
 passwd
 
 # Setup User
-read -p "Username: " USER
-useradd -m -g users -G wheel,storage,power -s /bin/bash $USER
-passwd $USER
+ANS=$(askBinaryQuestion "Add new User? (Y/n)")
+if [ $ANS -eq 1 ]; then
+	read -p "Username: " NEWUSER
+	useradd -m -g users -G wheel,storage,power -s /bin/bash $NEWUSER
+	passwd $NEWUSER
 
-# Setup Root access for User with sudo
-pacman -S sudo
-EDITOR=vi visudo # Uncomment wheel
+	# Setup Root access for User with sudo
+	pacman -S sudo
+	EDITOR=vi visudo # Uncomment wheel
+fi
 
 # Install Bootloader GRUB
 echo "Installing Bootloader..."
 while : ; do
-	if [ $EFI ]; then
+	if [ $EFI = true ]; then
 		read -p "EFI Directory (/boot/): " DIR
 		if [ -d "$DIR" ]; then
 			pacman -S grub efibootmgr
@@ -124,10 +127,18 @@ while : ; do
 	fi
 done
 
+ANS=$(askBinaryQuestion "Dual Booting? (Y/n)")
+if [ $ANS -eq 1 ]; then
+	pacman -S os-prober
+fi
 cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Get Files for Package Installation
-wget https://github.com/myin142/dotfiles/raw/master/install/installPkg -O /home/$USER/installPkg
-wget https://github.com/myin142/dotfiles/raw/master/install/core -O /home/$USER/core
-wget https://github.com/myin142/dotfiles/raw/master/install/extra -O /home/$USER/extra
+ANS=$(askBinaryQuestion "Get Default Package Installer? (Y/n)")
+if [ $ANS -eq 1 ]; then
+	wget https://github.com/myin142/dotfiles/raw/master/install/installPkg
+	wget https://github.com/myin142/dotfiles/raw/master/install/core
+	wget https://github.com/myin142/dotfiles/raw/master/install/extra
+	chmod +x installPkg
+fi

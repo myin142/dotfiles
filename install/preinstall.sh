@@ -12,13 +12,14 @@ fi
 
 # Select Mirror and Install Arch Base System
 vim /etc/pacman.d/mirrorlist
-pacstrap -i $1 base
+pacstrap -i $1 base wget
 
 # Generate Fstab
 echo "Generating Fstab..."
-genfstab -U -p $1 >> $1/etc/fstab
+genfstab -U -p $1 > $1/etc/fstab
 
 # Change into Arch System
 echo "Changing Root..."
 wget https://github.com/myin142/dotfiles/raw/master/install/install.sh -O $1/install.sh
+chmod +x $1/install.sh
 arch-chroot $1
