@@ -1,8 +1,9 @@
 #!/bin/bash
 
-pacman -S - < files
+pacman -S - < core
 
-sudo systemctl enable ntpd
+systemctl enable ntpd
+systemctl enable slim
 
 curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
 tar -xvzf package-query.tar.gz
@@ -20,3 +21,6 @@ rm package-query -r
 rm yaourt -r
 rm package-query.tar.gz
 rm yaourt.tar.gz
+
+pacman -Syu
+pacman -S - < extra
