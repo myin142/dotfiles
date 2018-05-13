@@ -64,7 +64,7 @@ fi
 while : ; do
 	read -p "Timezone (COUNTRY/CITY): " ZONE
 	if [ -f "/usr/share/zoneinfo/$ZONE" ]; then
-		ln -s /usr/share/zoneinfo/$ZONE /etc/localtime
+		ln -sf /usr/share/zoneinfo/$ZONE /etc/localtime
 		hwclock --systohc --utc
 	else
 		echo "Timezone does not exist."
