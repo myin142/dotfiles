@@ -60,7 +60,7 @@ else
 	exit 1
 fi
 
-# Set Timezone (Default Europe/Vienna)
+# Set Timezone
 while : ; do
 	read -p "Timezone (COUNTRY/CITY): " ZONE
 	if [ -f "/usr/share/zoneinfo/$ZONE" ]; then
@@ -87,9 +87,12 @@ if [ $ANS -eq 1 ]; then
 	pacman -Sy
 fi
 
+# Root Password
+echo "Root Password:"
+passwd
+
 # Setup User
 read -p "Username: " USER
-passwd
 useradd -m -g users -G wheel,storage,power -s /bin/bash $USER
 passwd $USER
 
@@ -123,3 +126,8 @@ done
 
 cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 grub-mkconfig -o /boot/grub/grub.cfg
+
+# Get Files for Package Installation
+wget https://github.com/myin142/dotfiles/raw/master/install/installPkg -O /home/$USER/installPkg
+wget https://github.com/myin142/dotfiles/raw/master/install/core -O /home/$USER/core
+wget https://github.com/myin142/dotfiles/raw/master/install/extra -O /home/$USER/extra
