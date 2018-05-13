@@ -66,6 +66,7 @@ while : ; do
 	if [ -f "/usr/share/zoneinfo/$ZONE" ]; then
 		ln -sf /usr/share/zoneinfo/$ZONE /etc/localtime
 		hwclock --systohc --utc
+		break
 	else
 		echo "Timezone does not exist."
 	fi
