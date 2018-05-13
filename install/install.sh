@@ -62,7 +62,7 @@ vim /etc/pacman.d/mirrorlist
 pacstrap -i $1 base
 
 # Change into Arch System
-arch-chroot $1
+arch-chroot $1 /bin/bash <<EOF
 
 # Create Locale (Default en_US.UTF-8)
 ANS=$(askBinaryQuestion "Locale: en_US.UTF-8? (Y/n)")
@@ -139,3 +139,4 @@ done
 
 cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 grub-mkconfig -o /boot/grub/grub.cfg
+EOF
