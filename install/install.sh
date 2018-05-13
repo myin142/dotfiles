@@ -1,15 +1,5 @@
 #!/bin/sh
 
-# Script does not create Partitions
-# They have to be created before starting the script
-if [ -z "$1" ]; then
-	echo "No Root Directory specified"
-	exit 1
-elif [ ! -d "$1" ]; then
-	echo "Directory does not exist"
-	exit 1
-fi
-
 confirm(){
 	if [ "$1" != "Y" ] && [ "$1" != "y" ] && [ "$1" != "" ] && [ "$1" != "N" ] && [ "$1" != "n" ]
 	then
@@ -56,13 +46,6 @@ if [ $HDD -eq 1 ]; then
 else
 	echo "Using SSD Drive"
 fi
-
-# Select Mirror and Install Arch Base System
-vim /etc/pacman.d/mirrorlist
-pacstrap -i $1 base
-
-# Change into Arch System
-arch-chroot $1 /bin/bash <<EOF
 
 # Create Locale (Default en_US.UTF-8)
 ANS=$(askBinaryQuestion "Locale: en_US.UTF-8? (Y/n)")
@@ -139,4 +122,3 @@ done
 
 cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 grub-mkconfig -o /boot/grub/grub.cfg
-EOF
