@@ -22,5 +22,5 @@ rm yaourt -r
 rm package-query.tar.gz
 rm yaourt.tar.gz
 
-pacman -Syu
+pacman -Sy
 pacman -S - < extra

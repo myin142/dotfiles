@@ -15,7 +15,8 @@ arch-chroot /mnt
 	ln -s /usr/share/zoneinfo/COUNTRY/CITY /etc/localtime
 	hwclock --systohc --utc
 #8 Internet
-	pacman -S wireless_tools wpa_supplicant wpa_actiond dialog
+	WIRELESS: pacman -S wireless_tools wpa_supplicant wpa_actiond dialog
+	WIRED: systemctl enable dhcpcd@eth0.service
 #9 Pacman - Uncomment multilib
 	vim /etc/pacman.conf
 	pacman -Sy

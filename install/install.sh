@@ -88,7 +88,7 @@ if [ $ANS -eq 1 ]; then
 fi
 
 # Root Password
-echo "Root Password:"
+echo "Root Password..."
 passwd
 
 # Setup User
@@ -117,7 +117,7 @@ while : ; do
 		fi
 	else
 		read -p "Device (/dev/sdX): " DEV
-		if [ -f "$DEV" ]; then
+		if [ -e "$DEV" ]; then
 			pacman -S grub-bios
 			grub-install --target=i386-pc --recheck $DEV
 			break

@@ -16,6 +16,9 @@ steam-native-runtime
 
 virtualbox
 discord
+turtl
+teamviewer
+atom
 
 apache
 php
@@ -25,14 +28,16 @@ npm
 nodejs
 openssh
 pkgfile
-pkg-config
+base-devel
 
 gimp
 krita
 blender
 qt5-base
+qtcreator
 jdk8-openjdk
 jre8-openjdk-headless
+intellij-idea-community-edition
 
 libreoffice-fresh
 

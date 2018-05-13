@@ -13,6 +13,10 @@ nvidia
 nvidia-utils
 lib32-nvidia-utils
 
+vulkan-icd-loader
+vulkan-radeon
+lib32-vulkan-radeon
+
 noto-fonts-cjk
 ttf-dejavu
 ttf-liberation
@@ -20,15 +24,4 @@ ttf-liberation
 cinnamon
 slim
 ntp
-
-curl
-tar
-wget
 htop
-tree
-unzip
-unrar
-zip
-
-base-devel
-gcc-multilib
