@@ -5,6 +5,9 @@
 if [ -z "$1" ]; then
 	echo "No Root Directory specified"
 	exit 1
+elif [ ! -d "$1" ]; then
+	echo "Directory does not exist"
+	exit 1
 fi
 
 confirm(){
@@ -56,7 +59,7 @@ fi
 
 # Select Mirror and Install Arch Base System
 vim /etc/pacman.d/mirrorlist
-pacstram -i $1 base
+pacstrap -i $1 base
 
 # Change into Arch System
 arch-chroot $1
