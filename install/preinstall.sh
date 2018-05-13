@@ -15,5 +15,5 @@ vim /etc/pacman.d/mirrorlist
 pacstrap -i $1 base
 
 # Change into Arch System
-wget https://github.com/myin142/dotfiles/raw/master/install/install.sh -O $1/root/
+wget https://github.com/myin142/dotfiles/raw/master/install/install.sh -O $1/root/install.sh
 arch-chroot $1
