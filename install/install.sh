@@ -51,7 +51,7 @@ fi
 ANS=$(askBinaryQuestion "Locale: en_US.UTF-8? (Y/n)")
 echo ""
 if [ $ANS -eq 1 ]; then
-	vim /etc/locale.gen
+	vi /etc/locale.gen
 	echo LANG=en_US.UTF-8 > /etc/locale.conf
 	export LANG=en_US.UTF-8
 	locale-gen
@@ -82,7 +82,7 @@ fi
 ANS=$(askBinaryQuestion "64-Bit System? (Y/n)")
 echo ""
 if [ $ANS -eq 1 ]; then
-	vim /etc/pacman.conf
+	vi /etc/pacman.conf
 	pacman -Sy
 fi
 
