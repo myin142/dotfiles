@@ -132,8 +132,8 @@ if [ $ANS -eq 1 ]; then
 	wget https://github.com/myin142/dotfiles/raw/master/install/installPkg.sh -O /home/$NEWUSER/installPkg.sh
 	wget https://github.com/myin142/dotfiles/raw/master/install/core -O /home/$NEWUSER/core
 	wget https://github.com/myin142/dotfiles/raw/master/install/extra -O /home/$NEWUSER/extra
-	chmod +x /home/$NEWUSER/installPkg
-	chown $NEWUSER:users /home/$NEWUSER/installPkg
+	chmod +x /home/$NEWUSER/installPkg.sh
+	chown $NEWUSER:users /home/$NEWUSER/installPkg.sh
 	chown $NEWUSER:users /home/$NEWUSER/core
 	chown $NEWUSER:users /home/$NEWUSER/extra
 
