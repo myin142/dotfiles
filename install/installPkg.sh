@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Install Core Packages for
 sudo pacman -S - < core
