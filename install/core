@@ -26,3 +26,5 @@ lightdm
 lightdm-gtk-greeter
 ntp
 htop
+
+binutils
