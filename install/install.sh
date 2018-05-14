@@ -137,10 +137,10 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Get Files for Package Installation
 ANS=$(askBinaryQuestion "Get Default Package Installer? (Y/n)")
 if [ $ANS -eq 1 ]; then
-	wget https://github.com/myin142/dotfiles/raw/master/install/installPkg
-	wget https://github.com/myin142/dotfiles/raw/master/install/core
-	wget https://github.com/myin142/dotfiles/raw/master/install/extra
-	chmod +x installPkg
+	wget https://github.com/myin142/dotfiles/raw/master/install/installPkg.sh -O /home/$NEWUSER/installPkg.sh
+	wget https://github.com/myin142/dotfiles/raw/master/install/core -O /home/$NEWUSER/core
+	wget https://github.com/myin142/dotfiles/raw/master/install/extra -O /home/$NEWUSER/extra
+	chmod +x /home/$NEWUSER/installPkg.sh
 
 	# Links for Root User
 	ln -sf /home/$NEWUSER/.dotfiles/config/vimrc ~/.vimrc
