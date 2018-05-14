@@ -142,6 +142,8 @@ if [ $ANS -eq 1 ]; then
 	wget https://github.com/myin142/dotfiles/raw/master/install/extra -O /home/$NEWUSER/extra
 	chmod +x /home/$NEWUSER/installPkg
 	chown $NEWUSER:users /home/$NEWUSER/installPkg
+	chown $NEWUSER:users /home/$NEWUSER/core
+	chown $NEWUSER:users /home/$NEWUSER/extra
 
 	# Links for Root User
 	ln -sf /home/$NEWUSER/.dotfiles/config/vimrc ~/.vimrc
