@@ -1,7 +1,6 @@
 alsa-utils
 pulseaudio
 pulseaudio-alsa
-pavucontrol
 
 xorg-server
 xorg-xinit
