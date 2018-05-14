@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Install Core Packages for 
-pacman -S - < core
+# Install Core Packages for
+sudo pacman -S - < core
 
-systemctl enable ntpd
-systemctl enable lightdm
+sudo systemctl enable ntpd
+sudo systemctl enable lightdm
 
-# Fix for Black Screen on SSD
+# Fix for Black Screen on SSD, has to be executed as root
 printf "[LightDM]\nlogind-check-graphical=true\nrun-directory=/run/lightdm\n\n[Seat:*]\nsession-wrapper=/etc/lightdm/Xsession" > /etc/lightdm/lightdm.conf
 
 # Install Yaourt
@@ -28,5 +28,5 @@ rm package-query.tar.gz
 rm yaourt.tar.gz
 
 # Install Additional Packages
-pacman -Sy
-pacman -S - < extra
+sudo pacman -Sy
+sudo pacman -S - < extra
