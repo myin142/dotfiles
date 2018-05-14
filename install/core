@@ -30,3 +30,7 @@ ntp
 htop
 
 binutils
+gcc
+pkg-config
+make
+fakeroot

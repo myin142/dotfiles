@@ -25,7 +25,6 @@ pkgfile
 gimp
 krita
 blender
-qt5-base
 qtcreator
 jdk8-openjdk
 jre8-openjdk-headless
