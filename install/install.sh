@@ -141,4 +141,12 @@ if [ $ANS -eq 1 ]; then
 	wget https://github.com/myin142/dotfiles/raw/master/install/core
 	wget https://github.com/myin142/dotfiles/raw/master/install/extra
 	chmod +x installPkg
+
+	# Links for Root User
+	ln -sf /home/$NEWUSER/.dotfiles/config/vimrc ~/.vimrc
+	ln -sf /home/$NEWUSER/.dotfiles/vim ~/.vim
+
+	# Get Postinstall File for User
+	wget https://github.com/myin142/dotfiles/raw/master/install/postinstall.sh -O /home/$NEWUSER/postinstall.sh
+	chmod +x /home/$NEWUSER/postinstall.sh
 fi
