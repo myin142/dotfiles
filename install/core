@@ -22,6 +22,8 @@ ttf-liberation
 
 cinnamon
 mate-terminal
+eog
+vlc
 lightdm
 lightdm-gtk-greeter
 ntp
