@@ -39,14 +39,6 @@ else
 	echo "UEFI is disabled"
 fi
 
-# Check what type of drive
-HDD=$(cat /sys/block/sda/queue/rotational)
-if [ $HDD -eq 1 ]; then
-	echo "Using HDD Drive"
-else
-	echo "Using SSD Drive"
-fi
-
 # Create Locale (Default en_US.UTF-8)
 ANS=$(askBinaryQuestion "Locale: en_US.UTF-8? (Y/n)")
 echo ""
@@ -107,7 +99,7 @@ fi
 echo "Installing Bootloader..."
 while : ; do
 	if [ $EFI = true ]; then
-		read -p "EFI Directory (/boot/): " DIR
+		read -p "EFI Directory (/boot/efi): " DIR
 		if [ -d "$DIR" ]; then
 			pacman -S grub efibootmgr
 			grub-install --target=x86_64-efi --efi-directory=$DIR --bootloader-id=ARCH
