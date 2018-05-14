@@ -22,7 +22,7 @@ ttf-liberation
 
 cinnamon
 mate-terminal
-eog
+gpicview
 vlc
 lightdm
 lightdm-gtk-greeter
@@ -34,3 +34,18 @@ gcc
 pkg-config
 make
 fakeroot
+
+ibus
+ibus-rime
+ibus-anthy
+
+redshift
+git
+gvim
+pkgfile
+
+chromium
+steam
+steam-native-runtime
+atom
+libreoffice-fresh

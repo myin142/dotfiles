@@ -27,9 +27,6 @@ runProgram(){
 	rm yaourt -r
 	rm package-query.tar.gz
 	rm yaourt.tar.gz
-
-	# Install Additional Packages
-	sudo pacman -S - < extra
 }
 
 # Check if internet connection if available

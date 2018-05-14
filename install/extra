@@ -1,17 +1,4 @@
-ibus
-ibus-rime
-ibus-anthy
-
-redshift
-git
-gvim
-
-chromium
-steam
-steam-native-runtime
-
 virtualbox
-atom
 
 apache
 php
@@ -20,7 +7,6 @@ mariadb
 npm
 nodejs
 openssh
-pkgfile
 
 gimp
 krita
@@ -29,5 +15,3 @@ qtcreator
 jdk8-openjdk
 jre8-openjdk-headless
 intellij-idea-community-edition
-
-libreoffice-fresh
