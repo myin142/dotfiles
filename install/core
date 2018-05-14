@@ -21,6 +21,7 @@ ttf-dejavu
 ttf-liberation
 
 cinnamon
+mate-terminal
 lightdm
 lightdm-gtk-greeter
 ntp
