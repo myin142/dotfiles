@@ -40,6 +40,9 @@ ibus-rime
 ibus-anthy
 
 redshift
+python-gobject
+python-xdg
+gtk3
 git
 gvim
 pkgfile
