@@ -4,7 +4,7 @@ runProgram(){
 	# Install Core Packages for
 	sudo pacman -S - < core
 
-	pkgfile -u
+	sudo pkgfile -u
 	sudo systemctl enable ntpd
 	sudo systemctl enable lightdm
 

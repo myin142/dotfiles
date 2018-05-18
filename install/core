@@ -46,8 +46,10 @@ gtk3
 git
 gvim
 pkgfile
+openssh
 
 chromium
+pepper-flash
 steam
 steam-native-runtime
 atom
