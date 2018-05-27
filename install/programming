@@ -1,5 +1,3 @@
-virtualbox
-
 apache
 php
 php-apache
@@ -7,10 +5,11 @@ mariadb
 npm
 nodejs
 
-gimp
-krita
-blender
-qtcreator
+git
+gcc
+
 jdk8-openjdk
 jre8-openjdk-headless
+
+qtcreator
 intellij-idea-community-edition

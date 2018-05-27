@@ -1,15 +1,17 @@
 #!/bin/sh
 
 runProgram(){
-	# Install Core Packages for
+	# Install Packages
 	sudo pacman -S - < core
+	sudo pacman -S - < sound
+	sudo pacman -S - < fonts
+	sudo pacman -S - < graphic
+	sudo pacman -S - < desktop
+	sudo pacman -S - < programming
 
 	sudo pkgfile -u
 	sudo systemctl enable ntpd
-	sudo systemctl enable lightdm
-
-	# Fix for Black Screen on SSD, has to be executed as root
-	su root -c 'printf "[LightDM]\nlogind-check-graphical=true\nrun-directory=/run/lightdm\n\n[Seat:*]\nsession-wrapper=/etc/lightdm/Xsession" > /etc/lightdm/lightdm.conf'
+	sudo systemctl enable NetworkManager
 
 	# Install Yaourt
 	curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
