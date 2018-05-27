@@ -142,3 +142,7 @@ PATH=$PATH:$DOTFILES/bin
 
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo
 MIC=alsa_input.pci-0000_00_1b.0.analog-stereo
+
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
