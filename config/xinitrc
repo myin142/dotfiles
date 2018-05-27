@@ -1,11 +1,13 @@
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+#[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 xset s off
 xset -dpms
 
 #xrandr --output HDMI1 --auto --left-of eDP1
 
-redstart &
+redshift -l 48.2082:16.3738 &
+ibus-daemon -drx
+nm-applet &
 
 session=${1:-i3}
 
