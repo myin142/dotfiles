@@ -2,7 +2,7 @@
 
 function selectDevice {
 	# Get Devices
-	DEVICES=($(pactl list sink short | grep alsa_output | awk '/alsa_output/{print $2}'))
+	DEVICES=($(pactl list sinks short | grep alsa_output | awk '/alsa_output/{print $2}'))
 	local COUNT=0
 	local answer
 
