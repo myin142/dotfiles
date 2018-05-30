@@ -1,8 +1,3 @@
 #!/bin/bash
 
-if [ -z "$1" ]
-	then
-		git log --oneline --graph --decorate
-	else
-		git log --oneline --graph --decorate -$1
-fi
+git log --oneline --graph --decorate "$@"
