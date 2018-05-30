@@ -144,7 +144,6 @@ mode "quit" {
 
 bar {
 	status_command  i3blocks -c ~/.config/i3/i3blocks
-	tray_output primary
 
 	colors {
 		background $bg-color
