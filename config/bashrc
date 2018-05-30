@@ -138,7 +138,7 @@ export EDITOR=vim
 export VISUAL=$EDITOR
 export DOTFILES=$HOME/.dotfiles
 
-PATH=$PATH:$DOTFILES/bin
+PATH=$PATH:~/.bin
 
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo
 MIC=alsa_input.pci-0000_00_1b.0.analog-stereo
