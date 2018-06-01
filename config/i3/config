@@ -124,7 +124,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Extra Keys / Shortcuts
-bindsym Ctrl+F3 exec ~/.bin/lock ~/.lock.png && systemctl suspend
+bindsym XF86Sleep exec ~/.bin/lock ~/.lock.png && systemctl suspend
 bindsym $mod+Shift+x exec ~/.bin/lock ~/.lock.png
 
 #########
