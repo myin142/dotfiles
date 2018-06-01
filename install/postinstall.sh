@@ -40,3 +40,28 @@ if [ -d ~/.bin ]; then
 	rm ~/.bin
 fi
 ln -sf ~/.dotfiles/bin ~/.bin
+
+if [ -d ~/Applications ]; then
+	rm ~/Applications
+fi
+ln -sf ~/Data/Applications ~/Applications
+
+if [ -d ~/Documents ]; then
+	rm ~/Documents
+fi
+ln -sf ~/Data/Documents ~/Documents
+
+if [ -d ~/Downloads ]; then
+	rm ~/Downloads
+fi
+ln -sf ~/Data/Downloads ~/Downloads
+
+if [ -d ~/Games ]; then
+	rm ~/Games
+fi
+ln -sf ~/Data/Games ~/Games
+
+if [ -d ~/Programming ]; then
+	rm ~/Programming
+fi
+ln -sf ~/Data/Programming ~/Programming
