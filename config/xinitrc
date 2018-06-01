@@ -5,7 +5,7 @@ xset -dpms
 
 #xrandr --output HDMI1 --auto --left-of eDP1
 
-redshift -l 48.2082:16.3738 &
+~/.bin/redstart &
 ibus-daemon -drx
 nm-applet &
 
