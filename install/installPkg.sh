@@ -14,22 +14,14 @@ runProgram(){
 	sudo systemctl enable NetworkManager
 
 	# Install Yaourt
-	curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
-	tar -xvzf package-query.tar.gz
-	cd package-query
+	curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/aurman.tar.gz
+	tar -xvzf aurman.tar.gz
+	cd aurman
 	makepkg -si
 
 	cd ..
-	curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz
-	tar -xvzf yaourt.tar.gz
-	cd yaourt
-	makepkg -si
-
-	cd ..
-	rm package-query -r
-	rm yaourt -r
-	rm package-query.tar.gz
-	rm yaourt.tar.gz
+	rm aurman -r
+	rm aurman.tar.gz
 }
 
 # Check if internet connection if available
