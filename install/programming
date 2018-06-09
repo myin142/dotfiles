@@ -7,6 +7,7 @@ nodejs
 
 git
 gcc
+keychain
 
 jdk8-openjdk
 jre8-openjdk-headless
