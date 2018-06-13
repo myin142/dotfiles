@@ -9,7 +9,7 @@ set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
 # Set Font
-font pango:DejaVu 10
+font pango:DejaVu, fontawesome 10
 
 # Floating Mod
 floating_modifier $mod
