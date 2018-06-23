@@ -4,12 +4,23 @@ pad="Wacom Intuos PT M 2 Pad pad"
 pen="Wacom Intuos PT M 2 Pen stylus"
 use=$1
 
+# Button 1: Left Bottom
+# Button 3: Left Top
+# Button 8: Right Bottom
+# Button 9: Right Top
+
 case $use in
 	paint)
 		xsetwacom set "$pad" Button 1 key ctrl shift z
 		xsetwacom set "$pad" Button 3 key ctrl z
 		xsetwacom set "$pad" Button 8 key shift
 		xsetwacom set "$pad" Button 9 key ctrl
+	;;
+	text)
+		xsetwacom set "$pad" Button 1 key ctrl v
+		xsetwacom set "$pad" Button 3 key ctrl c
+		xsetwacom set "$pad" Button 8 key backspace
+		xsetwacom set "$pad" Button 9 key return
 	;;
 
 	*)
