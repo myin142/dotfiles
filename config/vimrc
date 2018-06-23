@@ -67,6 +67,9 @@ let g:ctrlp_custom_ignore = {
 \ 'file': '\v\.(exe|so|dll|o)$',
 \ }
 
+" Change Netrw Style
+let g:netrw_liststyle = 3
+
 " Fix incorrect BG Rendering in Kitty
 if has('gui_running') || has('nvim')
     hi Normal 		guifg=#d8d8d8 guibg=#181818
