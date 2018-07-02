@@ -105,3 +105,13 @@ noremap <A-l> :tabn<cr>
 " scroll the viewport faster
 noremap <C-d> 5<C-e>
 noremap <C-u> 5<C-y>
+
+" Detect <Alt> Key on some terminals by using <ESC>
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+
+set timeout ttimeoutlen=50
