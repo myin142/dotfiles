@@ -18,6 +18,7 @@ syntax on
 au BufNewFile,BufRead *.aspx set syntax=aspvbs
 au BufNewFile,BufRead *.cshtml set syntax=html
 au BufNewFile,BufRead *.ts set syntax=typescript
+au BufNewFile,BufRead *.qss set syntax=css
 
 " Plugin Installer
 execute pathogen#infect()
