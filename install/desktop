@@ -2,7 +2,6 @@ ranger
 feh
 kitty
 mupdf
-vlc
 compton
 
 ibus
@@ -10,21 +9,15 @@ ibus-rime
 ibus-anthy
 
 redshift
-gvim
-
 chromium
-pepper-flash
 steam
-steam-native-runtime
 atom
-libreoffice-fresh
-
-gimp
-krita
-blender
 
 i3-wm
 i3blocks
 i3lock
 scrot
 imagemagick
+
+networkmanager
+network-manager-applet
