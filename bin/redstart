@@ -1,3 +1,3 @@
 #/bin/bash
 
-redshift -l 48.2082:16.3738
+redshift -O 2500

@@ -8,6 +8,3 @@ fakeroot
 pkgfile
 openssh
 make
-
-networkmanager
-network-manager-applet
