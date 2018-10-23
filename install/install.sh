@@ -192,4 +192,6 @@ if [ $ANS -eq 1 ]; then
 	wget https://github.com/myin142/dotfiles/raw/master/install/postinstall.sh -O /home/$NEWUSER/postinstall.sh
 	chmod +x /home/$NEWUSER/postinstall.sh
 	chown $NEWUSER:users /home/$NEWUSER/postinstall.sh
+
+	su $NEWUSER
 fi
