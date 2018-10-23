@@ -43,7 +43,7 @@ fi
 ANS=$(askBinaryQuestion "Locale: en_US.UTF-8? (Y/n)")
 echo ""
 if [ $ANS -eq 1 ]; then
-	vi /etc/locale.gen
+	echo "en_US.UTF-8" > /etc/locale.gen
 	echo LANG=en_US.UTF-8 > /etc/locale.conf
 	export LANG=en_US.UTF-8
 	locale-gen
@@ -100,6 +100,11 @@ echo "Installing Bootloader..."
 while : ; do
 	if [ $EFI = true ]; then
 		read -p "EFI Directory (/boot/efi): " DIR
+
+		if [ -z "$DIR" ]; then
+			DIR="/boot/efi"
+		fi
+
 		if [ -d "$DIR" ]; then
 			pacman -S grub efibootmgr
 			grub-install --target=x86_64-efi --efi-directory=$DIR --bootloader-id=ARCH
@@ -115,6 +120,7 @@ while : ; do
 			break
 		else
 			echo "Device does not exist"
+			lsblk
 		fi
 	fi
 done
