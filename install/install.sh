@@ -105,12 +105,15 @@ fi
 ANS=$(askBinaryQuestion "Add new User? (Y/n)")
 if [ $ANS -eq 1 ]; then
 	read -p "Username: " NEWUSER
-	useradd -m -g users -G wheel,storage,power -s /bin/bash $NEWUSER
-	passwd $NEWUSER
 
-	# Setup Root access for User with sudo
-	pacman -S sudo
-	EDITOR=vi visudo # Uncomment wheel
+	if [ ! -d "/home/$NEWUSER" ]; then
+		useradd -m -g users -G wheel,storage,power -s /bin/bash $NEWUSER
+		passwd $NEWUSER
+
+		# Setup Root access for User with sudo
+		pacman -S sudo
+		EDITOR=vi visudo # Uncomment wheel
+	fi
 fi
 
 # Install Bootloader GRUB
