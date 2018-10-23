@@ -56,9 +56,12 @@ while : ; do
 		ln -sf /usr/share/zoneinfo/$ZONE /etc/localtime
 		hwclock --systohc --utc
 		break
+	elif [ -d "/usr/share/zoneinfo/$ZONE" ]; then
+		echo "City missing."
+		ls "/usr/share/zoneinfo/$ZONE"
 	else
 		echo "Timezone does not exist."
-		ls /usr/share/zoneinfo/*
+		ls /usr/share/zoneinfo/
 	fi
 done
 
