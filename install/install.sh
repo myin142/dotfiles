@@ -164,6 +164,17 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Get Files for Package Installation
 ANS=$(askBinaryQuestion "Get Default Package Installer? (Y/n)")
 if [ $ANS -eq 1 ]; then
+	if [ -z "$NEWUSER" ]; then
+		while : ; do
+			read -p "User for installation: " NEWUSER
+
+			if [ -d "/home/$NEWUSER" ]; then
+				break
+			else
+				echo "User does not exist"
+			fi
+		done
+	fi
 	
 	# Get Package Installer
 	wget https://github.com/myin142/dotfiles/raw/master/install/installPkg.sh -O /home/$NEWUSER/installPkg.sh
