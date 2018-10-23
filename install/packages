@@ -1,17 +1,7 @@
 ntp
-htop
-
 binutils
-pkg-config
-fakeroot
-
 pkgfile
-openssh
-make
-
-noto-fonts-cjk
 ttf-dejavu
-ttf-liberation
 
 alsa-utils
 pulseaudio
@@ -19,7 +9,6 @@ pulseaudio-alsa
 pavucontrol
 
 git
-gcc
 keychain
 
 xorg-server
@@ -28,7 +17,6 @@ mesa
 lib32-mesa
 
 xf86-video-amdgpu
-vulkan-icd-loader
 vulkan-radeon
 lib32-vulkan-radeon
 
@@ -43,10 +31,6 @@ ibus-rime
 ibus-anthy
 
 redshift
-chromium
-steam
-atom
-
 i3-wm
 i3blocks
 i3lock
