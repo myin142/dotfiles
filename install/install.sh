@@ -27,6 +27,14 @@ askBinaryQuestion(){
 	done
 }
 
+skip(){
+	if [ "$1" == "n" ] || [ "$1" == "N" ] || [ "$1" == "skip"] || [ "$1" == "s" ]; then
+		echo 1
+	else
+		echo 0
+	fi
+}
+
 # Start of Installation Script
 echo "Starting Arch Linux Installation..."
 
@@ -52,7 +60,9 @@ fi
 # Set Timezone
 while : ; do
 	read -p "Timezone (COUNTRY/CITY): " ZONE
-	if [ "$ZONE" == "n" ] || [ "$ZONE" == "N" ] || [ "$ZONE" == "skip"] || [ "$ZONE" == "s" ]; then
+
+	SKIP=$(skip $ZONE)
+	if [ $SKIP -eq 1 ]; then
 		break
 	fi
 
@@ -109,6 +119,11 @@ while : ; do
 	if [ $EFI = true ]; then
 		read -p "EFI Directory (/boot/efi): " DIR
 
+		SKIP=$(skip $DIR)
+		if [ $SKIP -eq 1 ];  then
+			break
+		fi
+
 		if [ -z "$DIR" ]; then
 			DIR="/boot/efi"
 		fi
@@ -122,6 +137,12 @@ while : ; do
 		fi
 	else
 		read -p "Device (/dev/sdX): " DEV
+
+		SKIP=$(skip $DEV)
+		if [ $SKIP -eq 1 ];  then
+			break
+		fi
+
 		if [ -e "$DEV" ]; then
 			pacman -S grub-bios
 			grub-install --target=i386-pc --recheck $DEV
