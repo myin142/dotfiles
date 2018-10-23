@@ -170,18 +170,8 @@ if [ $ANS -eq 1 ]; then
 	chmod +x /home/$NEWUSER/installPkg.sh
 	chown $NEWUSER:users /home/$NEWUSER/installPkg.sh
 
-	wget https://github.com/myin142/dotfiles/raw/master/install/core -O /home/$NEWUSER/core
-	wget https://github.com/myin142/dotfiles/raw/master/install/fonts -O /home/$NEWUSER/fonts
-	wget https://github.com/myin142/dotfiles/raw/master/install/graphic -O /home/$NEWUSER/graphic
-	wget https://github.com/myin142/dotfiles/raw/master/install/desktop -O /home/$NEWUSER/desktop
-	wget https://github.com/myin142/dotfiles/raw/master/install/programming -O /home/$NEWUSER/programming
-	wget https://github.com/myin142/dotfiles/raw/master/install/sound -O /home/$NEWUSER/sound
-	chown $NEWUSER:users /home/$NEWUSER/core
-	chown $NEWUSER:users /home/$NEWUSER/fonts
-	chown $NEWUSER:users /home/$NEWUSER/graphic
-	chown $NEWUSER:users /home/$NEWUSER/desktop
-	chown $NEWUSER:users /home/$NEWUSER/programming
-	chown $NEWUSER:users /home/$NEWUSER/sound
+	wget https://github.com/myin142/dotfiles/raw/master/install/packages -O /home/$NEWUSER/packages
+	chown $NEWUSER:users /home/$NEWUSER/packages
 
 	# Links for Root User
 	ln -sf /home/$NEWUSER/.dotfiles/config/vimrc ~/.vimrc

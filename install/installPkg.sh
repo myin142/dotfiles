@@ -2,18 +2,13 @@
 
 runProgram(){
 	# Install Packages
-	sudo pacman -S - < core
-	sudo pacman -S - < sound
-	sudo pacman -S - < fonts
-	sudo pacman -S - < graphic
-	sudo pacman -S - < desktop
-	sudo pacman -S - < programming
+	sudo pacman -S - < packages
 
 	sudo pkgfile -u
 	sudo systemctl enable ntpd
 	sudo systemctl enable NetworkManager
 
-	# Install Yaourt
+	# Install Aurman
 	curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/aurman.tar.gz
 	tar -xvzf aurman.tar.gz
 	cd aurman
