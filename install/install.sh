@@ -49,7 +49,6 @@ if [ $ANS -eq 1 ]; then
 	locale-gen
 else
 	echo "Change the locale in this script yourself."
-	exit 1
 fi
 
 # Set Timezone
@@ -61,6 +60,7 @@ while : ; do
 		break
 	else
 		echo "Timezone does not exist."
+		ls /usr/share/zoneinfo/*
 	fi
 done
 
@@ -82,6 +82,8 @@ fi
 # Root Password
 echo "Root Password..."
 passwd
+
+
 
 # Setup User
 ANS=$(askBinaryQuestion "Add new User? (Y/n)")
