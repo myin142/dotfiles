@@ -28,7 +28,7 @@ askBinaryQuestion(){
 }
 
 skip(){
-	if [ "$1" == "n" ] || [ "$1" == "N" ] || [ "$1" == "skip"] || [ "$1" == "s" ]; then
+	if [ "$1" == "n" ] || [ "$1" == "N" ] || [ "$1" == "skip" ] || [ "$1" == "s" ]; then
 		echo 1
 	else
 		echo 0
