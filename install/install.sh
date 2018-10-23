@@ -52,6 +52,10 @@ fi
 # Set Timezone
 while : ; do
 	read -p "Timezone (COUNTRY/CITY): " ZONE
+	if [ "$ZONE" == "n" ] || [ "$ZONE" == "N" ] || [ "$ZONE" == "skip"] || [ "$ZONE" == "s" ]; then
+		break
+	fi
+
 	if [ -f "/usr/share/zoneinfo/$ZONE" ]; then
 		ln -sf /usr/share/zoneinfo/$ZONE /etc/localtime
 		hwclock --systohc --utc
