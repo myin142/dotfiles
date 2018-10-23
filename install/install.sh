@@ -49,7 +49,6 @@ fi
 
 # Create Locale (Default en_US.UTF-8)
 ANS=$(askBinaryQuestion "Set Locale: en_US.UTF-8? (Y/n)")
-echo ""
 if [ $ANS -eq 1 ]; then
 	echo "en_US.UTF-8" > /etc/locale.gen
 	echo LANG=en_US.UTF-8 > /etc/locale.conf
@@ -81,14 +80,12 @@ done
 
 # Install Packages for Wireless Connection
 ANS=$(askBinaryQuestion "Will you be using wireless connections? (Y/n)")
-echo ""
 if [ $ANS -eq 1 ]; then
 	pacman -S wireless_tools wpa_supplicant wpa_actiond dialog
 fi
 
 # Enable Multilib for 64-Bit Systems
 ANS=$(askBinaryQuestion "64-Bit System? (Y/n)")
-echo ""
 if [ $ANS -eq 1 ]; then
 	vi /etc/pacman.conf
 	pacman -Sy
