@@ -85,10 +85,11 @@ if [ $ANS -eq 1 ]; then
 fi
 
 # Root Password
-echo "Root Password..."
-passwd
-
-
+ANS=$(askBinaryQuestion "Set Root Password? (Y/n)")
+if [ $ANS -eq 1 ]; then
+	echo "Root Password: "
+	passwd
+fi
 
 # Setup User
 ANS=$(askBinaryQuestion "Add new User? (Y/n)")
