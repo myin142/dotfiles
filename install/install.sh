@@ -50,7 +50,7 @@ fi
 # Create Locale (Default en_US.UTF-8)
 ANS=$(askBinaryQuestion "Set Locale: en_US.UTF-8? (Y/n)")
 if [ $ANS -eq 1 ]; then
-	echo "en_US.UTF-8" > /etc/locale.gen
+	echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 	echo LANG=en_US.UTF-8 > /etc/locale.conf
 	export LANG=en_US.UTF-8
 	locale-gen
