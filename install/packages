@@ -1,6 +1,7 @@
 ntp
 binutils
 pkgfile
+fakeroot
 ttf-dejavu
 
 alsa-utils

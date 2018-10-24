@@ -15,7 +15,7 @@ runProgram(){
 	makepkg -si
 
 	cd ..
-	rm aurman -r
+	rm aurman -rf
 	rm aurman.tar.gz
 }
 
