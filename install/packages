@@ -3,6 +3,8 @@ binutils
 pkgfile
 fakeroot
 ttf-dejavu
+openssh
+
 
 alsa-utils
 pulseaudio
@@ -26,6 +28,7 @@ feh
 kitty
 mupdf
 compton
+dmenu
 
 ibus
 ibus-rime
