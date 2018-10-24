@@ -143,7 +143,7 @@ while : ; do
 			break
 		fi
 
-		if [ -e "$DEV" ]; then
+		if [ -e "$DEV" ] && [ "$DEV" != "/dev" ] && [ "$DEV" != "/dev/" ]; then
 			pacman -S grub-bios
 			grub-install --target=i386-pc --recheck $DEV
 			break
