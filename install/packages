@@ -4,7 +4,7 @@ pkgfile
 fakeroot
 ttf-dejavu
 openssh
-
+ntfs-3g
 
 alsa-utils
 pulseaudio
