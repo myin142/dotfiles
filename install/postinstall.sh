@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # Setup Git and get dotfiles
-if [ ! -d ~/.dotfiles ]; the
+if [ ! -d ~/.dotfiles ]; then
 
-    read -p   "Git Email: "  EMAIL
+	read -p   "Git Email: "  EMAIL
 
 	git config --global user.name "Min Yin"
 	git config --global user.email "$EMAIL"
@@ -15,6 +15,10 @@ fi
 ln -sf ~/.dotfiles/config/bashrc ~/.bashrc
 ln -sf ~/.dotfiles/config/vimrc ~/.vimrc
 ln -sf ~/.dotfiles/config/xinitrc ~/.xinitrc
+
+if [ ! -d ~/.config ]; then
+	mkdir ~/.config
+fi
 
 if [ -d ~/.config/i3 ]; then
 	rm ~/.config/i3
