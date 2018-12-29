@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# $1 - Package Root
+# $2 - Output Directory
+# $3 - Entry Class
+find $1 -name "*.java" -exec javac -d $2 -cp $1 {} \;
+
+java -cp $2 ${1%/}.$3
