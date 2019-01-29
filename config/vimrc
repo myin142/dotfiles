@@ -2,7 +2,7 @@ set autoread                " detect when a file is changed
 set history=100             " change history to 100
 set clipboard=unnamedplus
 set encoding=utf-8
-colorscheme base16-default-dark
+colorscheme wal
 
 " Turn of Backup
 set nobackup
@@ -23,10 +23,6 @@ au BufNewFile,BufRead *.qss set syntax=css
 " Plugin Installer
 execute pathogen#infect()
 filetype plugin indent on
-
-" Latex Live Preview
-let g:livepreview_previewer = 'mupdf'
-let g:livepreview_engine = 'lualatex'
 
 " Line Numbers and wrapping
 set number                  " show line numbers
@@ -68,24 +64,6 @@ let g:ctrlp_custom_ignore = {
 \ 'file': '\v\.(exe|so|dll|o)$',
 \ }
 
-" Change Netrw Style
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-let g:netrw_browse_split = 2
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-
-" Fix incorrect BG Rendering in Kitty
-if has('gui_running') || has('nvim')
-    hi Normal 		guifg=#d8d8d8 guibg=#181818
-else
-    " Set the terminal default background and foreground colors, thereby
-    " improving performance by not needing to set these colors on empty cells.
-    hi Normal guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
-    let &t_ti = &t_ti . "\033]10;#d8d8d8\007\033]11;#181818\007"
-    let &t_te = &t_te . "\033]110\007\033]111\007"
-endif
-
 """""""""""""
 " SHORTCUTS "
 """""""""""""
@@ -94,25 +72,15 @@ endif
 noremap <space> :noh<cr>
 
 " Equal Windows
-noremap <A-w> <C-w>=
+"noremap <A-w> <C-w>=
 noremap <C-s> :w<cr>
 
 " Tabs
 noremap <C-t> :tabnew<cr>
-noremap <C-w> :tabclose<cr>
+noremap <A-w> :tabclose<cr>
 noremap <A-h> :tabN<cr>
 noremap <A-l> :tabn<cr>
 
 " scroll the viewport faster
 noremap <C-d> 5<C-e>
 noremap <C-u> 5<C-y>
-
-" Detect <Alt> Key on some terminals by using <ESC>
-let c='a'
-while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
-endw
-
-set timeout ttimeoutlen=50
