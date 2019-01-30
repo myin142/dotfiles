@@ -41,6 +41,12 @@ if [ -z "$ROOT_MOUNT" ]; then
 elif [ ! -d "$ROOT_MOUNT" ]; then
 	echo "Directory does not exist"
 	exit 1
+elif [ "$ROOT_MOUNT" = '/' ]; then
+	echo "Cannot use '/' as mount point"
+	exit 1
+elif [ -z $(mount | awk '{print $3}' | grep -w $ROOT_MOUNT) ]; then
+	echo "Root Directory is not a mount point"
+	exit 1
 fi
 
 # Confirm that all partitions are correct
