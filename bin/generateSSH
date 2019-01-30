@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "Email Required"
+	exit 1
+fi
+
+# Skip creation if using argument 'add'
+shopt -s nocasematch
+if [ ! "$1" = "add" ]; then
+
+	# Generate SSH Key (from github website)
+	ssh-keygen -t rsa -b 4096 -C "$1"
+
+fi
+
+# Start SSH Agent
+eval "$(ssh-agent -s)"
+while [[ ! $(pgrep -x ssh-agent) ]]; do sleep 1; done
+
+# Get SSH Key Location from User
+read -p "SSH Key Location: " SSH_KEY_FILE
+
+# Check if valid key file
+if [ -f "$SSH_KEY_FILE" ]; then
+	ssh-add "$SSH_KEY_FILE"
+else
+	echo "File does not exist"
+fi
