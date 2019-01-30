@@ -9,6 +9,8 @@ xset -dpms
 ibus-daemon -drx
 nm-applet &
 
+~/.bin/wmReload
+
 session=${1:-i3}
 
 case $session in

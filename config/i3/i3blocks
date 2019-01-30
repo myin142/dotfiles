@@ -1,6 +1,5 @@
 command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=20
-color=#E0E0E0
 
 [battery]
 command=$HOME/.config/i3/scripts/battery
@@ -17,12 +16,12 @@ command=$HOME/.config/i3/scripts/volume
 interval=1
 
 [load]
-command=$HOME/.config/i3/scripts/load_average
+command=cut -d ' ' -f1 /proc/loadavg
 interval=1
 label=
 
 [disk]
-command=$HOME/.config/i3/scripts/disk
+command=df -h "/" | tail -n 1 | awk '{print $4}'
 interval=1
 label=
 

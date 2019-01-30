@@ -4,7 +4,6 @@ pkgfile
 fakeroot
 ttf-dejavu
 openssh
-ntfs-3g
 
 alsa-utils
 pulseaudio
@@ -48,3 +47,9 @@ xcursor-simpleandsoft
 
 networkmanager
 network-manager-applet
+
+polybar
+feh
+compton
+rofi
+python-pywal

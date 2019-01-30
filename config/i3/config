@@ -2,11 +2,11 @@
 set $mod Mod4
 
 # Set Colours
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set_from_resource $bg-color            color0 #2f343f
+set_from_resource $inactive-bg-color   color0 #2f343f
+set_from_resource $text-color          color7 #f3f4f5
+set_from_resource $inactive-text-color color3 #676E7D
+set_from_resource $urgent-bg-color     color3 #E53935
 
 # Set Font
 font pango:DejaVu, fontawesome 10
@@ -53,6 +53,11 @@ assign [class="Slack"] $ws7
 
 # Hide Thin Borders
 hide_edge_borders both
+
+new_window pixel 0
+
+gaps outer 0
+gaps inner 10
 
 ###############
 # KEY BINDINGS#
@@ -152,16 +157,16 @@ mode "quit" {
 #######
 
 bar {
-	status_command  i3blocks -c ~/.config/i3/i3blocks
-
 	colors {
 		background $bg-color
-		separator #757575
 		#					border				background			text
 		focused_workspace	$bg-color			$bg-color			$text-color
+		active_workspace	$bg-color			$bg-color			$text-color
 		inactive_workspace	$inactive-bg-color	$inactive-bg-color	$inactive-text-color
 		urgent_workspace	$urgent-bg-color	$urgent-bg-color	$text-color
 	}
+	status_command  i3blocks -c ~/.config/i3/i3blocks
+
 }
 
 ###########
@@ -178,7 +183,7 @@ client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color				$bg-color
 # EXECUTE #
 ###########
 
-exec_always --no-startup-id feh --bg-max ~/.wallpaper.png
+exec_always --no-startup-id feh --no-feh --bg-fill ~/.wallpaper.png
 exec --no-startup-id compton -c
 
-exec --no-startup-id xrandr --output DisplayPort-1 --off --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x536 --rotate normal --output DVI-D-0 --off --output HDMI-A-1 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-A-0 --off
+exec --no-startup-id xrandr --output DisplayPort-1 --off --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x392 --rotate normal --output DVI-D-0 --off --output HDMI-A-1 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-A-0 --off
