@@ -54,16 +54,32 @@ lsblk
 ANS=$(askBinaryQuestion "All partitions mounted correctly and swaps enabled?")
 if [ $ANS -eq 0 ]; then exit 1; fi
 
-# Select Mirror and Install Arch Base System
-vim /etc/pacman.d/mirrorlist
-pacstrap -i $ROOT_MOUNT base wget
+# Select Mirror
+ANS=$(askBinaryQuestion "Edit mirrorlist?")
+if [ $ANS -eq 1 ]; then
+	vim /etc/pacman.d/mirrorlist;
+fi
+
+# Install Arch Base System
+ANS=$(askBinaryQuestion "Install base package to ${ROOT_MOUNT}?")
+if [ $ANS -eq 1 ]; then
+	pacstrap -i $ROOT_MOUNT base wget
+fi
 
 # Generate Fstab
-echo "Generating Fstab..."
-genfstab -U -p $ROOT_MOUNT > $ROOT_MOUNT/etc/fstab
+ANS=$(askBinaryQuestion "Generating Fstab?")
+if [ $ANS -eq 1 ]; then
+	genfstab -U -p $ROOT_MOUNT > $ROOT_MOUNT/etc/fstab
+fi
 
 # Change into Arch System
-echo "Changing Root..."
-wget https://github.com/myin142/dotfiles/raw/master/install/install.sh -O $ROOT_MOUNT/install.sh
-chmod +x $ROOT_MOUNT/install.sh
-arch-chroot $ROOT_MOUNT
+ANS=$(askBinaryQuestion "Changing Root?")
+if [ $ANS -eq 1 ]; then
+	arch-chroot $ROOT_MOUNT
+fi
+
+# Getting next installation file
+if [ ! -f $ROOT_MOUNT/install.sh ]; then
+	wget https://github.com/myin142/dotfiles/raw/master/install/install.sh -O $ROOT_MOUNT/install.sh
+	chmod +x $ROOT_MOUNT/install.sh
+fi
