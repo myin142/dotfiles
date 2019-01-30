@@ -34,7 +34,7 @@ echo "Starting Preinstall..."
 # All disks have to be mounted first
 # Enable swap with: mkswap /dev/sdxX & swapon /dev/sdxX
 # $1 - root mount folder
-ROOT_MOUNT="$1"
+ROOT_MOUNT="${1%/}"
 if [ -z "$ROOT_MOUNT" ]; then
 	echo "No Root Directory specified"
 	exit 1
