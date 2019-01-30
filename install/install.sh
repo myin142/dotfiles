@@ -79,27 +79,27 @@ while : ; do
 done
 
 # Install Packages for Wireless Connection
-ANS=$(askBinaryQuestion "Will you be using wireless connections? (Y/n)")
+ANS=$(askBinaryQuestion "Will you be using wireless connections?")
 if [ $ANS -eq 1 ]; then
 	pacman -S wireless_tools wpa_supplicant wpa_actiond dialog
 fi
 
 # Enable Multilib for 64-Bit Systems
-ANS=$(askBinaryQuestion "64-Bit System? (Y/n)")
+ANS=$(askBinaryQuestion "64-Bit System?")
 if [ $ANS -eq 1 ]; then
 	vi /etc/pacman.conf
 	pacman -Sy
 fi
 
 # Root Password
-ANS=$(askBinaryQuestion "Set Root Password? (Y/n)")
+ANS=$(askBinaryQuestion "Set Root Password?")
 if [ $ANS -eq 1 ]; then
 	echo "Root Password: "
 	passwd
 fi
 
 # Setup User
-ANS=$(askBinaryQuestion "Add new User? (Y/n)")
+ANS=$(askBinaryQuestion "Add new User?")
 if [ $ANS -eq 1 ]; then
 	read -p "Username: " NEWUSER
 
@@ -154,7 +154,7 @@ while : ; do
 	fi
 done
 
-ANS=$(askBinaryQuestion "Dual Booting? (Y/n)")
+ANS=$(askBinaryQuestion "Dual Booting?")
 if [ $ANS -eq 1 ]; then
 	pacman -S os-prober
 fi
@@ -162,7 +162,7 @@ cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Get Files for Package Installation
-ANS=$(askBinaryQuestion "Get Default Package Installer? (Y/n)")
+ANS=$(askBinaryQuestion "Get Default Package Installer?")
 if [ $ANS -eq 1 ]; then
 	if [ -z "$NEWUSER" ]; then
 		while : ; do
