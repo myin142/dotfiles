@@ -72,14 +72,14 @@ if [ $ANS -eq 1 ]; then
 	genfstab -U -p $ROOT_MOUNT > $ROOT_MOUNT/etc/fstab
 fi
 
-# Change into Arch System
-ANS=$(askBinaryQuestion "Changing Root?")
-if [ $ANS -eq 1 ]; then
-	arch-chroot $ROOT_MOUNT
-fi
-
 # Getting next installation file
 if [ ! -f $ROOT_MOUNT/install.sh ]; then
 	wget https://github.com/myin142/dotfiles/raw/master/install/install.sh -O $ROOT_MOUNT/install.sh
 	chmod +x $ROOT_MOUNT/install.sh
+fi
+
+# Change into Arch System
+ANS=$(askBinaryQuestion "Changing Root?")
+if [ $ANS -eq 1 ]; then
+	arch-chroot $ROOT_MOUNT
 fi
