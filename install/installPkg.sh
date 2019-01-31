@@ -4,6 +4,11 @@ runProgram(){
 	# Install Packages
 	sudo pacman -S - < packages
 
+	if [ -z $(pacman -Q | grep pkgfile) ]; then
+		echo "Error during Installation"
+		exit 1
+	fi
+
 	sudo pkgfile -u
 	sudo systemctl enable ntpd
 	sudo systemctl enable NetworkManager
