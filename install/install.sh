@@ -54,6 +54,22 @@ if [ $ANS -eq 1 ]; then
 	echo LANG=en_US.UTF-8 > /etc/locale.conf
 	export LANG=en_US.UTF-8
 	locale-gen
+else
+	while : ; do
+		read -p "Language/Region (LANG_REGION): " LANG
+
+		SKIP=$(skip $LANG)
+		if [ $SKIP -eq 1 ]; then
+			break
+		fi
+
+		read -p "Encoding: " ENCODE
+
+		LOCALE="${LANG}.${ENCODE}"
+		echo "${LOCALE} ${ENCODE}" > /etc/locale.gen
+		echo "LANG=${LOCALE}" > /etc/locale.conf
+		export LANG="${LOCALE}"
+	done
 fi
 
 # Set Timezone
