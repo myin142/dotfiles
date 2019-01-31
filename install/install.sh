@@ -177,8 +177,15 @@ ANS=$(askBinaryQuestion "Dual Booting?")
 if [ $ANS -eq 1 ]; then
 	pacman -S os-prober
 fi
-cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
-grub-mkconfig -o /boot/grub/grub.cfg
+
+if [ ! -f "/boot/grub/locale/en.mo" ]; then
+	cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+fi
+
+ANS=$(askBinaryQuestion "Make grub config?")
+if [ $ANS -eq 1 ]; then
+	grub-mkconfig -o /boot/grub/grub.cfg
+fi
 
 # Get Files for Package Installation
 ANS=$(askBinaryQuestion "Get Default Package Installer?")
