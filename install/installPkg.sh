@@ -2,7 +2,7 @@
 
 runProgram(){
 	# Install Packages
-	sudo pacman -S - < packages
+	sudo pacman -S - < core
 
 	if [ -z $(pacman -Q | grep pkgfile) ]; then
 		echo "Error during Installation"

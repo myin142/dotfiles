@@ -3,15 +3,12 @@ binutils
 pkgfile
 fakeroot
 ttf-dejavu
-openssh
 
 alsa-utils
 pulseaudio
 pulseaudio-alsa
-pavucontrol
 
 git
-keychain
 
 xorg-server
 xorg-xinit
@@ -28,20 +25,10 @@ compton
 rofi
 python-pywal
 
-ibus
-ibus-rime
-ibus-anthy
-
 redshift
 i3-gaps
 i3blocks
-i3lock
-scrot
-imagemagick
 
-arc-gtk-theme
-arc-icon-theme
-xcursor-simpleandsoft
-
+ibus
 networkmanager
 network-manager-applet
