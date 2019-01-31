@@ -103,7 +103,8 @@ fi
 # Enable Multilib for 64-Bit Systems
 ANS=$(askBinaryQuestion "64-Bit System?")
 if [ $ANS -eq 1 ]; then
-	vi /etc/pacman.conf
+	echo "[multilib]" >> /etc/pacman.conf
+	echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 	pacman -Sy
 fi
 
@@ -124,8 +125,10 @@ if [ $ANS -eq 1 ]; then
 		passwd $NEWUSER
 
 		# Setup Root access for User with sudo
-		pacman -S sudo
-		EDITOR=vi visudo # Uncomment wheel
+		if [ -z $(pacman -Q | grep sudo) ]; then
+			pacman -S sudo
+			echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+		fi
 	fi
 fi
 
