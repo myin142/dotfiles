@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ROOT_URL="https://github.com/myin142p/dotfiles/raw/master/install/"
+ROOT_URL="https://github.com/myin142/dotfiles/raw/master/install/"
 
 downloadIfNotExisting(){
 	FILE="$1"
