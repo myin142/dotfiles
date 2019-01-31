@@ -23,7 +23,7 @@ vulkan-radeon
 lib32-vulkan-radeon
 
 kitty
-mupdf
+feh
 compton
 rofi
 python-pywal
@@ -39,7 +39,6 @@ i3lock
 scrot
 imagemagick
 
-lxappearance
 arc-gtk-theme
 arc-icon-theme
 xcursor-simpleandsoft
