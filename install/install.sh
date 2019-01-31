@@ -120,7 +120,7 @@ ANS=$(askBinaryQuestion "Add new User?")
 if [ $ANS -eq 1 ]; then
 	read -p "Username: " NEWUSER
 
-	if [ ! -d "/home/$NEWUSER" ]; then
+	if [ -z $(cat /etc/passwd | cut -d ':' -f1 | grep $NEWUSER) ]; then
 		useradd -m -g users -G wheel,storage,power -s /bin/bash $NEWUSER
 		passwd $NEWUSER
 
@@ -187,7 +187,7 @@ if [ $ANS -eq 1 ]; then
 		while : ; do
 			read -p "User for installation: " NEWUSER
 
-			if [ -d "/home/$NEWUSER" ]; then
+			if [ -z $(cat /etc/passwd | cut -d ':' -f1 | grep $NEWUSER) ]; then
 				break
 			else
 				echo "User does not exist"
