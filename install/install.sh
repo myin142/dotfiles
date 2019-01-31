@@ -196,9 +196,9 @@ if [ $ANS -eq 1 ]; then
 			read -p "User for installation: " NEWUSER
 
 			if [ -z $(cat /etc/passwd | cut -d ':' -f1 | grep $NEWUSER) ]; then
-				break
-			else
 				echo "User does not exist"
+			else
+				break
 			fi
 		done
 	fi
