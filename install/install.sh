@@ -69,6 +69,7 @@ else
 		echo "${LOCALE} ${ENCODE}" > /etc/locale.gen
 		echo "LANG=${LOCALE}" > /etc/locale.conf
 		export LANG="${LOCALE}"
+		break
 	done
 fi
 
