@@ -1,5 +1,18 @@
 #!/bin/sh
 
+ROOT_URL="https://github.com/myin142p/dotfiles/raw/master/install/"
+
+downloadIfNotExisting(){
+	FILE="$1"
+	FOLDER="$2"
+	LINK="${ROOT_URL}$FILE"
+	TARGET="${FOLDER%/}/$FILE"
+
+	if [ ! -f "$TARGET" ]; then
+		wget $LINK -O $TARGET
+	fi
+}
+
 confirm(){
 	if [ "$1" != "Y" ] && [ "$1" != "y" ] && [ "$1" != "" ] && [ "$1" != "N" ] && [ "$1" != "n" ]
 	then
@@ -204,11 +217,11 @@ if [ $ANS -eq 1 ]; then
 	fi
 	
 	# Get Package Installer
-	wget https://github.com/myin142/dotfiles/raw/master/install/installPkg.sh -O /home/$NEWUSER/installPkg.sh
+	downloadIfNotExisting installPkg.sh /home/$NEWUSER
 	chmod +x /home/$NEWUSER/installPkg.sh
 	chown $NEWUSER:users /home/$NEWUSER/installPkg.sh
 
-	wget https://github.com/myin142/dotfiles/raw/master/install/packages -O /home/$NEWUSER/packages
+	downloadIfNotExisting packages /home/$NEWUSER
 	chown $NEWUSER:users /home/$NEWUSER/packages
 
 	# Links for Root User
@@ -216,9 +229,10 @@ if [ $ANS -eq 1 ]; then
 	ln -sf /home/$NEWUSER/.dotfiles/vim ~/.vim
 
 	# Get Postinstall File for User
-	wget https://github.com/myin142/dotfiles/raw/master/install/postinstall.sh -O /home/$NEWUSER/postinstall.sh
+	downloadIfNotExisting postinstall.sh /home/$NEWUSER
 	chmod +x /home/$NEWUSER/postinstall.sh
 	chown $NEWUSER:users /home/$NEWUSER/postinstall.sh
 
+	cd /home/$NEWUSER
 	su $NEWUSER
 fi
