@@ -4,9 +4,3 @@
 [submodule "dwm.vim"]
 	path = vim/bundle/dwm.vim
 	url = https://github.com/spolu/dwm.vim.git
-[submodule "vim-signify"]
-	path = vim/bundle/vim-signify
-	url = https://github.com/mhinz/vim-signify.git
-[submodule "vim-latex"]
-	path = vim/bundle/vim-latex
-	url = https://github.com/xuhdev/vim-latex-live-preview.git
