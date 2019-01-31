@@ -8,7 +8,7 @@ if [ ! -d ~/.dotfiles ]; then
 	git config --global user.name "Min Yin"
 	git config --global user.email "$EMAIL"
 	git config --global core.editor vim
-	git clone --recurse-submodules -j8 https://github.com/myin142/dotfiles ~/.dotfiles
+	git clone --recurse-submodules -j$(nproc) https://github.com/myin142/dotfiles ~/.dotfiles
 fi 
 
 # Create Links
