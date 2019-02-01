@@ -20,6 +20,7 @@ vulkan-radeon
 lib32-vulkan-radeon
 
 kitty
+feh
 compton
 rofi
 python-pywal
