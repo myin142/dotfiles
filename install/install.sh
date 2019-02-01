@@ -221,8 +221,8 @@ if [ $ANS -eq 1 ]; then
 	chmod +x /home/$NEWUSER/installPkg.sh
 	chown $NEWUSER:users /home/$NEWUSER/installPkg.sh
 
-	downloadIfNotExisting packages /home/$NEWUSER
-	chown $NEWUSER:users /home/$NEWUSER/packages
+	downloadIfNotExisting core /home/$NEWUSER
+	chown $NEWUSER:users /home/$NEWUSER/core
 
 	# Links for Root User
 	ln -sf /home/$NEWUSER/.dotfiles/config/vimrc ~/.vimrc
