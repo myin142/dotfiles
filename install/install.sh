@@ -233,6 +233,7 @@ if [ $ANS -eq 1 ]; then
 	chmod +x /home/$NEWUSER/postinstall.sh
 	chown $NEWUSER:users /home/$NEWUSER/postinstall.sh
 
+	chown $NEWUSER:users /home/$NEWUSER/ -R
 	cd /home/$NEWUSER
 	su $NEWUSER
 fi
