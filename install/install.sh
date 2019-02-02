@@ -201,6 +201,11 @@ if [ $ANS -eq 1 ]; then
 	grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
+ANS=$(askBinaryQuestion "Disable PC Speakers?")
+if [ $ANS -eq 1 ]; then
+	echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+fi
+
 # Get Files for Package Installation
 ANS=$(askBinaryQuestion "Get Default Package Installer?")
 if [ $ANS -eq 1 ]; then
