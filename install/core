@@ -3,6 +3,7 @@ binutils
 pkgfile
 fakeroot
 ttf-dejavu
+ttf-liberation
 
 alsa-utils
 pulseaudio
