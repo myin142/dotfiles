@@ -21,10 +21,6 @@ floating_modifier $mod
 set $monitorHDMI HDMI-A-1
 set $monitorDP DisplayPort-0
 
-workspace $ws1 output $monitorHDMI
-workspace $ws3 output $monitorHDMI
-workspace $ws10 output $monitorDP
-
 # Set Workspace Names
 set $ws1 "1: "
 set $ws2 "2: "
