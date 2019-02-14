@@ -1,11 +1,6 @@
 command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=20
 
-[battery]
-command=$HOME/.config/i3/scripts/battery
-interval=1
-label=
-
 [wifi]
 command=$HOME/.config/i3/scripts/iface
 interval=1
@@ -14,6 +9,11 @@ label=
 [volume]
 command=$HOME/.config/i3/scripts/volume
 interval=1
+
+[battery]
+command=$HOME/.config/i3/scripts/battery
+interval=1
+label=
 
 [load]
 command=cut -d ' ' -f1 /proc/loadavg
