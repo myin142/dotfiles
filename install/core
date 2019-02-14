@@ -33,3 +33,10 @@ i3blocks
 ibus
 networkmanager
 network-manager-applet
+
+base-devel
+htop
+tree
+
+openssh
+keychain
