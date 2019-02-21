@@ -22,26 +22,26 @@ set $monitorHDMI HDMI-A-1
 set $monitorDP DisplayPort-0
 
 # Set Workspace Names
-set $ws1 "1: "
+set $ws1 "1: "
 set $ws2 "2: "
 set $ws3 "3: "
 set $ws4 "4: "
-set $ws5 "5: "
-set $ws6 "6: "
+set $ws5 "5: "
+set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
 set $ws9 "9: "
 set $ws10 "10: "
 
 # Program on specific workspaces
-assign [class="Firefox"] $ws5
-assign [class="Chromium"] $ws6
-assign [class="Steam"] $ws9
-assign [class="Lutris"] $ws9
-assign [class="discord"] $ws8
+assign [class="Firefox"] $ws1
+assign [class="Chromium"] $ws1
 assign [class="Gimp"] $ws7
 assign [class="krita"] $ws7
 assign [class="Slack"] $ws8
+assign [class="discord"] $ws8
+assign [class="Steam"] $ws9
+assign [class="Lutris"] $ws9
 
 #####################
 # WINDOW APPEARANCE #
