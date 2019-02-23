@@ -9,6 +9,8 @@ xset -dpms
 ibus-daemon -drx
 nm-applet &
 
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
 ~/.bin/wmReload
 
 session=${1:-i3}
