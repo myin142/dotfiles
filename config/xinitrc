@@ -3,15 +3,9 @@
 xset s off
 xset -dpms
 
-#xrandr --output HDMI1 --auto --left-of eDP1
-
 ~/.bin/redstart &
 ibus-daemon -drx
 nm-applet &
-
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-
-~/.bin/wmReload
 
 session=${1:-i3}
 
