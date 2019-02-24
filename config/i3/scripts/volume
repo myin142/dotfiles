@@ -7,7 +7,7 @@ INDEX=$(pactl list sinks short | awk "/$DEFAULT/"'{print $1}')
 VOLUME=$(pactl list sinks | grep "Sink #$INDEX\|^[[:space:]]Volume:" | grep -A 1 "Sink #$INDEX" | grep "^[[:space:]]Volume" | awk '{print $5}');
 
 # Get Mute Status
-MUTE=$(pactl list sinks | grep "Sink #$INDEX\|Mute" | grep -A 1 "Sink #$INDEX" | grep Mute | awk '/Mute/{print $2}')
+MUTE=$(pactl list sinks | grep "Sink #$INDEX\|Mute" | grep -A 1 "Sink #$INDEX" | grep Mute | head -1 | awk '/Mute/{print $2}')
 
 ICON=
 
