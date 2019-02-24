@@ -3,6 +3,8 @@
 xset s off
 xset -dpms
 
+killall pulseaudio &
+
 ~/.bin/redstart &
 ibus-daemon -drx
 nm-applet &
