@@ -23,6 +23,7 @@ lib32-vulkan-radeon
 kitty
 feh
 compton
+dunst
 rofi
 python-pywal
 
