@@ -185,7 +185,7 @@ exec feh --bg-fill ~/.wallpaper.png
 exec --no-startup-id compton -c
 exec --no-startup-id dunst
 
-exec xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+exec_always ~/.bin/remapCaps
 exec ~/.bin/wmReload
 
 exec --no-startup-id xrandr --output DisplayPort-1 --off --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x392 --rotate normal --output DVI-D-0 --off --output HDMI-A-1 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-A-0 --off
