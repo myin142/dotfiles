@@ -63,6 +63,3 @@ MIC=alsa_input.pci-0000_00_1b.0.analog-stereo
 # Enable wal colors for all new terminals
 (cat ~/.cache/wal/sequences &)
 clear
-
-# Unlock keychain
-eval $(keychain --eval --quiet id_rsa)
