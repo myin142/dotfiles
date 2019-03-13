@@ -42,6 +42,7 @@ linkFolder ~/.dotfiles/config/i3 ~/.config/i3
 linkFolder ~/.dotfiles/config/kitty ~/.config/kitty
 linkFolder ~/.dotfiles/config/rofi ~/.config/rofi
 linkFolder ~/.dotfiles/config/dunst ~/.config/dunst
+linkFolder ~/.dotfiles/config/redshift ~/.config/redshift
 
 # Create Image Links
 ln -sf ~/.dotfiles/img/wallpaper.png ~/.wallpaper.png
