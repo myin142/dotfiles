@@ -183,7 +183,7 @@ client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color				$bg-color
 
 exec --no-startup-id feh --bg-fill ~/.wallpaper.png
 exec --no-startup-id ibus-daemon -drx
-exec --no-startup-id compton -c
+exec --no-startup-id compton --config ~/.config/compton/compton.conf
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec --no-startup-id redshift-gtk
