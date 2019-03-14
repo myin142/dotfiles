@@ -47,7 +47,6 @@ linkFolder ~/.dotfiles/config/compton ~/.config/compton
 
 # Create Image Links
 ln -sf ~/.dotfiles/img/wallpaper.png ~/.wallpaper.png
-ln -sf ~/.dotfiles/img/lock.png ~/.lock.png
 ln -sf ~/.dotfiles/img/lockscreen.png /home/.lockscreen.png
 
 # Create Other Links
