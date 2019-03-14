@@ -1,15 +1,3 @@
-gvim
-pavucontrol
-
-amd-ucode
-
-i3lock
-scrot
-imagemagick
-
-cups
-hplip
-
 anki
 nextcloud-client
 
@@ -17,11 +5,5 @@ firefox
 chromium
 steam
 
-lxappearance
-arc-gtk-theme
-arc-icon-theme
-xcursor-simpleandsoft
-
-noto-fonts-cjk
 ibus-rime
 ibus-anthy

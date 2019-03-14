@@ -50,13 +50,17 @@ assign [class="Lutris"] $ws9
 #####################
 
 # Hide Thin Borders
-hide_edge_borders both
+hide_edge_borders none
 
 new_window pixel 0
 
+# Gaps
 gaps outer 0
 gaps inner 10
 smart_gaps on
+
+# Prevent focus on all new opened windows
+no_focus [class=".*"]
 
 ###############
 # KEY BINDINGS#

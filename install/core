@@ -4,13 +4,16 @@ pkgfile
 fakeroot
 ttf-dejavu
 ttf-liberation
+noto-fonts-cjk
 
 alsa-utils
 pulseaudio
 pulseaudio-alsa
 
 git
+ntfs-3g
 
+arandr
 xorg-server
 xorg-xinit
 mesa
@@ -30,6 +33,9 @@ python-pywal
 redshift
 i3-gaps
 i3blocks
+i3lock
+scrot
+imagemagick
 
 ibus
 networkmanager
@@ -41,3 +47,9 @@ tree
 
 openssh
 keychain
+
+lxappearance
+arc-gtk-theme
+papirus-icon-theme
+xcursor-simpleandsoft
+
