@@ -56,6 +56,7 @@ new_window pixel 0
 
 gaps outer 0
 gaps inner 10
+smart_gaps on
 
 ###############
 # KEY BINDINGS#
@@ -191,4 +192,4 @@ exec --no-startup-id redshift-gtk
 exec --no-startup-id ~/.bin/wmReload
 exec --no-startup-id ~/.bin/remapCaps
 
-exec --no-startup-id xrandr --output DisplayPort-1 --off --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x392 --rotate normal --output DVI-D-0 --off --output HDMI-A-1 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-A-0 --off
+exec --no-startup-id ~/.screenlayout/main.sh
