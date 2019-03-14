@@ -56,4 +56,4 @@ linkFolder ~/.dotfiles/vim ~/.vim
 linkFolder ~/.dotfiles/bin ~/.bin
 
 # Display Manager
-sudo ln -sf ~/.dotfiles/config/slick-greeter.conf /etc/lightdm/slick-greeter.conf
+sudo ln -sf ~/.dotfiles/config/lightdm/slick-greeter.conf /etc/lightdm/slick-greeter.conf
