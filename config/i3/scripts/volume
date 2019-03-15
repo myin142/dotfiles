@@ -13,7 +13,7 @@ ICON=
 
 if [ $MUTE == "yes" ]; then
 	ICON=
-	COLOR=#DFDF32
+	COLOR="#DFDF32"
 fi
 
 echo "$ICON  $VOLUME"

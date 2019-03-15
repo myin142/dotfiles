@@ -1,5 +1,6 @@
 command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=20
+color=#E0E0E0
 
 [wifi]
 command=$HOME/.config/i3/scripts/iface
@@ -16,12 +17,12 @@ interval=1
 label=
 
 [load]
-command=cut -d ' ' -f1 /proc/loadavg
+command=$HOME/.config/i3/scripts/load_average
 interval=1
 label=
 
 [disk]
-command=df -h "/" | tail -n 1 | awk '{print $4}'
+command=$HOME/.config/i3/scripts/disk
 interval=1
 label=
 
