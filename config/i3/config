@@ -60,7 +60,7 @@ gaps inner 10
 smart_gaps on
 
 # Prevent focus on all new opened windows
-no_focus [class=".*"]
+no_focus [window_role="^pop-up"]
 
 ###############
 # KEY BINDINGS#
