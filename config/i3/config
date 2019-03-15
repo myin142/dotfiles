@@ -9,7 +9,7 @@ set_from_resource $inactive-text-color color3 #676E7D
 set_from_resource $urgent-bg-color     color3 #E53935
 
 # Set Font
-font pango:DejaVu, fontawesome 10
+font pango:Hack Nerd Font,10
 
 # Floating Mod
 floating_modifier $mod
@@ -159,18 +159,9 @@ mode "quit" {
 # BAR #
 #######
 
-bar {
-	colors {
-		background $bg-color
-		#					border				background			text
-		focused_workspace	$bg-color			$bg-color			$text-color
-		active_workspace	$bg-color			$bg-color			$text-color
-		inactive_workspace	$inactive-bg-color	$inactive-bg-color	$inactive-text-color
-		urgent_workspace	$urgent-bg-color	$urgent-bg-color	$text-color
-	}
-	status_command  i3blocks -c ~/.config/i3/i3blocks
-
-}
+#bar {
+#	status_command i3blocks -c ~/.config/i3/i3blocks
+#}
 
 ###########
 # COLOURS #
@@ -186,7 +177,9 @@ client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color				$bg-color
 # EXECUTE #
 ###########
 
+exec_always --no-startup-id ~/.bin/launchPolybar
 exec_always --no-startup-id feh --bg-fill ~/.wallpaper.png
+
 exec --no-startup-id ibus-daemon -drx
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
 exec --no-startup-id dunst

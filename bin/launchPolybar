@@ -1,0 +1,28 @@
+#!/bin/bash
+
+function startBar(){
+	MONITOR=$1 polybar -c ~/.config/polybar/config.ini bottom &
+}
+
+killall -q polybar
+
+# Wait until killed
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+if type "xrandr"; then
+
+	# If there is a primary, always start polybar there first
+	PRIMARY=$(xrandr | grep " connected primary" | cut -d " " -f1)
+	if [[ ! -z "$PRIMARY" ]]; then
+		startBar $PRIMARY
+
+		# Wait until started
+		while ! pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+	fi
+
+	for MONITOR in $(xrandr | grep " connected" | grep -v "primary" | cut -d " " -f1); do
+		startBar $MONITOR
+	done
+else
+	startBar
+fi
