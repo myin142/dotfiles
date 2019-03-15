@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ "$1" != "f" ] && [ "$1" != "d" ]; then
+if [ "$1" != "-f" ] && [ "$1" != "-d" ]; then
 	find ./ -type f -exec $1 {} \; # file as default option
 else
-	find ./ -type $1 -exec $2 {} \;
+	find ./ -type ${1:1} -exec $2 {} \;
 fi
 
