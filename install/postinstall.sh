@@ -31,7 +31,6 @@ fi
 ln -sf ~/.dotfiles/config/bashrc ~/.bashrc
 ln -sf ~/.dotfiles/config/vimrc ~/.vimrc
 ln -sf ~/.dotfiles/config/xinitrc ~/.xinitrc
-ln -sf ~/.dotfiles/config/gtkrc-2.0 ~/.gtkrc-2.0
 ln -sf ~/.dotfiles/config/Xresources ~/.Xresources
 
 if [ ! -d ~/.config ]; then
