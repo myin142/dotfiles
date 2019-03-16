@@ -141,8 +141,8 @@ bindsym XF86MonBrightnessUp exec light -A 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 20 # decrease screen brightness
 
 # Extra Keys / Shortcuts
-bindsym XF86Sleep exec ~/.bin/lock ~/.lock.png && systemctl suspend
-bindsym $mod+Shift+x exec ~/.bin/lock ~/.lock.png
+bindsym XF86Sleep exec ~/.bin/lock && systemctl suspend
+bindsym $mod+Shift+x exec ~/.bin/lock
 
 #########
 # MODES #
