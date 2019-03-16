@@ -50,7 +50,7 @@ ln -sf ~/.dotfiles/img/wallpaper.png ~/.wallpaper.png
 ln -sf ~/.dotfiles/img/lockscreen.png /home/.lockscreen.png
 
 # Create Other Links
-linkFolder ~/.dotfiles/fonts ~/.fonts
+linkFolder ~/.dotfiles/fonts ~/.local/share/fonts
 linkFolder ~/.dotfiles/vim ~/.vim
 linkFolder ~/.dotfiles/bin ~/.bin
 
