@@ -56,3 +56,4 @@ linkFolder ~/.dotfiles/bin ~/.bin
 
 # Display Manager
 sudo ln -sf ~/.dotfiles/config/lightdm/slick-greeter.conf /etc/lightdm/slick-greeter.conf
+sudo ln -s ~/.dotfiles/config/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
