@@ -60,8 +60,4 @@ PATH=$PATH:~/.bin
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo
 MIC=alsa_input.pci-0000_00_1b.0.analog-stereo
 
-# Enable wal colors for all new terminals
-(cat ~/.cache/wal/sequences &)
-clear
-
 eval $(keychain --eval --quiet id_rsa)
