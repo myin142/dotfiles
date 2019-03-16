@@ -1,7 +1,24 @@
 #!/bin/bash
 
 function startBar(){
-	MONITOR=$1 TRAY_POS=$2 polybar -c ~/.config/polybar/config.ini bottom &
+	MONITOR=$2 TRAY_POS=$3 polybar -c ~/.config/polybar/config.ini $1 &
+}
+
+function startOnAllMonitors(){
+	BAR=$1
+	POSITION=""
+
+	# If there is a primary, put system tray on it
+	PRIMARY=$(xrandr | grep " connected primary" | cut -d " " -f1)
+	if [[ ! -z "$PRIMARY" ]]; then
+		startBar $BAR $PRIMARY right
+	else
+		POSITION="right"
+	fi
+
+	for MONITOR in $(xrandr | grep " connected" | grep -v "primary" | cut -d " " -f1); do
+		startBar $BAR $MONITOR $POSITION
+	done
 }
 
 killall -q polybar
@@ -10,20 +27,7 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 if type "xrandr"; then
-
-	POSITION=""
-
-	# If there is a primary, put system tray on it
-	PRIMARY=$(xrandr | grep " connected primary" | cut -d " " -f1)
-	if [[ ! -z "$PRIMARY" ]]; then
-		startBar $PRIMARY right
-	else
-		POSITION="right"
-	fi
-
-	for MONITOR in $(xrandr | grep " connected" | grep -v "primary" | cut -d " " -f1); do
-		startBar $MONITOR $POSITION
-	done
+	startOnAllMonitors simple
 else
-	startBar
+	echo "Please install xrandr"
 fi
