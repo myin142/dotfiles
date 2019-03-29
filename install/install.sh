@@ -1,45 +1,5 @@
 #!/bin/sh
 
-ROOT_URL="https://github.com/myin142/dotfiles/raw/master/install/"
-
-downloadIfNotExisting(){
-	FILE="$1"
-	FOLDER="$2"
-	LINK="${ROOT_URL}$FILE"
-	TARGET="${FOLDER%/}/$FILE"
-
-	if [ ! -f "$TARGET" ]; then
-		wget $LINK -O $TARGET
-	fi
-}
-
-confirm(){
-	if [ "$1" != "Y" ] && [ "$1" != "y" ] && [ "$1" != "" ] && [ "$1" != "N" ] && [ "$1" != "n" ]
-	then
-		echo >&2 "Invalid Input. Please Try Again."
-		echo -1
-	else
-		if [ "$1" == "Y" ] || [ "$1" == "y" ] || [ "$1" == "" ]; then
-			echo 1
-		else
-			echo 0
-		fi
-	fi
-}
-
-askBinaryQuestion(){
-	while : ; do
-		echo >&2 "$1 (Y/n)"
-		read -s -n 1 input
-		CHECK=$(confirm $input)
-
-		if [ $CHECK -ne -1 ]; then
-			echo $CHECK
-			break;
-		fi
-	done
-}
-
 skip(){
 	if [ "$1" == "n" ] || [ "$1" == "N" ] || [ "$1" == "skip" ] || [ "$1" == "s" ]; then
 		echo 1
