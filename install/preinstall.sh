@@ -8,93 +8,173 @@ downloadIfNotExisting(){
 	LINK="${ROOT_URL}$FILE"
 	TARGET="${FOLDER%/}/$FILE"
 
-	if [ ! -f "$TARGET" ]; then
-		wget $LINK -O $TARGET
-	fi
+	[ ! -f "$TARGET" ] && wget $LINK -O $TARGET && chmod +x $TARGET
 }
-
 confirm(){
 	if [ "$1" != "Y" ] && [ "$1" != "y" ] && [ "$1" != "" ] && [ "$1" != "N" ] && [ "$1" != "n" ]
 	then
 		echo >&2 "Invalid Input. Please Try Again."
 		echo -1
 	else
-		if [ "$1" == "Y" ] || [ "$1" == "y" ] || [ "$1" == "" ]; then
-			echo 1
-		else
-			echo 0
-		fi
+		[ "$1" == "Y" ] || [ "$1" == "y" ] || [ "$1" == "" ] && echo 1 || echo 0
 	fi
 }
-
-askBinaryQuestion(){
+binaryQuestion(){
 	while : ; do
-		echo >&2 "$1 (Y/n)"
+		echo >&2 "$1? (Y/n)"
 		read -s -n 1 input
 		CHECK=$(confirm $input)
 
 		if [ $CHECK -ne -1 ]; then
 			echo $CHECK
-			break;
+			break
 		fi
 	done
+}
+getPassword(){
+	while : ; do
+		
+		PASSWORD=$(nonEmptyInput "Password" -s)
+		echo >&2
+		CONFIRM=$(nonEmptyInput "Confirm Password" -s)
+		echo >&2
+
+		if [ "$PASSWORD" != "$CONFIRM" ]; then
+			echo >&2 "Password not the same"
+			continue
+		fi
+
+		echo $PASSWORD
+		break
+	done
+}
+nonEmptyInput(){
+	while : ; do
+		read $2 -p "$1: " INPUT
+
+		if [ -z "$INPUT" ]; then
+			echo >&2 "Input cannot be empty"
+			continue
+		fi
+
+		echo $INPUT
+		break
+	done
+}
+failure(){
+	echo >&2 $1
+	exit 1
 }
 
 # Script does not create Partitions
 # They have to be created before starting the script
-echo "Starting Installation..."
+echo "Starting Preinstallation..."
 
 # All disks have to be mounted first
 # Enable swap with: mkswap /dev/sdxX & swapon /dev/sdxX
 # $1 - root mount folder
 ROOT_MOUNT="${1%/}"
 if [ -z "$ROOT_MOUNT" ]; then
-	echo "No Root Directory specified"
-	exit 1
+	failure "No Root Directory specified"
 elif [ ! -d "$ROOT_MOUNT" ]; then
-	echo "Directory does not exist"
-	exit 1
-elif [ "$ROOT_MOUNT" = '/' ]; then
-	echo "Cannot use '/' as mount point"
-	exit 1
+	failure "Directory does not exist"
+elif [ "$ROOT_MOUNT" == '/' ]; then
+	failure "Cannot use '/' as mount point"
 elif [ -z $(mount | awk '{print $3}' | grep -w $ROOT_MOUNT) ]; then
-	echo "Root Directory is not a mount point"
-	exit 1
+	failure "Root Directory is not a mount point"
 fi
+
+#####################################
+# Getting Settings for Installation #
+#####################################
+
+declare -A SETTINGS
+
+if [ $(binaryQuestion "Set Locale: en_US.UTF-8") -eq 1 ]; then
+	SETTINGS[lang]="en_US"; SETTINGS[encode]="UTF-8"
+else
+	SETTINGS[lang]=$(nonEmptyInput "Language/Region (LANG_REGION)")
+	SETTINGS[encode]=$(nonEmptyInput "Encoding")
+fi
+
+[ -e /sys/firmware/efi/efivars ] && SETTINGS[efi]=$(nonEmptyInput "EFI Directory") \
+	|| SETTINGS[dev]=$(nonEmptyInput "Device (/dev/sdX)")
+
+SETTINGS[timezone]=$(nonEmptyInput "Timezone (COUNTRY/CITY)")
+
+printf "Root "
+SETTINGS[rootPassword]=$(getPassword)
+
+[ $(binaryQuestion "Add new User") -eq 1 ] \
+	&& SETTINGS[newUser]=$(nonEmptyInput "Username") \
+	&& SETTINGS[userPassword]=$(getPassword)
+
+[ $(binaryQuestion "Dual Booting") -eq 1 ] && SETTINGS[dual]=true
+[ $(binaryQuestion "Wireless connection") -eq 1 ] && SETTINGS[wireless]=true
+[ $(binaryQuestion "64-Bit System") -eq 1 ] && SETTINGS[64bit]=true
+[ $(binaryQuestion "Disable PC Speakers") -eq 1 ] && SETTINGS[speakers]=true
+[ $(binaryQuestion "Installing default packages") -eq 1 ] && SETTINGS[package]=true
+[ ! -z ${SETTINGS[package]} ] || [ $(binaryQuestion "Setup Git") -eq 1 ] \
+	&& SETTINGS[gitUser]=$(nonEmptyInput "Git User") \
+	&& SETTINGS[gitEmail]=$(nonEmptyInput "Git Email")
+
+for x in "${!SETTINGS[@]}"; do
+	printf "[%s]=%s\n" "$x" "${SETTINGS[$x]}"
+done
+
+[ $(binaryQuestion "Start installation with these SETTINGS") -eq 0 ] && failure
+
+################################
+# Installation of Base Package #
+################################
+
+ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` > /dev/null \
+	&& echo "Start Installation" \
+	|| failure "Internet Connection required"
 
 lsblk
-ANS=$(askBinaryQuestion "All partitions mounted correctly and swaps enabled?")
-if [ $ANS -eq 0 ]; then exit 1; fi
+[ $(binaryQuestion "All partitions mounted correctly and swaps enabled?") -eq 0 ] && failure
+[ $(binaryQuestion "Edit mirrorlist?") -eq 1 ] && vim /etc/pacman.d/mirrorlist
 
-ANS=$(askBinaryQuestion "Edit mirrorlist?")
-if [ $ANS -eq 1 ]; then
-	vim /etc/pacman.d/mirrorlist;
-fi
-
-ANS=$(askBinaryQuestion "Install base package to ${ROOT_MOUNT}?")
-if [ $ANS -eq 1 ]; then
-	pacstrap -i $ROOT_MOUNT base wget
-fi
-
-ANS=$(askBinaryQuestion "Generating Fstab?")
-if [ $ANS -eq 1 ]; then
+# Validity can only be checked when having basic structure
+if [ ! -d "$ROOT_MOUNT/proc" ]; then
+	echo "Installing Base Package"
+	pacstrap -i $ROOT_MOUNT base
 	genfstab -U -p $ROOT_MOUNT > $ROOT_MOUNT/etc/fstab
 fi
 
-# Getting next installation file
-if [ ! -f $ROOT_MOUNT/install.sh ]; then
-	downloadIfNotExisting install.sh $ROOT_MOUNT/install.sh
-	chmod +x $ROOT_MOUNT/install.sh
+##############################
+# Check Validity of Settings #
+##############################
+
+INVALID=false
+
+[[ -z $(cat /etc/locale.gen | grep "${SETTINGS[lang]}.${SETTINGS[encode]}") ]] && \
+	echo "Invalid Locale ${SETTINGS[lang]}.${SETTINGS[encode]}" && INVALID=true
+
+[[ ! -f "$ROOT_MOUNT/usr/share/zoneinfo/${SETTINGS[timezone]}" ]] && \
+	echo "Invalid Timezone ${SETTINGS[timezone]}" && INVALID=true
+
+[[ ! -z ${SETTINGS[efi]} && ! -d "$ROOT_MOUNT/${SETTINGS[efi]}" ]] && \
+	echo "Invalid EFI Directory ${SETTINGS[efi]}" && INVALID=true
+
+[[ ! -z ${SETTINGS[dev]} && ! -f "$ROOT_MOUNT/${SETTINGS[dev]}" ]] && \
+	echo "Invalid Device ${SETTINGS[dev]}" && INVALID=true
+
+[ $INVALID = true ] && failure
+
+####################################
+# Basic Installation with Settings #
+####################################
+
+# Getting installation file
+downloadIfNotExisting install.sh $ROOT_MOUNT
+
+if [ ! -z ${SETTINGS[package]} ]; then
+	downloadIfNotExisting postInstall.sh $ROOT_MOUNT
+	downloadIfNotExisting core $ROOT_MOUNT
 fi
 
-# Change into Arch System
-ANS=$(askBinaryQuestion "Continue with second install file?")
-if [ $ANS -eq 1 ]; then
-	arch-chroot $ROOT_MOUNT << EOF
-		export $ROOT_URL
-		export -f confirm
-		export -f askBinaryQuestion
-		export -f downloadIfNotExisting
-		/install.sh
-	EOF
-fi
+arch-chroot $ROOT_MOUNT << EOF
+	/install.sh $SETTINGS
+EOF
