@@ -97,7 +97,8 @@ else
 	SETTINGS[encode]=$(nonEmptyInput "Encoding")
 fi
 
-[ -e /sys/firmware/efi/efivars ] && SETTINGS[efi]=$(nonEmptyInput "EFI Directory") \
+[ -e /sys/firmware/efi/efivars ] \
+	&& SETTINGS[efi]=$(nonEmptyInput "EFI Directory") \
 	|| SETTINGS[dev]=$(nonEmptyInput "Device (/dev/sdX)")
 
 SETTINGS[timezone]=$(nonEmptyInput "Timezone (COUNTRY/CITY)")
@@ -108,6 +109,8 @@ SETTINGS[rootPassword]=$(getPassword)
 [ $(binaryQuestion "Add new User") -eq 1 ] \
 	&& SETTINGS[newUser]=$(nonEmptyInput "Username") \
 	&& SETTINGS[userPassword]=$(getPassword)
+
+[ -z "${SETTINGS[newUser]}" ] && SETTINGS[user]=$(nonEmptyInput "Using existing User")
 
 [ $(binaryQuestion "Dual Booting") -eq 1 ] && SETTINGS[dual]=true
 [ $(binaryQuestion "Wireless connection") -eq 1 ] && SETTINGS[wireless]=true
@@ -164,6 +167,10 @@ INVALID=false
 [[ ! -z ${SETTINGS[newUser]} && \
 	! -z $(cat $ROOT_MOUNT/etc/passwd | cut -d ':' -f1 | grep ${SETTINGS[newUser]}) ]] && \
 	echo "User ${SETTINGS[newUser]} already exists" && INVALID=true
+
+[[ ! -z ${SETTINGS[user]} && \
+	-z $(cat $ROOT_MOUNT/etc/passwd | cut -d ':' -f1 | grep ${SETTINGS[user]}) ]] && \
+	echo "User ${SETTINGS[user]} does not exist" && INVALID=true
 
 [ $INVALID = true ] && failure
 

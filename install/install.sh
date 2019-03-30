@@ -31,7 +31,7 @@ hwclock --systohc --utc
 # Root Password
 echo "${SETTINGS[rootPassword]}\n${SETTINGS[rootPassword]}" | passwd
 
-# Setup User
+# Setup New User
 [ $(keyExists newUser) = true ] \
 	&& useradd -m -g users -G wheel,storage,power -s /bin/bash ${SETTINGS[newUser]} \
 	&& echo "${SETTINGS[userPassword]}\n${SETTINGS[userPassword]}" | passwd ${SETTINGS[newUser]} \
@@ -53,5 +53,6 @@ fi
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Post Install with Packages
+[ $(keyExists newUser) = true ] && USER=${SETTINGS[newUser]} || USER=${SETTINGS[user]}
 [ $(keyExists package) = true ] \
-	&& /postInstall.sh ${SETTINGS[gitUser]} ${SETTINGS[gitPassword]}
+	&& /postInstall.sh ${SETTINGS[gitUser]} ${SETTINGS[gitPassword]} $USER
