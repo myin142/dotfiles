@@ -4,6 +4,9 @@ SETTINGS=$1
 keyExists(){
 	[ ! -z "${SETTINGS[$1]}" ] && echo true || echo false
 }
+keyIsEnabled(){
+	[[ $(keyExists $1) = true && ${SETTINGS[$1]} -eq 1 ]] && echo true || echo false
+}
 
 # Start of Installation Script
 echo "Starting Arch Linux Installation..."
@@ -20,13 +23,13 @@ ln -sf /usr/share/zoneinfo/$ZONE /etc/localtime
 hwclock --systohc --utc
 
 # Other optional fields
-[ $(keyExists wireless) = true ] && pacman --noconfirm -S wireless_tools wpa_supplicant wpa_actiond dialog
-[ $(keyExists 64Bit) = true ] \
+[ $(keyIsEnabled wireless) = true ] && pacman --noconfirm -S wireless_tools wpa_supplicant wpa_actiond dialog
+[ $(keyIsEnabled 64Bit) = true ] \
 	&& echo "[multilib]" >> /etc/pacman.conf \
 	&& echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf \
 	&& pacman -Sy
-[ $(keyExists dual) = true ] && pacman --noconfirm -S os-prober
-[ $(keyExists speakers) = true ] && echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+[ $(keyIsEnabled dual) = true ] && pacman --noconfirm -S os-prober
+[ $(keyIsEnabled speakers) = true ] && echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 
 # Root Password
 echo "${SETTINGS[rootPassword]}\n${SETTINGS[rootPassword]}" | passwd
@@ -40,7 +43,7 @@ echo "${SETTINGS[rootPassword]}\n${SETTINGS[rootPassword]}" | passwd
 
 # Bootloader
 pacman --noconfirm -S grub
-[ $(keyExists 64Bit) = true ] && TARGET=x86_64 || TARGET=i386
+[ $(keyIsEnabled 64Bit) = true ] && TARGET=x86_64 || TARGET=i386
 [ $(keyExists efi) = true ] \
 	&& pacman --noconfirm -S efibootmgr \
 	&& grub-install --target=$TARGET-efi --efi-directory=${SETTINGS[efi]} --bootloader-id=ARCH
@@ -54,5 +57,5 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # Post Install with Packages
 [ $(keyExists newUser) = true ] && USER=${SETTINGS[newUser]} || USER=${SETTINGS[user]}
-[ $(keyExists package) = true ] \
-	&& /postInstall.sh ${SETTINGS[gitUser]} ${SETTINGS[gitPassword]} $USER
+
+/postInstall.sh ${SETTINGS[gitName]} ${SETTINGS[gitPassword]} $USER

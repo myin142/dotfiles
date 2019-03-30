@@ -90,18 +90,15 @@ fi
 
 declare -A SETTINGS
 
-if [ $(binaryQuestion "Set Locale: en_US.UTF-8") -eq 1 ]; then
-	SETTINGS[lang]="en_US"; SETTINGS[encode]="UTF-8"
-else
-	SETTINGS[lang]=$(nonEmptyInput "Language/Region (LANG_REGION)")
-	SETTINGS[encode]=$(nonEmptyInput "Encoding")
-fi
+SETTINGS[lang]=$(nonEmptyInput "Language/Region (LANG_REGION)")
+SETTINGS[encode]=$(nonEmptyInput "Encoding")
+SETTINGS[timezone]=$(nonEmptyInput "Timezone (COUNTRY/CITY)")
+SETTINGS[gitName]=$(nonEmptyInput "Git Name") \
+SETTINGS[gitEmail]=$(nonEmptyInput "Git Email")
 
 [ -e /sys/firmware/efi/efivars ] \
 	&& SETTINGS[efi]=$(nonEmptyInput "EFI Directory") \
 	|| SETTINGS[dev]=$(nonEmptyInput "Device (/dev/sdX)")
-
-SETTINGS[timezone]=$(nonEmptyInput "Timezone (COUNTRY/CITY)")
 
 printf "Root "
 SETTINGS[rootPassword]=$(getPassword)
@@ -112,14 +109,10 @@ SETTINGS[rootPassword]=$(getPassword)
 
 [ -z "${SETTINGS[newUser]}" ] && SETTINGS[user]=$(nonEmptyInput "Using existing User")
 
-[ $(binaryQuestion "Dual Booting") -eq 1 ] && SETTINGS[dual]=true
-[ $(binaryQuestion "Wireless connection") -eq 1 ] && SETTINGS[wireless]=true
-[ $(binaryQuestion "64-Bit System") -eq 1 ] && SETTINGS[64bit]=true
-[ $(binaryQuestion "Disable PC Speakers") -eq 1 ] && SETTINGS[speakers]=true
-[ $(binaryQuestion "Installing default packages") -eq 1 ] && SETTINGS[package]=true
-[ ! -z ${SETTINGS[package]} ] || [ $(binaryQuestion "Setup Git") -eq 1 ] \
-	&& SETTINGS[gitUser]=$(nonEmptyInput "Git User") \
-	&& SETTINGS[gitEmail]=$(nonEmptyInput "Git Email")
+SETTINGS[dual]=$(binaryQuestion "Dual Booting")
+SETTINGS[wireless]=$(binaryQuestion "Wireless connection")
+SETTINGS[64bit]=$(binaryQuestion "64-Bit System")
+SETTINGS[speakers]=$(binaryQuestion "Disable PC Speakers")
 
 for x in "${!SETTINGS[@]}"; do
 	printf "[%s]=%s\n" "$x" "${SETTINGS[$x]}"
@@ -180,11 +173,8 @@ INVALID=false
 
 # Getting installation file
 downloadIfNotExisting install.sh $ROOT_MOUNT
-
-if [ ! -z ${SETTINGS[package]} ]; then
-	downloadIfNotExisting postInstall.sh $ROOT_MOUNT
-	downloadIfNotExisting core $ROOT_MOUNT
-fi
+downloadIfNotExisting postInstall.sh $ROOT_MOUNT
+downloadIfNotExisting core $ROOT_MOUNT
 
 arch-chroot $ROOT_MOUNT << EOF
 	/install.sh $SETTINGS
