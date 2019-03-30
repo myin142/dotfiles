@@ -2,9 +2,6 @@ ntp
 binutils
 pkgfile
 fakeroot
-ttf-dejavu
-ttf-liberation
-noto-fonts-cjk
 
 alsa-utils
 pulseaudio
@@ -18,10 +15,6 @@ xorg-server
 xorg-xinit
 mesa
 lib32-mesa
-
-xf86-video-amdgpu
-vulkan-radeon
-lib32-vulkan-radeon
 
 kitty
 feh
@@ -47,9 +40,3 @@ tree
 
 openssh
 keychain
-
-lxappearance
-arc-gtk-theme
-papirus-icon-theme
-xcursor-simpleandsoft
-

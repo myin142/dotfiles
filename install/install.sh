@@ -53,9 +53,12 @@ pacman --noconfirm -S grub
 if [ ! -f "/boot/grub/locale/en.mo" ]; then
 	cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
 fi
-grub-mkconfig -o /boot/grub/grub.cfg
 
 # Post Install with Packages
 [ $(keyExists newUser) = true ] && USER=${SETTINGS[newUser]} || USER=${SETTINGS[user]}
+
+/packageInstall.sh
+
+grub-mkconfig -o /boot/grub/grub.cfg
 
 /postInstall.sh ${SETTINGS[gitName]} ${SETTINGS[gitPassword]} $USER
