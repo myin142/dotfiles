@@ -161,6 +161,10 @@ INVALID=false
 [[ ! -z ${SETTINGS[dev]} && ! -f "$ROOT_MOUNT/${SETTINGS[dev]}" ]] && \
 	echo "Invalid Device ${SETTINGS[dev]}" && INVALID=true
 
+[[ ! -z ${SETTINGS[newUser]} && \
+	! -z $(cat $ROOT_MOUNT/etc/passwd | cut -d ':' -f1 | grep ${SETTINGS[newUser]}) ]] && \
+	echo "User ${SETTINGS[newUser]} already exists" && INVALID=true
+
 [ $INVALID = true ] && failure
 
 ####################################
