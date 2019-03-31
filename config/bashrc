@@ -59,5 +59,6 @@ PATH=$PATH:~/.bin
 
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo
 MIC=alsa_input.pci-0000_00_1b.0.analog-stereo
+CHROME_BIN=chromium
 
 eval $(keychain --eval --quiet id_rsa)
