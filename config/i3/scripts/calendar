@@ -1,0 +1,11 @@
+#!/bin/sh
+
+DATETIME=$(date +'%H:%M  %a %d %b %Y ')
+
+echo "$DATETIME"
+echo "$DATETIME"
+echo "#FFFFFF"
+
+if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
+	zenity --calendar
+fi
