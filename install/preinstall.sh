@@ -142,7 +142,7 @@ lsblk
 [ $(binaryQuestion "Edit mirrorlist?") -eq 1 ] && vim /etc/pacman.d/mirrorlist
 
 # Validity can only be checked when having basic structure
-if [[ ! -d "$ROOT_MOUNT/proc" || -z $(ls -A "$ROOT_MOUNT/proc") ]]; then
+if [[ ! -d "$ROOT_MOUNT/proc" ]]; then
 	echo "Installing Base Package"
 	pacstrap -i $ROOT_MOUNT base
 	genfstab -U -p $ROOT_MOUNT > $ROOT_MOUNT/etc/fstab
