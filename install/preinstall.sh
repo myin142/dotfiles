@@ -181,11 +181,13 @@ INVALID=false
 ####################################
 
 # Getting installation file
+set +e
 downloadIfNotExisting install.sh $ROOT_MOUNT
 downloadIfNotExisting packageInstall.sh $ROOT_MOUNT
 downloadIfNotExisting postinstall.sh $ROOT_MOUNT
 downloadIfNotExisting core $ROOT_MOUNT
 
+set -e
 arch-chroot $ROOT_MOUNT << EOF
 	/install.sh $SETTINGS
 EOF
