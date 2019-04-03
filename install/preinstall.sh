@@ -90,8 +90,13 @@ fi
 
 declare -A SETTINGS
 
-SETTINGS[lang]=$(nonEmptyInput "Language/Region (LANG_REGION)")
-SETTINGS[encode]=$(nonEmptyInput "Encoding")
+if [ $(binaryQuestion "Use Locale en_US.UTF-8") -eq 1 ];
+	SETTINGS[lang]="en_US"
+	SETTINGS[encode]="UTF-8"
+else
+	SETTINGS[lang]=$(nonEmptyInput "Language/Region (LANG_REGION)")
+	SETTINGS[encode]=$(nonEmptyInput "Encoding")
+fi
 SETTINGS[timezone]=$(nonEmptyInput "Timezone (COUNTRY/CITY)")
 SETTINGS[gitName]=$(nonEmptyInput "Git Name") \
 SETTINGS[gitEmail]=$(nonEmptyInput "Git Email")
@@ -154,7 +159,7 @@ INVALID=false
 [[ ! -z ${SETTINGS[efi]} && ! -d "$ROOT_MOUNT/${SETTINGS[efi]}" ]] && \
 	echo "Invalid EFI Directory ${SETTINGS[efi]}" && INVALID=true
 
-[[ ! -z ${SETTINGS[dev]} && ! -f "$ROOT_MOUNT/${SETTINGS[dev]}" ]] && \
+[[ ! -z ${SETTINGS[dev]} && -z $(ls ${SETTINGS[dev]} >/dev/null 2>&1) ]] && \
 	echo "Invalid Device ${SETTINGS[dev]}" && INVALID=true
 
 [[ ! -z ${SETTINGS[newUser]} && \
@@ -173,6 +178,7 @@ INVALID=false
 
 # Getting installation file
 downloadIfNotExisting install.sh $ROOT_MOUNT
+downloadIfNotExisting packageInstall.sh $ROOT_MOUNT
 downloadIfNotExisting postInstall.sh $ROOT_MOUNT
 downloadIfNotExisting core $ROOT_MOUNT
 
