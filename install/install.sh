@@ -61,4 +61,4 @@ fi
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
-/postInstall.sh ${SETTINGS[gitName]} ${SETTINGS[gitPassword]} $USER
+/postinstall.sh ${SETTINGS[gitName]} ${SETTINGS[gitPassword]} $USER
