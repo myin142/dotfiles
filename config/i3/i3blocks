@@ -2,6 +2,12 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=20
 color=#E0E0E0
 
+[youtube]
+command=$HOME/.config/i3/scripts/ytplay
+markup=pango
+interval=once
+signal=4
+
 [wifi]
 command=$HOME/.config/i3/scripts/iface
 interval=1
