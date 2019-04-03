@@ -90,13 +90,14 @@ fi
 
 declare -A SETTINGS
 
-if [ $(binaryQuestion "Use Locale en_US.UTF-8") -eq 1 ];
+if [ $(binaryQuestion "Use Locale en_US.UTF-8") -eq 1 ]; then
 	SETTINGS[lang]="en_US"
 	SETTINGS[encode]="UTF-8"
 else
 	SETTINGS[lang]=$(nonEmptyInput "Language/Region (LANG_REGION)")
 	SETTINGS[encode]=$(nonEmptyInput "Encoding")
 fi
+
 SETTINGS[timezone]=$(nonEmptyInput "Timezone (COUNTRY/CITY)")
 SETTINGS[gitName]=$(nonEmptyInput "Git Name") \
 SETTINGS[gitEmail]=$(nonEmptyInput "Git Email")
