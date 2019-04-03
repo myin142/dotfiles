@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Exit on failure
+set -e
+
 ROOT_URL="https://github.com/myin142/dotfiles/raw/master/install/"
 
 downloadIfNotExisting(){
@@ -139,7 +142,7 @@ lsblk
 [ $(binaryQuestion "Edit mirrorlist?") -eq 1 ] && vim /etc/pacman.d/mirrorlist
 
 # Validity can only be checked when having basic structure
-if [ ! -d "$ROOT_MOUNT/proc" ]; then
+if [[ ! -d "$ROOT_MOUNT/proc" || -z $(ls -A "$ROOT_MOUNT/proc") ]]; then
 	echo "Installing Base Package"
 	pacstrap -i $ROOT_MOUNT base
 	genfstab -U -p $ROOT_MOUNT > $ROOT_MOUNT/etc/fstab
@@ -160,15 +163,15 @@ INVALID=false
 [[ ! -z ${SETTINGS[efi]} && ! -d "$ROOT_MOUNT/${SETTINGS[efi]}" ]] && \
 	echo "Invalid EFI Directory ${SETTINGS[efi]}" && INVALID=true
 
-[[ ! -z ${SETTINGS[dev]} && -z $(ls ${SETTINGS[dev]} >/dev/null 2>&1) ]] && \
+[[ ! -z ${SETTINGS[dev]} && -z $(ls ${SETTINGS[dev]}) ]] && \
 	echo "Invalid Device ${SETTINGS[dev]}" && INVALID=true
 
 [[ ! -z ${SETTINGS[newUser]} && \
-	! -z $(cat $ROOT_MOUNT/etc/passwd | cut -d ':' -f1 | grep ${SETTINGS[newUser]}) ]] && \
+	! -z $(cat $ROOT_MOUNT/etc/passwd | cut -d ':' -f1 | grep -w ${SETTINGS[newUser]}) ]] && \
 	echo "User ${SETTINGS[newUser]} already exists" && INVALID=true
 
 [[ ! -z ${SETTINGS[user]} && \
-	-z $(cat $ROOT_MOUNT/etc/passwd | cut -d ':' -f1 | grep ${SETTINGS[user]}) ]] && \
+	-z $(cat $ROOT_MOUNT/etc/passwd | cut -d ':' -f1 | grep -w ${SETTINGS[user]}) ]] && \
 	echo "User ${SETTINGS[user]} does not exist" && INVALID=true
 
 [ $INVALID = true ] && failure
