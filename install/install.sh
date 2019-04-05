@@ -26,7 +26,7 @@ ln -sf /usr/share/zoneinfo/$ZONE /etc/localtime
 hwclock --systohc --utc
 
 # Other optional fields
-[ $(keyIsEnabled wireless) = true ] && pacman --noconfirm -S wireless_tools wpa_supplicant wpa_actiond dialog
+[ $(keyIsEnabled wireless) = true ] && pacman --noconfirm -S wireless_tools wpa_supplicant dialog
 [ $(keyIsEnabled 64Bit) = true ] \
 	&& echo "[multilib]" >> /etc/pacman.conf \
 	&& echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf \
