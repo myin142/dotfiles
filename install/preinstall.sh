@@ -93,41 +93,48 @@ fi
 
 declare -A SETTINGS
 
-if [ $(binaryQuestion "Use Locale en_US.UTF-8") -eq 1 ]; then
-	SETTINGS[lang]="en_US"
-	SETTINGS[encode]="UTF-8"
+if [ -f ./settings.values ]; then
+	echo "Loading saved values"
+	. ./settings.values
 else
-	SETTINGS[lang]=$(nonEmptyInput "Language/Region (LANG_REGION)")
-	SETTINGS[encode]=$(nonEmptyInput "Encoding")
+	if [ $(binaryQuestion "Use Locale en_US.UTF-8") -eq 1 ]; then
+		SETTINGS[lang]="en_US"
+		SETTINGS[encode]="UTF-8"
+	else
+		SETTINGS[lang]=$(nonEmptyInput "Language/Region (LANG_REGION)")
+		SETTINGS[encode]=$(nonEmptyInput "Encoding")
+	fi
+
+	SETTINGS[timezone]=$(nonEmptyInput "Timezone (COUNTRY/CITY)")
+	SETTINGS[gitName]=$(nonEmptyInput "Git Name") \
+	SETTINGS[gitEmail]=$(nonEmptyInput "Git Email")
+
+	[ -e /sys/firmware/efi/efivars ] \
+		&& SETTINGS[efi]=$(nonEmptyInput "EFI Directory") \
+		|| SETTINGS[dev]=$(nonEmptyInput "Device (/dev/sdX)")
+
+	printf "Root "
+	SETTINGS[rootPassword]=$(getPassword)
+
+	[ $(binaryQuestion "Add new User") -eq 1 ] \
+		&& SETTINGS[newUser]=$(nonEmptyInput "Username") \
+		&& SETTINGS[userPassword]=$(getPassword)
+
+	[ -z "${SETTINGS[newUser]}" ] && SETTINGS[user]=$(nonEmptyInput "Using existing User")
+
+	SETTINGS[dual]=$(binaryQuestion "Dual Booting")
+	SETTINGS[wireless]=$(binaryQuestion "Wireless connection")
+	SETTINGS[64bit]=$(binaryQuestion "64-Bit System")
+	SETTINGS[speakers]=$(binaryQuestion "Disable PC Speakers")
 fi
-
-SETTINGS[timezone]=$(nonEmptyInput "Timezone (COUNTRY/CITY)")
-SETTINGS[gitName]=$(nonEmptyInput "Git Name") \
-SETTINGS[gitEmail]=$(nonEmptyInput "Git Email")
-
-[ -e /sys/firmware/efi/efivars ] \
-	&& SETTINGS[efi]=$(nonEmptyInput "EFI Directory") \
-	|| SETTINGS[dev]=$(nonEmptyInput "Device (/dev/sdX)")
-
-printf "Root "
-SETTINGS[rootPassword]=$(getPassword)
-
-[ $(binaryQuestion "Add new User") -eq 1 ] \
-	&& SETTINGS[newUser]=$(nonEmptyInput "Username") \
-	&& SETTINGS[userPassword]=$(getPassword)
-
-[ -z "${SETTINGS[newUser]}" ] && SETTINGS[user]=$(nonEmptyInput "Using existing User")
-
-SETTINGS[dual]=$(binaryQuestion "Dual Booting")
-SETTINGS[wireless]=$(binaryQuestion "Wireless connection")
-SETTINGS[64bit]=$(binaryQuestion "64-Bit System")
-SETTINGS[speakers]=$(binaryQuestion "Disable PC Speakers")
 
 for x in "${!SETTINGS[@]}"; do
 	printf "[%s]=%s\n" "$x" "${SETTINGS[$x]}"
 done
 
 [ $(binaryQuestion "Start installation with these SETTINGS") -eq 0 ] && failure
+
+set | grep ^SETTINGS= > settings.values
 
 ################################
 # Installation of Base Package #
@@ -174,7 +181,7 @@ INVALID=false
 	-z $(cat $ROOT_MOUNT/etc/passwd | cut -d ':' -f1 | grep -w ${SETTINGS[user]}) ]] && \
 	echo "User ${SETTINGS[user]} does not exist" && INVALID=true
 
-[ $INVALID = true ] && failure
+[ $INVALID = true ] && rm ./settings.values && failure
 
 ####################################
 # Basic Installation with Settings #
@@ -189,5 +196,5 @@ downloadIfNotExisting core $ROOT_MOUNT
 
 set -e
 arch-chroot $ROOT_MOUNT << EOF
-	/install.sh $SETTINGS
+	/install.sh ${SETTINGS[@]}
 EOF

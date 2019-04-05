@@ -1,6 +1,7 @@
 #!/bin/sh
 
-SETTINGS=$1
+SETTINGS=("$@")
+
 keyExists(){
 	[ ! -z "${SETTINGS[$1]}" ] && echo true || echo false
 }
