@@ -12,6 +12,7 @@ keyIsEnabled(){
 
 # Start of Installation Script
 echo "Starting Arch Linux Installation..."
+pacman -Sy
 
 # Set Locale
 LOCALE="${SETTINGS[lang]}.${SETTINGS[encode]}"
