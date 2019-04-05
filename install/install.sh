@@ -1,5 +1,6 @@
 #!/bin/sh
 
+declare -A SETTINGS
 . ./settings.values
 
 keyExists(){
