@@ -187,6 +187,11 @@ INVALID=false
 # Basic Installation with Settings #
 ####################################
 
+if [ -f "$ROOT_MOUNT/settings.values" ]; then
+	rm "$ROOT_MOUNT/settings.values"
+fi
+cp ./settings.values "$ROOT_MOUNT/settings.values"
+
 # Getting installation file
 set +e
 downloadIfNotExisting install.sh $ROOT_MOUNT
@@ -196,5 +201,5 @@ downloadIfNotExisting core $ROOT_MOUNT
 
 set -e
 arch-chroot $ROOT_MOUNT << EOF
-	/install.sh ${SETTINGS[@]}
+	/install.sh
 EOF
