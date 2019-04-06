@@ -150,8 +150,6 @@ lsblk
 
 # Validity can only be checked when having basic structure
 if [[ ! -d "$ROOT_MOUNT/proc" || ! -d "$ROOT_MOUNT/root" || ! -d "$ROOT_MOUNT/usr" ]]; then
-	rm "$ROOT_MOUNT/*" -r
-
 	echo "Installing Base Package"
 	pacstrap -i $ROOT_MOUNT base
 	genfstab -U -p $ROOT_MOUNT > $ROOT_MOUNT/etc/fstab
