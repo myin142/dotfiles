@@ -167,8 +167,9 @@ INVALID=false
 [[ ! -f "$ROOT_MOUNT/usr/share/zoneinfo/${SETTINGS[timezone]}" ]] && \
 	echo "Invalid Timezone ${SETTINGS[timezone]}" && INVALID=true
 
-[[ ! -z ${SETTINGS[efi]} && ! -d "$ROOT_MOUNT/${SETTINGS[efi]}" ]] && \
-	echo "Invalid EFI Directory ${SETTINGS[efi]}" && INVALID=true
+[[ ! -z ${SETTINGS[efi]} && \
+	-z $(mount | awk '{print $3}' | grep "^$ROOT_MOUNT${SETTINGS[efi]}$") ]] && \
+	echo "Invalid EFI Directory ${SETTINGS[efi]}. Should be a mount point" && INVALID=true
 
 [[ ! -z ${SETTINGS[dev]} && -z $(ls ${SETTINGS[dev]}) ]] && \
 	echo "Invalid Device ${SETTINGS[dev]}" && INVALID=true
