@@ -20,11 +20,9 @@ linkFolder(){
 }
 linkDotFile(){
 	ln -sf $DOTFILES/$1 $USER_HOME/$2
-	chown $USER:users $USER_HOME/$2
 }
 linkDotFolder(){
 	linkFolder $DOTFILES/$1 $USER_HOME/$2
-	chown $USER:users $USER_HOME/$2
 }
 
 # Setup Git and get dotfiles
@@ -67,5 +65,6 @@ linkDotFolder bin .bin
 ln -sf $DOTFILES/config/lightdm/lightk-gtk-greeter.conf /etc/lightdm/
 ln -sf $DOTFILES/config/lightdm/lightdm.conf /etc/lightdm/
 
+chown $USER:users $USER_HOME/ -R
 rm core specific install.sh packageInstall.sh postinstall.sh settings.values
 
