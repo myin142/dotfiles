@@ -1,7 +1,6 @@
 #!/bin/sh
 
 set -e
-pacman -Sy
 pacman -S - < core
 
 while : ; do

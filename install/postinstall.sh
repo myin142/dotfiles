@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 GIT_USER=$1
 GIT_EMAIL=$2
 USER=$3

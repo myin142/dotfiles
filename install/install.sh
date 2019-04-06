@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -e
 declare -A SETTINGS
 . ./settings.values
 
@@ -29,7 +30,8 @@ hwclock --systohc --utc
 if [ $(keyIsEnabled 64bit) = true ]; then
 	[ -z $(cat /etc/pacman.conf | grep "^\[multilib\]") ] \
 		&& echo "[multilib]" >> /etc/pacman.conf \
-		&& echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+		&& echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf \
+		&& pacman -Sy
 fi
 [ $(keyIsEnabled dual) = true ] && pacman --noconfirm -S os-prober
 [ $(keyIsEnabled speakers) = true ] && echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
