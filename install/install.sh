@@ -37,12 +37,12 @@ fi
 [ $(keyIsEnabled speakers) = true ] && echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 
 # Root Password
-echo "${SETTINGS[rootPassword]}\n${SETTINGS[rootPassword]}" | passwd
+printf "${SETTINGS[rootPassword]}\n${SETTINGS[rootPassword]}" | passwd
 
 # Setup New User
 [ $(keyExists newUser) = true ] \
 	&& useradd -m -g users -G wheel,storage,power -s /bin/bash ${SETTINGS[newUser]} \
-	&& echo "${SETTINGS[userPassword]}\n${SETTINGS[userPassword]}" | passwd ${SETTINGS[newUser]} \
+	&& printf "${SETTINGS[userPassword]}\n${SETTINGS[userPassword]}" | passwd ${SETTINGS[newUser]} \
 	&& pacman --noconfirm -S sudo \
 	&& echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 

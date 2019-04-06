@@ -58,6 +58,7 @@ linkDotFile img/wallpaper.png .wallpaper.png
 ln -sf $DOTFILES/img/lockscreen.png /usr/share/pixmaps/
 
 # Create Other Links
+[ ! -d "$USER_HOME/.local" ] && mkdir -p $USER_HOME/.local/share
 linkDotFolder fonts .local/share/fonts
 linkDotFolder vim .vim
 linkDotFolder bin .bin
@@ -65,4 +66,6 @@ linkDotFolder bin .bin
 # Display Manager
 ln -sf $DOTFILES/config/lightdm/lightk-gtk-greeter.conf /etc/lightdm/
 ln -sf $DOTFILES/config/lightdm/lightdm.conf /etc/lightdm/
+
+rm core specific install.sh packageInstall.sh postinstall.sh settings.values
 

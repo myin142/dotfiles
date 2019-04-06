@@ -1,13 +1,8 @@
 #!/bin/sh
 
 set -e
-pacman -S - < core
-
-while : ; do
-	vim specific
-	[ -z $(cat specific | grep "#") ] && break
-done
-pacman -S - < specific
+pacman --noconfirm -S - < core
+pacman --noconfirm -S - < specific
 
 pkgfile -u
 systemctl enable ntpd

@@ -200,6 +200,11 @@ downloadIfNotExisting postinstall.sh $ROOT_MOUNT
 downloadIfNotExisting core $ROOT_MOUNT
 downloadIfNotExisting specific $ROOT_MOUNT
 
+while : ; do
+	vim $ROOT_MOUNT/specific
+	[ -z $(cat "$ROOT_MOUNT/specific" | grep "#") ] && break
+done
+
 arch-chroot $ROOT_MOUNT << EOF
 	/install.sh
 EOF
