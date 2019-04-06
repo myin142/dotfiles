@@ -62,7 +62,10 @@ linkDotFolder vim .vim
 linkDotFolder bin .bin
 
 # Display Manager
+[ -f /etc/lightdm/lightdm-gtk-greeter.conf ] && rm /etc/lightdm/lightdm-gtk-greeter.conf
 ln -sf $DOTFILES/config/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
+
+[ -f /etc/lightdm/lightdm.conf ] && rm /etc/lightdm/lightdm.conf
 ln -sf $DOTFILES/config/lightdm/lightdm.conf /etc/lightdm/
 
 chown $USER:users $USER_HOME/ -R
