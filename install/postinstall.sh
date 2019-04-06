@@ -31,7 +31,7 @@ if [ ! -d $DOTFILES ]; then
 	git config --global user.email $GIT_EMAIL
 	git config --global core.editor vim
 	git clone --recurse-submodules -j$(nproc) https://github.com/myin142/dotfiles $DOTFILES
-	chown :users $DOTFILES -R
+	chown $USER:users $DOTFILES -R
 fi
 
 # Create Config Links
