@@ -12,7 +12,6 @@ keyIsEnabled(){
 
 # Start of Installation Script
 echo "Starting Arch Linux Installation..."
-pacman -Sy
 
 # Set Locale
 LOCALE="${SETTINGS[lang]}.${SETTINGS[encode]}"
@@ -27,10 +26,11 @@ hwclock --systohc --utc
 
 # Other optional fields
 [ $(keyIsEnabled wireless) = true ] && pacman --noconfirm -S wireless_tools wpa_supplicant dialog
-[ $(keyIsEnabled 64Bit) = true ] \
-	&& echo "[multilib]" >> /etc/pacman.conf \
-	&& echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf \
-	&& pacman -Sy
+if [ $(keyIsEnabled 64bit) = true ]; then
+	[ -z $(cat /etc/pacman.conf | grep "^\[multilib\]") ] \
+		&& echo "[multilib]" >> /etc/pacman.conf \
+		&& echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+fi
 [ $(keyIsEnabled dual) = true ] && pacman --noconfirm -S os-prober
 [ $(keyIsEnabled speakers) = true ] && echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 
@@ -46,8 +46,8 @@ echo "${SETTINGS[rootPassword]}\n${SETTINGS[rootPassword]}" | passwd
 
 # Bootloader
 pacman --noconfirm -S grub
+[ $(keyIsEnabled 64Bit) = true ] && TARGET=x86_64 || TARGET=i386
 [ $(keyExists efi) = true ] \
-	&& [ $(keyIsEnabled 64Bit) = true ] && TARGET=x86_64 || TARGET=i386
 	&& pacman --noconfirm -S efibootmgr \
 	&& grub-install --target=$TARGET-efi --efi-directory=${SETTINGS[efi]} --bootloader-id=ARCH
 
@@ -62,6 +62,7 @@ fi
 
 /packageInstall.sh
 
+# After installing microcode
 grub-mkconfig -o /boot/grub/grub.cfg
 
-/postinstall.sh ${SETTINGS[gitName]} ${SETTINGS[gitPassword]} $USER
+/postinstall.sh ${SETTINGS[gitName]} ${SETTINGS[gitEmail]} $USER

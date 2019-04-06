@@ -1,20 +1,18 @@
 ntp
-binutils
 pkgfile
-fakeroot
+openssh
+keychain
+htop
+git
+ntfs-3g
 
 alsa-utils
 pulseaudio
 pulseaudio-alsa
 
-git
-ntfs-3g
-
 arandr
 xorg-server
 xorg-xinit
-mesa
-lib32-mesa
 
 kitty
 feh
@@ -22,8 +20,8 @@ compton
 dunst
 rofi
 python-pywal
-
 redshift
+
 i3-gaps
 i3blocks
 i3lock
@@ -31,12 +29,22 @@ scrot
 imagemagick
 
 ibus
+ibus-rime
+ibus-anthy
 networkmanager
 network-manager-applet
 
-base-devel
-htop
-tree
+lightdm
+lightdm-gtk-greeter
 
-openssh
-keychain
+ttf-dejavu
+ttf-liberation
+noto-fonts-cjk
+
+lxappearance
+arc-gtk-theme
+papirus-icon-theme
+xcursor-simpleandsoft
+
+firefox
+chromium

@@ -181,7 +181,7 @@ INVALID=false
 	-z $(cat $ROOT_MOUNT/etc/passwd | cut -d ':' -f1 | grep -w ${SETTINGS[user]}) ]] && \
 	echo "User ${SETTINGS[user]} does not exist" && INVALID=true
 
-[ $INVALID = true ] && rm ./settings.values && failure
+[ $INVALID = true ] && rm ./settings.values -i && failure
 
 ####################################
 # Basic Installation with Settings #
@@ -198,8 +198,8 @@ downloadIfNotExisting install.sh $ROOT_MOUNT
 downloadIfNotExisting packageInstall.sh $ROOT_MOUNT
 downloadIfNotExisting postinstall.sh $ROOT_MOUNT
 downloadIfNotExisting core $ROOT_MOUNT
+downloadIfNotExisting specific $ROOT_MOUNT
 
-set -e
 arch-chroot $ROOT_MOUNT << EOF
 	/install.sh
 EOF

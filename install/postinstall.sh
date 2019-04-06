@@ -9,29 +9,24 @@ DOTFILES=/home/.dotfiles
 linkFolder(){
 	SOURCE="$1"
 	TARGET="$2"
+
 	# Remove target to prevent creating link inside folder
-	if [ -d "$TARGET" ]; then
-		rm "$TARGET" -ri
-	fi
+	[ -d "$TARGET" ] && rm "$TARGET" -r
 
 	# Target should not exists when creating link
-	if [ ! -d "$TARGET" ]; then
-		ln -sf "$SOURCE" "$TARGET"
-	fi
+	[ ! -d "$TARGET" ] && ln -sf "$SOURCE" "$TARGET"
 }
-function linkDotFile(){
+linkDotFile(){
 	ln -sf $DOTFILES/$1 $USER_HOME/$2
 	chown $USER:users $USER_HOME/$2
 }
-function linkDotFolder(){
+linkDotFolder(){
 	linkFolder $DOTFILES/$1 $USER_HOME/$2
 	chown $USER:users $USER_HOME/$2
 }
 
-grub-mkconfig -o /boot/grub/grub.cfg
-
 # Setup Git and get dotfiles
-if [ ! -d /home/.dotfiles ]; then
+if [ ! -d $DOTFILES ]; then
 	git config --global user.name $GIT_USER
 	git config --global user.email $GIT_EMAIL
 	git config --global core.editor vim
@@ -45,8 +40,8 @@ linkDotFile config/vimrc .vimrc
 linkDotFile config/xinitrc .xinitrc
 linkDotFile config/Xresources .Xresources
 
-if [ ! -d ~/.config ]; then
-	mkdir ~/.config
+if [ ! -d $USER_HOME/.config ]; then
+	mkdir $USER_HOME/.config
 fi
 
 linkDotFolder config/i3 .config/i3
@@ -57,8 +52,8 @@ linkDotFolder config/redshift .config/redshift
 linkDotFolder config/compton .config/compton
 
 # Create Image Links
-ln -sf ~/.dotfiles/img/wallpaper.png ~/.wallpaper.png
-ln -sf ~/.dotfiles/img/lockscreen.png /home/.lockscreen.png
+linkDotFile img/wallpaper.png .wallpaper.png
+ln -sf $DOTFILES/img/lockscreen.png /usr/share/pixmaps/
 
 # Create Other Links
 linkDotFolder fonts .local/share/fonts
@@ -66,6 +61,6 @@ linkDotFolder vim .vim
 linkDotFolder bin .bin
 
 # Display Manager
-ln -sf $DOTFILES/config/lightdm/slick-greeter.conf /etc/lightdm/slick-greeter.conf
-ln -sf $DOTFILES/config/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
+ln -sf $DOTFILES/config/lightdm/lightk-gtk-greeter.conf /etc/lightdm/
+ln -sf $DOTFILES/config/lightdm/lightdm.conf /etc/lightdm/
 
