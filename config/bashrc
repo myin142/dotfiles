@@ -54,7 +54,6 @@ stty -ixon
 export EDITOR=vim
 export VISUAL=$EDITOR
 export DOTFILES=$HOME/.dotfiles
-export CHROME_BIN=chromium
 
 PATH=$PATH:~/.bin
 
