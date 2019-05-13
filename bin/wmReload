@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # force reload wal styles
-if [ "$1" == "f" ] || [ "$1" == "force" ]; then
+if [ "$1" == "-f" ] || [ "$1" == "--force" ]; then
 	echo "Force Reload"
 	rm ~/.cache/wal/ -r
 fi
