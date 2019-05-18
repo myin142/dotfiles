@@ -1,0 +1,44 @@
+#!/bin/bash
+
+full=""
+short=""
+
+URL="https://darksky.net/forecast/48.2084,16.3725/us12/en"
+
+currently="$(curl $URL | awk -F= '/currently = /{print $2}')"
+weather="$(echo "$currently" | jq -r '.summary')"
+temp="$(echo "$currently" | jq -r '.temperature')"
+
+if [[ $weather == *thunder* || $weather == *Thunder* ]]; then
+	icon=""
+	color="#FFFAAA"
+else
+	if [[ $weather == *rain* || $weather == *Rain* ]]; then
+		icon=""
+		color="#0088FF"
+	else
+		if [[ $weather == *snow* || $weather == *Snow* ]]; then
+			icon="❄"
+			color="#82EAFF"
+		else
+			if [[ $weather == *cloud* || $weather == *Cloud* ]]; then
+				icon=""
+				color="#969696"
+			else
+				icon=""
+				color="#FFFF00"
+			fi
+		fi
+	fi
+fi
+
+full="$icon $temp°"
+short="$icon $temp°"
+
+echo $full
+echo $short
+echo $color
+
+if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
+	firefox --new-tab "$URL"
+fi

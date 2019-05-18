@@ -8,6 +8,10 @@ markup=pango
 interval=once
 signal=4
 
+[weather]
+command=$HOME/.config/i3/scripts/weather
+interval=once
+
 [wifi]
 command=$HOME/.config/i3/scripts/iface
 interval=1
