@@ -68,7 +68,7 @@ ln -sf $DOTFILES/config/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
 [ -f /etc/lightdm/lightdm.conf ] && rm /etc/lightdm/lightdm.conf
 ln -sf $DOTFILES/config/lightdm/lightdm.conf /etc/lightdm/
 
-ln -sf $DOTFILES/config/xorg.config.d/ /etc/X11/xorg.conf.d/
+ln -sf $DOTFILES/config/xorg.config.d/ /etc/X11/xorg.conf.d
 
 chown $USER:users $USER_HOME/ -R
 rm core specific install.sh packageInstall.sh postinstall.sh settings.values
