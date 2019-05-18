@@ -3,7 +3,7 @@
 full=""
 short=""
 
-URL="https://darksky.net/forecast/48.2084,16.3725/us12/en"
+URL="https://darksky.net/forecast/48.2084,16.3725/ca12/en"
 
 currently="$(curl $URL | awk -F= '/currently = /{print $2}')"
 weather="$(echo "$currently" | jq -r '.summary')"
