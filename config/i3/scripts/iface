@@ -1,32 +1,46 @@
 #!/bin/bash
+# Copyright (C) 2014 Alexander Keller <github@nycroth.com>
 
-# Use the provided interface, otherwise the device used for the default route.
-if [[ -n $BLOCK_INSTANCE ]]; then
-  IF=$BLOCK_INSTANCE
-else
-  IF=$(ip route | awk '/^default/ { print $5 ; exit }')
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#------------------------------------------------------------------------
+if [[ -z "$INTERFACE" ]] ; then
+    INTERFACE="${BLOCK_INSTANCE:-wlp7s0}"
 fi
-
 #------------------------------------------------------------------------
 
 # As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
 # connection (think desktop), the corresponding block should not be displayed.
-[[ ! -d /sys/class/net/${IF} ]] && exit
+[[ ! -d /sys/class/net/${INTERFACE}/wireless ]] && exit
 
-if [[ -z $IF ]]; then
-  echo "Down"
-  echo "Down"
-  echo "#FF0000"
-  exit
+# If the wifi interface exists but no connection is active, "down" shall be displayed.
+if [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]]; then
+    echo "Down"
+    echo "Down"
+    echo "#FF0000"
+    exit
 fi
 
-# if no interface is found, use the first device with a global scope
-IPADDR=$(ip route get 1 | awk '{print $7;exit}')
+#------------------------------------------------------------------------
 
-QUALITY=$(grep $IF /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+IP=$(ifconfig $INTERFACE | grep "inet " | awk '{ print $2 }')
+QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
 
-echo "$IPADDR - $QUALITY%" # full text
-echo "$IPADDR - $QUALITY%" # short text
+#------------------------------------------------------------------------
+
+echo "$IP - $QUALITY%" # full text
+echo "$IP - $QUALITY%" # short text
 
 # color
 if [[ $QUALITY -ge 80 ]]; then
