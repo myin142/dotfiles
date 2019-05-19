@@ -84,3 +84,5 @@ noremap <A-l> :tabn<cr>
 " scroll the viewport faster
 noremap <C-d> 5<C-e>
 noremap <C-u> 5<C-y>
+
+vnoremap <C-c> "*y
