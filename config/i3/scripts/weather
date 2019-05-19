@@ -6,31 +6,51 @@ short=""
 URL="https://darksky.net/forecast/48.2084,16.3725/ca12/en"
 
 currently="$(curl $URL | awk -F= '/currently = /{print $2}')"
-weather="$(echo "$currently" | jq -r '.summary')"
+weather="$(echo "$currently" | jq -r '.icon')"
 temp="$(echo "$currently" | jq -r '.temperature')"
 
-if [[ $weather == *thunder* || $weather == *Thunder* ]]; then
-	icon=""
+case "$weather" in
+clear-day)
+	icon="滛"
+	color="#FFFF00"
+	;;
+clear-night)
+	icon="望"
+	color="#00bfff"
+	;;
+rain)
+	icon="歹"
+	color="#0088FF"
+	;;
+snow)
+	icon="流"
+	color="#82EAFF"
+	;;
+wind)
+	icon="煮"
+	color="#b0db6f"
+	;;
+fog)
+	icon="敖"
+	color="#b9c6a5"
+	;;
+cloudy)
+	icon="摒"
+	color="#969696"
+	;;
+partly-cloudy*)
+	icon="杖"
+	color="#d6ca9c"
+	;;
+*hail*)
+	icon="晴"
+	color="#64acc1"
+	;;
+*thunder*)
+	icon="朗"
 	color="#FFFAAA"
-else
-	if [[ $weather == *rain* || $weather == *Rain* ]]; then
-		icon=""
-		color="#0088FF"
-	else
-		if [[ $weather == *snow* || $weather == *Snow* ]]; then
-			icon="❄"
-			color="#82EAFF"
-		else
-			if [[ $weather == *cloud* || $weather == *Cloud* ]]; then
-				icon=""
-				color="#969696"
-			else
-				icon=""
-				color="#FFFF00"
-			fi
-		fi
-	fi
-fi
+	;;
+esac
 
 full="$icon $temp°"
 short="$icon $temp°"
