@@ -1,15 +1,23 @@
 #!/bin/bash
 
 CMD="$1"
-ARGS=("${@:2}")
+RAW_ARGS="${@:2}"
+ARGS=("$RAW_ARGS")
 
 function printLines(){
-	git log ${ARGS[0]}..HEAD --pretty=tformat: --numstat | awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END { printf "added lines: %s removed lines: %s total lines: %s\n",add,subs,loc }'
+	git log ${ARGS[0]}..HEAD --pretty=tformat: --numstat | \
+		awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
+		{ printf "added lines: %s removed lines: %s total lines: %s\n",add,subs,loc }'
+}
+
+function printLog(){
+	git log --oneline --graph --decorate $RAW_ARGS
 }
 
 case "$CMD" in
 
 	"lines") printLines;;
+	"log") printLog;;
 
 	*) echo "command not defined";;
 
