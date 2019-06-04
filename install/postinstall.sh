@@ -39,6 +39,7 @@ linkDotFile config/bashrc .bashrc
 linkDotFile config/vimrc .vimrc
 linkDotFile config/xinitrc .xinitrc
 linkDotFile config/Xresources .Xresources
+linkDotFile config/Xmodmap .Xmodmap
 
 if [ ! -d $USER_HOME/.config ]; then
 	mkdir $USER_HOME/.config
