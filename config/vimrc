@@ -75,6 +75,9 @@ noremap <space> :noh<cr>
 "noremap <A-w> <C-w>=
 noremap <C-s> :w<cr>
 
+" Replace all tabs with 4 spaces
+noremap <C-p> :%s/\t/\ \ \ \ /g<cr>
+
 " Tabs
 noremap <C-t> :tabnew<cr>
 noremap <A-w> :tabclose<cr>
