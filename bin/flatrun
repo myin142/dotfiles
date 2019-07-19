@@ -10,11 +10,16 @@ function getAppName {
 	echo ${apps[${1:-_}]}
 }
 
+function printAppNames {
+	for name in "${!apps[@]}"; do
+		echo "$name"
+	done
+}
+
 APP=$(getAppName $1)
-echo $APP
 
 if [[ -z "$APP" ]]; then
-	flatpak list
+	printAppNames
 else
 	flatpak run $APP
 fi
