@@ -1,0 +1,20 @@
+#!/bin/bash
+
+declare -A apps
+
+apps[idea]="com.jetbrains.IntelliJ-IDEA-Ultimate"
+apps[discord]="com.discordapp.Discord"
+apps[slack]="com.slack.Slack"
+
+function getAppName {
+	echo ${apps[${1:-_}]}
+}
+
+APP=$(getAppName $1)
+echo $APP
+
+if [[ -z "$APP" ]]; then
+	flatpak list
+else
+	flatpak run $APP
+fi
