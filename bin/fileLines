@@ -1,0 +1,12 @@
+#!/bin/bash
+
+REGEX="$1"
+
+FILES=()
+while IFS= read -r line; do
+	FILES+=("$line")
+done < <(find . -type f -regextype egrep -regex ".*($1)")
+
+for file in "${FILES[@]}"; do
+	echo $(wc -l "$file")
+done
