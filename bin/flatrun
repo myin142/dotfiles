@@ -2,7 +2,7 @@
 
 declare -A apps
 
-apps[idea]="com.jetbrains.IntelliJ-IDEA-Ultimate"
+apps[retro]="org.libretro.RetroArch"
 apps[discord]="com.discordapp.Discord"
 apps[slack]="com.slack.Slack"
 
