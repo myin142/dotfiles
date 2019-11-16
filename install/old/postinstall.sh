@@ -6,7 +6,7 @@ GIT_USER=$1
 GIT_EMAIL=$2
 USER=$3
 USER_HOME=/home/$USER
-DOTFILES=/home/.dotfiles
+DOTFILES=/home/$USER/.dotfiles
 
 linkFolder(){
 	SOURCE="$1"
