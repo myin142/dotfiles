@@ -10,6 +10,7 @@ kitty
 python-pywal
 feh
 redshift
+jq
 
 arandr
 pkgfile
