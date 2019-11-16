@@ -36,8 +36,8 @@ set $ws10 "10:"
 workspace $ws1 output $monitorHDMI
 
 # Program on specific workspaces
-assign [class="Firefox"] $ws1
-assign [class="Chromium"] $ws1
+#assign [class="Firefox"] $ws1
+#assign [class="Chromium"] $ws1
 assign [class="Gimp"] $ws7
 assign [class="krita"] $ws7
 assign [class="Slack"] $ws8
@@ -55,9 +55,9 @@ hide_edge_borders none
 new_window pixel 0
 
 # Gaps
-gaps outer 0
-gaps inner 10
-smart_gaps on
+#gaps outer 0
+#gaps inner 10
+#smart_gaps on
 
 # Prevent focus on all new opened windows
 #no_focus [class=".*"]
