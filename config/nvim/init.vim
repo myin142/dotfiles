@@ -31,7 +31,11 @@ noremap <C-h> :tabN<cr>
 noremap <C-l> :tabn<cr>
 
 noremap <Leader>c :Commentary<cr>
-noremap <Leader>z :GitGutterUndoHunk<cr>
+
+" Git
+noremap <Leader>gz :GitGutterUndoHunk<cr>
+noremap <Leader>ga :Git add .<cr><cr>
+noremap <Leader>gs :Gstatus<cr>
 
 """""""""""
 " Plugins "
@@ -41,6 +45,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'janko/vim-test' " Karma tests currently not working
 Plug 'zgpio/tree.nvim' " Currently not working
 call plug#end()
