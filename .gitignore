@@ -2,3 +2,4 @@ vim/.netrwhist
 fonts/.uuid
 
 config/nvim/plugged
+.netrwhist
