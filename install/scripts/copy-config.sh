@@ -1,21 +1,14 @@
 #!/bin/sh
 
-[[ -z "$1" ]] && echo "Need User" && exit
-
-USER="$1"
-USER_HOME="/home/$USER"
-
-[[ ! -d "$USER_HOME" ]] && echo "Invalid User" && exit
-
-DOTFILES="$USER_HOME/.dotfiles"
+DOTFILES="$HOME/.dotfiles"
 
 linkFile() {
-	ln -sf $DOTFILES/$1 $USER_HOME/$2
+	ln -sf $DOTFILES/$1 $HOME/$2
 }
 
 linkFolder() {
 	SOURCE="$DOTFILES/$1"
-	TARGET="$USER_HOME/$2"
+	TARGET="$HOME/$2"
 
 	if [[ ! -d "$TARGET" ]]; then
 		ln -sf "$SOURCE" "$TARGET"
@@ -24,6 +17,8 @@ linkFolder() {
 	fi
 }
 
+linkFile config/Xresources .Xresources
+linkFile config/xinitrc .xinitrc
 linkFile config/Xmodmap .Xmodmap
 linkFile config/bashrc .bashrc
 linkFile config/vimrc .vimrc

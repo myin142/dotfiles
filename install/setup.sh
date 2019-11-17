@@ -1,11 +1,8 @@
 #!/bin/sh
 
-[ -z "$1" ] && echo "User required" && exit
-USER="$1"
-
 sudo pacman --noconfirm -S - < packages
 sudo pkgfile -u
 
-./scripts/disable-pcspkr.sh
-./scripts/copy-config.sh "$1"
+sudo ./scripts/disable-pcspkr.sh
+./scripts/copy-config.sh
 ./scripts/install-aur.sh yay
