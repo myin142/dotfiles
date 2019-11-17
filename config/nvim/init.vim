@@ -2,6 +2,8 @@ set mouse=a
 set number
 set relativenumber
 set noswapfile
+set nowrap
+set updatetime=500
 
 " Fold
 set foldmethod=syntax
@@ -41,7 +43,10 @@ noremap <C-p> :CtrlP<cr>
 " Git
 noremap <Leader>gz :GitGutterUndoHunk<cr>
 noremap <Leader>ga :Git add .<cr><cr>
+noremap <Leader>gp :Git add -p .<cr>
 noremap <Leader>gs :Gstatus<cr>
+noremap <Leader>gc :Gcommit<cr>
+noremap <Leader>gd :Git diff --staged<cr>
 
 """""""""""
 " Plugins "
@@ -52,6 +57,7 @@ Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'spolu/dwm.vim'
 Plug 'janko/vim-test' " Karma tests currently not working
 Plug 'zgpio/tree.nvim' " Currently not working
 call plug#end()
@@ -64,6 +70,3 @@ let g:ctrlp_custom_ignore = {
 \ 'dir': 'node_modules\|database\|\v[\/]\.(git|hg|svn)$',
 \ 'file': '\v\.(exe|so|dll|o)$',
 \ }
-
-" GitGutter update time
-set updatetime=500
