@@ -3,6 +3,11 @@ set number
 set relativenumber
 set noswapfile
 
+" Fold
+set foldmethod=syntax
+set foldnestmax=2
+set foldlevel=2
+
 " Tabs
 set tabstop=4
 set shiftwidth=4
