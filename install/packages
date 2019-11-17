@@ -17,6 +17,8 @@ arandr
 pkgfile
 git
 neovim
+prettier
+npm
 
 ibus
 ibus-rime
