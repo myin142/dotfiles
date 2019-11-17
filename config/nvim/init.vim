@@ -36,6 +36,7 @@ noremap <C-h> :tabN<cr>
 noremap <C-l> :tabn<cr>
 
 noremap <Leader>c :Commentary<cr>
+noremap <C-p> :CtrlP<cr>
 
 " Git
 noremap <Leader>gz :GitGutterUndoHunk<cr>
@@ -47,8 +48,8 @@ noremap <Leader>gs :Gstatus<cr>
 """""""""""
 call plug#begin()
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-commentary'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
+Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'janko/vim-test' " Karma tests currently not working
