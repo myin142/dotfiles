@@ -19,6 +19,7 @@ git
 neovim
 prettier
 npm
+fd
 
 ibus
 ibus-rime

@@ -24,8 +24,13 @@ set showbreak=↪
 set ignorecase              " case insensitive searching
 set smartcase               " case-sensitive if expresson contains a capital letter
 
-" Auto Commands
+"""""""""""""""""
+" Auto Commands "
+"""""""""""""""""
 autocmd BufEnter * silent! lcd %:p:h            " Change working directory to current file
+autocmd BufWrite * :Autoformat                  " Autoformat on save
+
+" FileType Options
 
 """"""""""""""""""""""
 " Keyboard Shortcuts "
@@ -37,12 +42,12 @@ noremap <space> :noh<cr>
 " Tabs
 noremap <C-t> :tabnew<cr>
 noremap <C-w> :tabclose<cr>
-noremap <C-h> :tabN<cr>
-noremap <C-l> :tabn<cr>
+noremap <A-h> :tabN<cr>
+noremap <A-l> :tabn<cr>
 
 noremap <Leader>c :Commentary<cr>
 noremap <Leader>p :PrettierAsync<cr>
-noremap <C-p> :CtrlP<cr>
+noremap <C-p> :Files<cr>
 
 " Git
 noremap <Leader>gz :GitGutterUndoHunk<cr>
@@ -57,25 +62,24 @@ noremap <Leader>gd :Git diff --staged<cr>
 """""""""""
 call plug#begin()
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
-Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'spolu/dwm.vim'
 Plug 'vim-syntastic/syntastic'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'on': ['PrettierAsync', 'Prettier'] }
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
+Plug 'Chiel92/vim-autoformat', { 'on': 'Autoformat' }
+Plug 'junegunn/fzf.vim', { 'do': './install --bin' }
+
 Plug 'janko/vim-test' " Karma tests currently not working
 Plug 'zgpio/tree.nvim' " Currently not working
+
+Plug 'rhysd/vim-fixjson', { 'for': 'json' }
 call plug#end()
 
 " Plugin Settings
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-let g:ctrlp_custom_ignore = {
-\ 'dir': 'node_modules\|database\|\v[\/]\.(git|hg|svn)$',
-\ 'file': '\v\.(exe|so|dll|o)$',
-\ }
-
-let g:prettier#exec_cmd_async = 1
-let g:prettier#quickfix_enabled = 0
+" Use fd to respect .gitignore files
+let $FZF_DEFAULT_COMMAND = 'fd --type f'
