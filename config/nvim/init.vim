@@ -41,6 +41,7 @@ noremap <C-h> :tabN<cr>
 noremap <C-l> :tabn<cr>
 
 noremap <Leader>c :Commentary<cr>
+noremap <Leader>p :PrettierAsync<cr>
 noremap <C-p> :CtrlP<cr>
 
 " Git
@@ -61,6 +62,8 @@ Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'spolu/dwm.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'on': ['PrettierAsync', 'Prettier'] }
 Plug 'janko/vim-test' " Karma tests currently not working
 Plug 'zgpio/tree.nvim' " Currently not working
 call plug#end()
@@ -73,3 +76,6 @@ let g:ctrlp_custom_ignore = {
 \ 'dir': 'node_modules\|database\|\v[\/]\.(git|hg|svn)$',
 \ 'file': '\v\.(exe|so|dll|o)$',
 \ }
+
+let g:prettier#exec_cmd_async = 1
+let g:prettier#quickfix_enabled = 0
