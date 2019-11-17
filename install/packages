@@ -11,6 +11,7 @@ python-pywal
 feh
 redshift
 jq
+net-tools
 
 arandr
 pkgfile
