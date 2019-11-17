@@ -24,6 +24,9 @@ set showbreak=↪
 set ignorecase              " case insensitive searching
 set smartcase               " case-sensitive if expresson contains a capital letter
 
+" Auto Commands
+autocmd BufEnter * silent! lcd %:p:h            " Change working directory to current file
+
 """"""""""""""""""""""
 " Keyboard Shortcuts "
 """"""""""""""""""""""
