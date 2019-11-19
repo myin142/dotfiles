@@ -20,6 +20,13 @@ neovim
 prettier
 npm
 fd
+ctags
+
+jdk8-openjdk
+jre8-openjdk-headless
+jdk11-openjdk
+jre11-openjdk-headless
+maven
 
 ibus
 ibus-rime

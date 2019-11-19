@@ -1,5 +1,5 @@
 vim/.netrwhist
 fonts/.uuid
 
-config/nvim/plugged
-.netrwhist
+config/nvim/plugged/
+config/nvim/.netrwhist
