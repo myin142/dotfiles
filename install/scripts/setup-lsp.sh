@@ -44,4 +44,11 @@ if [ ! -d "$ECLIPSE_LSP"  ]; then
     endif" > "$NVIM_CONFIG/eclipse-jdtls.vim"
 else
     echo "Eclipse Language Server exists. Skipping"
-    fi
+fi
+
+LOMBOK_FOLDER="$LSP_ROOT/lombok"
+if [ ! -f "$LOMBOK_FOLDER/lombok.jar" ]; then
+    mkdir -p "$LOMBOK_FOLDER"
+    cd "$LOMBOK_FOLDER"
+    curl -L https://projectlombok.org/downloads/lombok.jar -O
+fi

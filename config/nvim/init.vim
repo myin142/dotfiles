@@ -28,8 +28,6 @@ set showbreak=↪
 set ignorecase              " case insensitive searching
 set smartcase               " case-sensitive if expresson contains a capital letter
 
-" autocmd BufWrite * :Autoformat                  " Autoformat on save
-
-source $HOME/.config/nvim/coc-config.vim
-source $HOME/.config/nvim/mapping.vim
 source $HOME/.config/nvim/plugin.vim
+source $HOME/.config/nvim/mapping.vim
+source $HOME/.config/nvim/coc-config.vim
