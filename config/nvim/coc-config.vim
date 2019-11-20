@@ -2,10 +2,10 @@
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " Use <Up> and <Down> to enable import on enter
 inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
+            \ pumvisible() ? "\<Up>" :
             \ <SID>check_back_space() ? "\<TAB>" :
             \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> pumvisible() ? "\<Down>" : "\<C-h>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -14,7 +14,7 @@ endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
 
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Remap keys for gotos
 nmap <C-b> <Plug>(coc-definition)

@@ -21,7 +21,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'majutsushi/tagbar'
 
-" Plug 'ryanolsonx/vim-lsp-typescript', { 'for': 'ts' }
 Plug 'rhysd/vim-fixjson', { 'for': 'json' }
 call plug#end()
 
@@ -40,6 +39,5 @@ let g:ctrlp_custom_ignore = {
 " Ignore .gitignore files
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-let g:closetag_filenames = '*.html,*.xml'
-
 let g:workspace_create_new_tabs = 0
+let g:workspace_session_directory = $HOME . '/.sessions/'
