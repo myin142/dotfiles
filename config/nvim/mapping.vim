@@ -23,14 +23,25 @@ noremap <Leader>ff :NERDTreeFind<cr>
 noremap <Leader>fl :Autoformat<cr>
 
 " Tabs
-noremap <A-t> :tabnew<cr>
-noremap <A-w> :tabclose<cr>
-noremap <A-h> :tabN<cr>
-noremap <A-l> :tabn<cr>
+noremap <Leader>tt :tabnew<cr>
+noremap <Leader>tx :tabclose<cr>
+noremap <Leader>th :tabN<cr>
+noremap <Leader>tl :tabn<cr>
+
+" Windows
+noremap <A-h> <C-w>h
+noremap <A-j> <C-w>j
+noremap <A-k> <C-w>k
+noremap <A-l> <C-w>l
+
+noremap <A-H> <C-w>H
+noremap <A-J> <C-w>J
+noremap <A-K> <C-w>K
+noremap <A-L> <C-w>L
 
 " Buffer
-noremap <Leader>bb :bprevious<cr>
-noremap <Leader>bn :bnext<cr>
+noremap <Leader>bh :bprevious<cr>
+noremap <Leader>bl :bnext<cr>
 noremap <Leader>bx :bp <bar> bd #<cr>
 
 " Views
