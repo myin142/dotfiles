@@ -4,14 +4,14 @@ CMD="$1"
 RAW_ARGS="${@:2}"
 ARGS=("$RAW_ARGS")
 
-function printLines(){
-	git log ${ARGS[0]}..HEAD --pretty=tformat: --numstat | \
-		awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
-		{ printf "added lines: %s removed lines: %s total lines: %s\n",add,subs,loc }'
+function printLines() {
+    git log ${ARGS[0]}..HEAD --pretty=tformat: --numstat |
+        awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
+        { printf "added lines: %s removed lines: %s total lines: %s\n",add,subs,loc }'
 }
 
-function printLog(){
-	git log --oneline --graph --decorate $RAW_ARGS
+function printLog() {
+    git log --all --oneline --graph --decorate $RAW_ARGS
 }
 
 function squashMerge() {
@@ -32,6 +32,6 @@ case "$CMD" in
 	"log") printLog;;
 	"squash") squashMerge;;
 
-	*) echo "command not defined";;
+*) echo "command not defined" ;;
 
 esac
