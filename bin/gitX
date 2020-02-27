@@ -14,10 +14,23 @@ function printLog(){
 	git log --oneline --graph --decorate $RAW_ARGS
 }
 
+function squashMerge() {
+	mainBranch="${ARGS[0]}"
+	currBranch="$(git rev-parse --abbrev-ref HEAD)"
+
+	if [[ -z "$mainBranch" ]]; then
+		echo "Main branch to merge required"
+		exit;
+	fi
+
+	git checkout "$mainBranch" && git merge --squash "$currBranch" && git commit
+}
+
 case "$CMD" in
 
 	"lines") printLines;;
 	"log") printLog;;
+	"squash") squashMerge;;
 
 	*) echo "command not defined";;
 
