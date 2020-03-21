@@ -32,9 +32,9 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-command! -nargs=0 Refresh :call CocActionAsync('runCommand', 'java.workspace.compile')
+" command! -nargs=0 Refresh :call CocActionAsync('runCommand', 'java.workspace.compile')
 
-try
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-catch
-endtry
+" try
+"     autocmd CursorHold * silent call CocActionAsync('highlight')
+" catch
+" endtry

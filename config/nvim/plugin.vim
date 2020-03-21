@@ -6,10 +6,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'spolu/dwm.vim'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-rooter'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+" Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
 Plug 'Chiel92/vim-autoformat', { 'on': 'Autoformat' }
 Plug 'ctrlpvim/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPBuffer', 'CtrlPMRU'] }
@@ -20,6 +20,8 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'thaerkh/vim-workspace'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+
+Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'tsx'] }
 
 Plug 'rhysd/vim-fixjson', { 'for': 'json' }
 call plug#end()
