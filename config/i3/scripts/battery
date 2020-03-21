@@ -36,6 +36,11 @@ if ($acpi !~ /: (\w+), (\d+)%/) {
 
 $status = $1;
 $percent = $2;
+
+if ($percent eq 0) {
+    exit
+}
+
 $full_text = "$percent%";
 
 if ($status eq 'Charging') {
