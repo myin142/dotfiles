@@ -2,6 +2,7 @@ set autoread                " detect when a file is changed
 set history=100             " change history to 100
 set clipboard=unnamedplus
 set encoding=utf-8
+set fileencodings=euc-jp,utf-8
 colorscheme wal
 
 " Turn of Backup
