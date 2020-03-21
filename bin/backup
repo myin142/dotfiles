@@ -1,0 +1,11 @@
+#!/bin/bash
+
+FOLDERS=(
+    "$HOME/Documents/keystore"
+    "$HOME/Documents/Other"
+    "$HOME/Documents/sprites"
+    "$HOME/Documents/gravit"
+    "$HOME/.ssh"
+)
+
+tar -czvf ~/backup.tar.gz "${FOLDERS[@]}"
