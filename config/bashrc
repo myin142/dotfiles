@@ -56,8 +56,8 @@ export EDITOR=nvim
 export VISUAL=$EDITOR
 export DOTFILES=$HOME/.dotfiles
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
-export ANDROID_SDK_ROOT=~/Android/Sdk
+export JAVA_HOME=/usr/lib/jvm/default-runtime
+export ANDROID_SDK_ROOT=~/Android
 
 PATH=$PATH:~/.bin
 
