@@ -10,4 +10,4 @@ git clone "https://aur.archlinux.org/yay.git" "$TEMP"
 cd $TEMP
 makepkg -si
 
-rm $TEMP -r
+rm $TEMP -rf
