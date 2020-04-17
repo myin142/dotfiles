@@ -1,16 +1,11 @@
 #!/bin/sh
 
-if [ ! -d "$HOME/.bin" ]; then
-	ln -s $(pwd)/bin ~/.bin
-else
-	echo "~/.bin already exists"
+if [ -d "$HOME/.bin" ]; then
+	echo "Deleting existing bin folder"
+    rm "$HOME/.bin"
 fi
+ln -sf $(pwd)/bin ~/.bin
 
-
-if [ ! -f "$HOME/.bashrc" ]; then
-	ln -s $(pwd)/bashrc ~/.bashrc
-else
-	echo "~/.bashrc already exists"
-fi
-
-
+ln -sf $(pwd)/bashrc ~/.bashrc
+ln -sf "$(pwd)/xorg.conf.d/00-keyboard.conf" /usr/share/X11/xorg.conf.d/
+ln -sf "$(pwd)/Xmodmap" ~/.Xmodmap
