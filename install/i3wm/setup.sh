@@ -1,10 +1,11 @@
 #!/bin/sh
 
 link() {
-	if [ -f "$2" ]; then
+	if [ -d "$2" ]; then
+        echo "Deleting existing $2"
 		rm "$2"
 	fi
-	ln -s "$(pwd)/$1" "$2"
+	ln -sf "$(pwd)/$1" "$2"
 }
 
 sudo pacman -S i3-gaps i3blocks i3lock compton dunst redshift rofi kitty python-pywal feh net-tools
