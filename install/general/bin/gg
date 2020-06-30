@@ -29,6 +29,7 @@ case "$CMD" in
         fi
         ;;
     "gbl") git branch;;
+    "gx") git update-index --chmod=+x $ARG;;
 
     *) printf "%s command not defined\n" $CMD;;
 esac
