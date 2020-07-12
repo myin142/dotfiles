@@ -44,11 +44,13 @@ git_checkout_branch() {
 }
 
 git_branch_clean() {
-    #git fetch --prune
+    git fetch --prune
     TEMP_FILE=/tmp/gg_git_remove_branches
+
     REMOTE_BRANCHES=($(git branch --remote | cut -d '/' -f 2))
     ALL_BRANCHES=($(git branch | sed 's/\*\{0,1\} *//'))
     REMOVE_BRANCHES=($(diff_array ALL_BRANCHES[@] REMOTE_BRANCHES[@]))
+
     printf "%s\n" "${REMOVE_BRANCHES[@]}" > $TEMP_FILE
     vim $TEMP_FILE
 
