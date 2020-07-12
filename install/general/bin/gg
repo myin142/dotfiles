@@ -1,35 +1,95 @@
-#!/bin/bash
+#!/bin/sh
 
 CMD="${1,,}"
 RAW_ARGS="${@:2}"
 ARGS=("$RAW_ARGS")
 ARG=${ARGS[0]}
 
-function notEmpty() {
-    if [[ -z "$1" ]]; then
+not_empty() {
+    if [ -z "$1" ]; then
         echo "$2"
         exit 1
     fi
 }
 
+diff_array() {
+    if [ -z $1 ] || [ -z $2 ]; then
+        echo "Need two arrays to create difference"
+        exit 1
+    fi
+
+    ARR1=("${!1}")
+    ARR2=("${!2}")
+
+    RESULT=()
+    for i in "${ARR1[@]}"; do
+        skip=
+        for j in "${ARR2[@]}"; do
+            [[ $i == $j ]] && { skip=1; break; }
+        done
+        [[ -n $skip ]] || RESULT+=("$i")
+    done
+
+    echo "${RESULT[@]}"
+}
+
+git_checkout_branch() {
+    not_empty "$ARG" "Branch name needed"
+    git show-ref --verify --quiet "refs/heads/$ARG"
+    if [[ $? == 0 ]]; then
+        git checkout "$ARG"
+    else
+        git checkout -b "$ARG"
+    fi
+}
+
+git_branch_clean() {
+    #git fetch --prune
+    TEMP_FILE=/tmp/gg_git_remove_branches
+    REMOTE_BRANCHES=($(git branch --remote | cut -d '/' -f 2))
+    ALL_BRANCHES=($(git branch | sed 's/\*\{0,1\} *//'))
+    REMOVE_BRANCHES=($(diff_array ALL_BRANCHES[@] REMOTE_BRANCHES[@]))
+    printf "%s\n" "${REMOVE_BRANCHES[@]}" > $TEMP_FILE
+    vim $TEMP_FILE
+
+    if [ "$1" -eq "-f" ]; then
+        xargs git branch -D < $TEMP_FILE
+    else
+        xargs git branch -d < $TEMP_FILE
+    fi
+}
+
+system_display_reload() {
+    cat ~/.screenlayout/main.sh | sed 's/--pos [0-9]\+x[0-9]\+/--pos 0x0/' | sh
+    sh ~/.screenlayout/main.sh
+}
+
 case "$CMD" in
-    # Git commands
+    ################
+    # Git commands #
+    ################
+
     "gl") git log --all --oneline --graph --decorate ;;
     "gs") git status;;
     "gc")
-        notEmpty "$ARG" "Commit message cannot be empty"
-        git commit -m "$ARG";;
-    "gb")
-        notEmpty "$ARG" "Branch name needed"
-        git show-ref --verify --quiet "refs/heads/$ARG"
-        if [[ $? == 0 ]]; then
-            git checkout "$ARG"
-        else
-            git checkout -b "$ARG"
-        fi
+        not_empty "$ARG" "Commit message cannot be empty"
+        git commit -m "$ARG"
         ;;
+    "gb") git_checkout_branch;;
     "gbl") git branch;;
+
+    # Git Branch Clean
+    "gbc") git_branch_clean;;
+
+    # Git executable
     "gx") git update-index --chmod=+x $ARG;;
+
+    ###################
+    # System Commands #
+    ###################
+
+    # System Display Reload (for fixing display problem on startup)
+    "sdr") system_display_reload;;
 
     *) printf "%s command not defined\n" $CMD;;
 esac
