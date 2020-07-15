@@ -1,9 +1,10 @@
 #!/bin/sh
 
-CMD="${1,,}"
-RAW_ARGS="${@:2}"
-ARGS=("$RAW_ARGS")
-ARG=${ARGS[0]}
+CMD="$1"
+RAW_ARGS="${@:3}"
+ARG="$2"
+
+echo $RAW_ARGS
 
 not_empty() {
     if [ -z "$1" ]; then
@@ -43,6 +44,22 @@ git_checkout_branch() {
     fi
 }
 
+git_merge() {
+    not_empty "$ARG" "Branch needed"
+    BRANCH="$ARG"
+    CURRENT_BRANCH="$(git branch --show-current)"
+    echo "Merging $CURRENT_BRANCH to $BRANCH"
+
+    if git checkout $BRANCH; then
+        if git merge $CURRENT_BRANCH $RAW_ARGS; then
+            echo "Merge success"
+        else
+            echo "Returning to original branch"
+            git checkout $CURRENT_BRANCH
+        fi
+    fi
+}
+
 git_branch_clean() {
     git fetch --prune
     TEMP_FILE=/tmp/gg_git_remove_branches
@@ -78,7 +95,9 @@ case "$CMD" in
         git commit -m "$ARG"
         ;;
     "gb") git_checkout_branch;;
-    "gbl") git branch;;
+
+    # Git merge (merges current branch to another)
+    "gm") git_merge;;
 
     # Git Branch Clean
     "gbc") git_branch_clean;;
