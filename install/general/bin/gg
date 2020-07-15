@@ -4,8 +4,6 @@ CMD="$1"
 RAW_ARGS="${@:3}"
 ARG="$2"
 
-echo $RAW_ARGS
-
 not_empty() {
     if [ -z "$1" ]; then
         echo "$2"
