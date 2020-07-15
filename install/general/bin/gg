@@ -54,7 +54,7 @@ git_branch_clean() {
     printf "%s\n" "${REMOVE_BRANCHES[@]}" > $TEMP_FILE
     vim $TEMP_FILE
 
-    if [ "$1" -eq "-f" ]; then
+    if [[ "$1" -eq "-f" ]]; then
         xargs git branch -D < $TEMP_FILE
     else
         xargs git branch -d < $TEMP_FILE
