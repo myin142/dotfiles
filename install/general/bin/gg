@@ -46,10 +46,16 @@ git_merge() {
     not_empty "$ARG" "Branch needed"
     BRANCH="$ARG"
     CURRENT_BRANCH="$(git branch --show-current)"
-    echo "Merging $CURRENT_BRANCH to $BRANCH"
+    OPTS="$RAW_ARGS"
+
+    if [ -z "$OPTS" ]; then
+	OPTS="--no-ff"
+    fi
+
+    echo "Merging $CURRENT_BRANCH to $BRANCH with $RAW_ARGS"
 
     if git checkout $BRANCH; then
-        if git merge $CURRENT_BRANCH $RAW_ARGS; then
+        if git merge $CURRENT_BRANCH $OPTS; then
             echo "Merge success"
         else
             echo "Returning to original branch"
