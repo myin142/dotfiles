@@ -101,11 +101,15 @@ case "$CMD" in
 
     "gl") git log --all --oneline --graph --decorate ;;
     "gs") git status;;
+    "gb") git_checkout_branch;;
+
     "gc")
         not_empty "$ARG" "Commit message cannot be empty"
         git commit -m "$ARG"
         ;;
-    "gb") git_checkout_branch;;
+
+    # Git commit amend
+    "gca") git commit --amend;;
 
     # Git merge (merges current branch to another)
     "gm") git_merge;;
