@@ -82,7 +82,7 @@ git_branch_clean() {
     fi
 }
 
-git_branch_upstream() {
+git_push_upstream() {
     REMOTE="${ARG:-origin}"
     CURRENT_BRANCH="$(git branch --show-current)"
 
@@ -117,8 +117,9 @@ case "$CMD" in
     # Git Branch Clean
     "gbc") git_branch_clean;;
 
-    # Git branch upstream
-    "gbu") git_branch_upstream;;
+    # Git push upstream
+    "gpu") git_push_upstream;;
+    "gp") git push;;
 
     # Git executable
     "gx") git update-index --chmod=+x $ARG;;
