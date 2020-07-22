@@ -102,6 +102,7 @@ case "$CMD" in
     "gl") git log --all --oneline --graph --decorate ;;
     "gs") git status;;
     "gb") git_checkout_branch;;
+    "ga") git add -A;;
 
     "gc")
         not_empty "$ARG" "Commit message cannot be empty"
