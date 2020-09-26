@@ -1,7 +1,6 @@
 #!/bin/bash
 
-pad="Wacom Intuos PT M 2 Pad pad"
-pen="Wacom Intuos PT M 2 Pen stylus"
+pad="$(xsetwacom --list devices | grep 'type: PAD' | cut -f 1 | xargs)"
 use=$1
 
 # Button 1: Left Bottom
