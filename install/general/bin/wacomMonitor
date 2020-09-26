@@ -1,0 +1,18 @@
+#!/bin/bash
+
+list=($(xrandr --listmonitors | tail -n +2 | awk '{print $NF}'))
+selections="Monitors:"
+for i in "${!list[@]}";do
+    selections="$selections\n$i: ${list[$i]}"
+done
+
+selected=$(zenity --text "$selections" --entry | sed 's/[^0-9]*//g')
+
+if [[ -z "$selected" || -z "${list[$selected]}" ]]; then
+    echo "Abort nothing selected"
+else
+    ids=($(xsetwacom --list devices | cut -f 2 | sed 's/[^0-9]*//g'))
+    for id in "${ids[@]}"; do
+        xsetwacom --set "$id" MapToOutput "${list[$selected]}"
+    done
+fi
