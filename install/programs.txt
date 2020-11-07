@@ -1,0 +1,12 @@
+pkgfile
+
+discord
+steam
+code
+krita
+blender
+firefox
+
+npm
+jre-openjdk-headless
+jdk-openjdk

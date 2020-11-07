@@ -1,5 +1,7 @@
 #!/bin/sh
 
+pacman -S xf86-input-wacom
+
 if [ -d "$HOME/.bin" ]; then
 	echo "Deleting existing bin folder"
     rm "$HOME/.bin"
