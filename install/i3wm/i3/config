@@ -19,7 +19,7 @@ floating_modifier $mod
 #############
 
 set $monitorHDMI HDMI-A-1
-set $monitorDP DisplayPort-0
+set $monitorDP DisplayPort-1
 
 # Set Workspace Names
 set $ws1 "1:"
@@ -33,7 +33,12 @@ set $ws8 "8:"
 set $ws9 "9:"
 set $ws10 "10:"
 
-workspace $ws1 output $monitorHDMI
+workspace $ws1 output $monitorDP
+workspace $ws7 output $monitorDP
+workspace $ws9 output $monitorDP
+workspace $ws10 output $monitorDP
+workspace $ws2 output $monitorHDMI
+workspace $ws8 output $monitorHDMI
 
 # Program on specific workspaces
 #assign [class="Firefox"] $ws1

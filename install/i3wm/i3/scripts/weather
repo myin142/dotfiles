@@ -60,5 +60,5 @@ echo $short
 echo $color
 
 if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
-	firefox --new-tab "$URL"
+	xdg-open "$URL"
 fi
