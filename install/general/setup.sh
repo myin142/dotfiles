@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pacman -S xf86-input-wacom
+pacman -S xf86-input-wacom keychain
 
 if [ -d "$HOME/.bin" ]; then
 	echo "Deleting existing bin folder"
