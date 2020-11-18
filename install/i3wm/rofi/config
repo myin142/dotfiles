@@ -1,4 +1,0 @@
-rofi.modi:          run,drun,ssh
-rofi.combi-modi:    run,drun,ssh
-rofi.font:          Hack Nerd Font 10
-rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi
