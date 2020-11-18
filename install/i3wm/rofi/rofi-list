@@ -1,0 +1,14 @@
+#!/bin/sh
+
+FOLDER="${1:-$(pwd)}"
+FILES=($(ls $FOLDER))
+ALIASES=""
+
+for f in "${FILES[@]}"; do
+    FULL_PATH="$FOLDER/$f"
+    #ALIASES="${ALIASES}alias $f='$FULL_PATH'|"
+    #ALIASES="${ALIASES}$FULL_PATH|"
+    ALIASES="${ALIASES}$f|"
+done
+
+echo "$ALIASES" | tr "|" "\n"
