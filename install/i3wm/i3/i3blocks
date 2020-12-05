@@ -19,7 +19,7 @@ label=
 
 [volume]
 command=$HOME/.config/i3/scripts/volume
-interval=once
+interval=1
 signal=1
 
 [battery]
