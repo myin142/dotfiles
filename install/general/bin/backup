@@ -1,11 +1,23 @@
 #!/bin/bash
 
+function copyFiles() {
+    if [ -d $1 ]; then
+        rm $1 -rf
+    fi
+
+    mkdir $1
+    cp ${@:2} $1
+}
+
+copyFiles krita $HOME/.config/krita*
+copyFiles ssh $HOME/.ssh/*
+
 FOLDERS=(
-    "$HOME/Documents/keystore"
-    "$HOME/Documents/Other"
-    "$HOME/Documents/sprites"
-    "$HOME/Documents/gravit"
-    "$HOME/.ssh"
+    "ssh"
+    "krita"
 )
 
 tar -czvf ~/backup.tar.gz "${FOLDERS[@]}"
+
+rm krita -rf
+rm ssh -rf
