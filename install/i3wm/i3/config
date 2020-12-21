@@ -44,6 +44,7 @@ workspace $ws8 output $monitorHDMI
 #assign [class="Firefox"] $ws1
 #assign [class="Chromium"] $ws1
 assign [class="vlc"] $ws6
+assign [class="youtube-player"] $ws6
 assign [class="Gimp"] $ws7
 assign [class="krita"] $ws7
 assign [class="Slack"] $ws8
