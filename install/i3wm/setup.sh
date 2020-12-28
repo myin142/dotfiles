@@ -8,13 +8,13 @@ link() {
 	ln -sf "$(pwd)/$1" "$2"
 }
 
-sudo pacman -S i3-gaps i3blocks i3lock compton dunst redshift rofi kitty python-pywal feh net-tools noto-fonts-emoji ibus ibus-rime ibus-anthy jq
+sudo pacman -Syy i3-gaps i3blocks i3lock compton dunst redshift rofi kitty python-pywal feh net-tools noto-fonts-emoji ibus ibus-rime ibus-anthy jq
 
 link i3 $HOME/.config/i3
 link kitty $HOME/.config/kitty
 link dunst $HOME/.config/dunst
 link rofi $HOME/.config/rofi
-link compton $HOME/.config/compton
+link picom $HOME/.config/picom
 link redshift $HOME/.config/redshift
 link fonts $HOME/.local/share/fonts
 
