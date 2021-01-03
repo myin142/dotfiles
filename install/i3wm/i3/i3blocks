@@ -5,7 +5,7 @@ color=#E0E0E0
 [youtube]
 command=$HOME/.config/i3/scripts/ytplay
 markup=pango
-interval=once
+interval=1
 signal=4
 
 [weather]
