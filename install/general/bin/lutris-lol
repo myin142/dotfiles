@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [[ $(sudo sysctl -a | grep "abi.vsyscall32 = 0") ]]; then
+    echo "Patch already applied"
+else
+    sudo sh -c 'sysctl -w abi.vsyscall32=0'
+fi
+
+lutris lutris:rungame/league-of-legends
