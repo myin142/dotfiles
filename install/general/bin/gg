@@ -95,6 +95,12 @@ git_all_commit() {
     git commit -m "$ARG"
 }
 
+git_tag_delete() {
+    not_empty "$ARG" "Tag name cannot be empty"
+    git tag -d $ARG
+    git push --delete origin $ARG
+}
+
 system_display_reload() {
     cat ~/.screenlayout/main.sh | sed 's/--pos [0-9]\+x[0-9]\+/--pos 0x0/' | sh
     sh ~/.screenlayout/main.sh
@@ -114,6 +120,8 @@ case "$CMD" in
         not_empty "$ARG" "Commit message cannot be empty"
         git commit -m "$ARG"
         ;;
+
+    "gtd") git_tag_delete;;
 
     # Git diff commit
     "gdc") git diff $ARG~ $ARG;;
