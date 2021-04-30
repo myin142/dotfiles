@@ -1,0 +1,5 @@
+#!/bin/sh
+
+zenity --text="入力:" --entry | tr -d \n | xclip -selection clipboard
+sleep 0.1
+xdotool key ctrl+v
