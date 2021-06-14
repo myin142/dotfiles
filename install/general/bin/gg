@@ -106,6 +106,22 @@ system_display_reload() {
     sh ~/.screenlayout/main.sh
 }
 
+pdf_merge() {
+    gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=$ARG -dBATCH $RAW_ARGS
+}
+
+pdf_optimize() {
+    if ${#RAW_ARGS[@]} != 2; then
+        echo "Missing arguments"
+        exit
+    fi
+
+    # Does not work yet
+    OUTPUT=${RAW_ARGS[0]}
+    SETTING=${RAW_ARGS[1]} # screen, ebook, printer, prepress, default
+    gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/$SETTING -sOutputFile=$OUTPUT $ARG
+}
+
 case "$CMD" in
     ################
     # Git commands #
@@ -148,6 +164,13 @@ case "$CMD" in
 
     # System Display Reload (for fixing display problem on startup)
     "sdr") system_display_reload;;
+    
+    ################
+    # PDF Commands #
+    ################
+
+    "pm") pdf_merge;;
+    "po") pdf_optimize;;
 
     *) printf "%s command not defined\n" $CMD;;
 esac
