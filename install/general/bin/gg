@@ -98,9 +98,31 @@ git_all_commit() {
     git commit -m "$ARG"
 }
 
+git_tag_delete() {
+    not_empty "$ARG" "Tag name cannot be empty"
+    git tag -d $ARG
+    git push --delete origin $ARG
+}
+
 system_display_reload() {
     cat ~/.screenlayout/main.sh | sed 's/--pos [0-9]\+x[0-9]\+/--pos 0x0/' | sh
     sh ~/.screenlayout/main.sh
+}
+
+pdf_merge() {
+    gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=$ARG -dBATCH $RAW_ARGS
+}
+
+pdf_optimize() {
+    if ${#RAW_ARGS[@]} != 2; then
+        echo "Missing arguments"
+        exit
+    fi
+
+    # Does not work yet
+    OUTPUT=${RAW_ARGS[0]}
+    SETTING=${RAW_ARGS[1]} # screen, ebook, printer, prepress, default
+    gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/$SETTING -sOutputFile=$OUTPUT $ARG
 }
 
 case "$CMD" in
@@ -117,6 +139,8 @@ case "$CMD" in
         not_empty "$ARG" "Commit message cannot be empty"
         git commit -m "$ARG"
         ;;
+
+    "gtd") git_tag_delete;;
 
     # Git diff commit
     "gdc") git diff $ARG~ $ARG;;
@@ -143,6 +167,13 @@ case "$CMD" in
 
     # System Display Reload (for fixing display problem on startup)
     "sdr") system_display_reload;;
+    
+    ################
+    # PDF Commands #
+    ################
+
+    "pm") pdf_merge;;
+    "po") pdf_optimize;;
 
     *) printf "%s command not defined\n" $CMD;;
 esac

@@ -1,3 +1,28 @@
+urlencode() {
+    # urlencode <string>
+
+    old_lc_collate=$LC_COLLATE
+    LC_COLLATE=C
+
+    local length="${#1}"
+    for (( i = 0; i < length; i++ )); do
+        local c="${1:$i:1}"
+        case $c in
+            [a-zA-Z0-9.~_-]) printf '%s' "$c" ;;
+            *) printf '%%%02X' "'$c" ;;
+        esac
+    done
+
+    LC_COLLATE=$old_lc_collate
+}
+
+urldecode() {
+    # urldecode <string>
+
+    local url_encoded="${1//+/ }"
+    printf '%b' "${url_encoded//%/\\x}"
+}
+
 # ex - archive extractor
 # usage: ex <file>
 ex ()
@@ -59,7 +84,7 @@ export DOTFILES=$HOME/.dotfiles
 export JAVA_HOME=/usr/lib/jvm/default-runtime
 export ANDROID_SDK_ROOT=~/Android
 
-PATH=$PATH:~/.bin
+PATH=$PATH:~/.bin:/home/sakkaku/.local/share/gem/ruby/2.7.0/bin/
 
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo
 MIC=alsa_input.pci-0000_00_1b.0.analog-stereo
