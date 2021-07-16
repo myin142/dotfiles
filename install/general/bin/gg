@@ -33,12 +33,15 @@ diff_array() {
 }
 
 git_checkout_branch() {
-    not_empty "$ARG" "Branch name needed"
-    git show-ref --verify --quiet "refs/heads/$ARG"
-    if [[ $? == 0 ]]; then
-        git checkout "$ARG"
+    if [ -z "$ARG" ]; then
+        git branch
     else
-        git checkout -b "$ARG"
+        git show-ref --verify --quiet "refs/heads/$ARG"
+        if [[ $? == 0 ]]; then
+            git checkout "$ARG"
+        else
+            git checkout -b "$ARG"
+        fi
     fi
 }
 
