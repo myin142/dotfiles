@@ -6,9 +6,10 @@ function copyFiles() {
     fi
 
     mkdir $1
-    cp ${@:2} $1
+    cp ${@:2} $1 -r
 }
 
+copyFiles krita-local $HOME/.local/share/krita/*
 copyFiles krita $HOME/.config/krita*
 copyFiles ssh $HOME/.ssh/*
 copyFiles aseprite $HOME/.config/aseprite/user.aseprite*
@@ -16,11 +17,13 @@ copyFiles aseprite $HOME/.config/aseprite/user.aseprite*
 FOLDERS=(
     "ssh"
     "krita"
+    "krita-local"
     "aseprite"
 )
 
 tar -czvf ~/backup.tar.gz "${FOLDERS[@]}"
 
 rm krita -rf
+rm krita-local -rf
 rm ssh -rf
 rm aseprite -rf
