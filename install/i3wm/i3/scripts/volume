@@ -119,8 +119,9 @@ function print_format {
 }
 
 function print_block {
-    ACTIVE=$(pactl list sinks | grep "State\: RUNNING" -B1 -A8 | grep "Sink \|Name:\|Volume: front\|Volume: mono\|Mute:")
-    [ -z "$ACTIVE" ] && ACTIVE=$(pactl list sinks | grep "Sink  \|Name:\|Volume: front\|Mute:" | grep -A3 '*')
+    GREP="Sink \|Description:\|Volume: front\|Volume: mono\|Mute:"
+    ACTIVE=$(pactl list sinks | grep "State\: RUNNING" -B1 -A8 | grep "$GREP")
+    [ -z "$ACTIVE" ] && ACTIVE=$(pactl list sinks | grep "$GREP" | grep -A3 '*')
     for name in INDEX NAME MUTED VOL; do
         read $name
     done < <(echo "$ACTIVE")
@@ -128,10 +129,7 @@ function print_block {
     VOL=$(echo "$VOL" | grep -o "[0-9]*%" | head -1 )
     VOL="${VOL%?}"
 
-    NAME=$(echo "$NAME" | sed \
-'s/.*<.*\.\(.*\)>.*/\1/; t;'\
-'s/.*<\(.*\)>.*/\1/; t;'\
-'s/.*/unknown/')
+    NAME=$(echo "$NAME" | awk '{ print $2" "$3 }')
 
     if [[ $USE_ALSA_NAME == 1 ]] ; then
         ALSA_NAME=$(pactl list sinks |\
