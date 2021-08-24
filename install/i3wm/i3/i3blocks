@@ -24,10 +24,7 @@ signal=1
 
 [mediaplayer]
 command=$HOME/.config/i3/scripts/mediaplayer
-instance=mpd
 interval=5
-signal=10
-label= 
 
 [battery]
 command=$HOME/.config/i3/scripts/battery
