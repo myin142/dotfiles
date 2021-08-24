@@ -86,6 +86,22 @@ fi
 CAPABILITY=$(amixer -D $MIXER get $SCONTROL | sed -n "s/  Capabilities:.*cvolume.*/Capture/p")
 
 
+function get_active_sink() {
+    local active_count=$(pactl list sinks | grep "State: RUNNING" | wc -l)
+    local active
+    if [ $active_count -eq 1 ]; then
+        active=$(pactl list sinks | grep "State: RUNNING" -B1 | grep "Sink ")
+    fi
+
+    if [ -z "$active" ]; then
+        local default=$(pactl get-default-sink)
+        active=$(pactl list sinks | grep "$default" -B2 | grep "Sink ")
+    fi
+
+    active=$(echo $active | grep -o '[0-9]\+')
+    echo $active
+}
+
 function move_sinks_to_new_default {
     DEFAULT_SINK=$1
     pactl list sink-inputs | grep index: | grep -o '[0-9]\+' | while read SINK
@@ -98,7 +114,7 @@ function set_default_playback_device_next {
     inc=${1:-1}
     num_devices=$(pactl list sinks | grep -c "Sink ")
     sink_arr=($(pactl list sinks | grep "Sink " | grep -o '[0-9]\+'))
-    default_sink_index=$(( $(pactl list sinks | grep "State: " | grep -no 'RUNNING' | grep -o '^[0-9]\+')-1 ))
+    default_sink_index=$(( $(get_active_sink)-1 ))
     default_sink_index=$(( ($default_sink_index + $num_devices + $inc) % $num_devices ))
     default_sink=${sink_arr[$default_sink_index]}
     pactl set-default-sink $default_sink
@@ -120,11 +136,9 @@ function print_format {
 
 function print_block {
     GREP="Sink \|Description:\|Volume: front\|Volume: mono\|Mute:"
-    ACTIVE=$(pactl list sinks | grep "State\: RUNNING" -B1 -A8 | grep "$GREP")
-    if [ -z "$ACTIVE" ]; then
-        DEFAULT_SINK=$(pactl get-default-sink)
-        ACTIVE=$(pactl list sinks | grep "Name: $DEFAULT_SINK" -B2 -A7 | grep "$GREP")
-    fi
+    ACTIVE_SINK=$(get_active_sink)
+    ACTIVE=$(pactl list sinks | grep "Sink #$ACTIVE_SINK" -A9 | grep "$GREP")
+
     for name in INDEX NAME MUTED VOL; do
         read $name
     done < <(echo "$ACTIVE")
