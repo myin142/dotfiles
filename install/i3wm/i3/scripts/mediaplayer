@@ -26,7 +26,7 @@ else
     COLOR="$DEFAULT_COLOR"
 fi
 
-VOLUME=$(mpc | grep "volume: " | awk '{print $2}')
+VOLUME=$(mpc | grep "volume:" | cut -d':' -f 2 | awk '{print $1}')
 
 ICON=""
 echo "$ICON $CURRENT ($VOLUME)"
