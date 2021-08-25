@@ -53,7 +53,7 @@ partly-cloudy*)
 esac
 
 full="$icon $temp°"
-short="$icon $temp°"
+short="$icon"
 
 echo $full
 echo $short

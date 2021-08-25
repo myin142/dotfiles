@@ -1,9 +1,10 @@
 #!/bin/sh
 
-DATETIME=$(date +'%H:%M  %a %d %b %Y ')
+DATETIME=$(date +'%H:%M %a %d %b %Y ')
+SHORT_TIME=$(date +'%H:%M %d/%m ')
 
 echo "$DATETIME"
-echo "$DATETIME"
+echo "$SHORT_TIME"
 echo "#FFFFFF"
 
 if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
