@@ -91,9 +91,7 @@ function get_active_sink() {
     local active
     if [ $active_count -eq 1 ]; then
         active=$(pactl list sinks | grep "State: RUNNING" -B1 | grep "Sink ")
-    fi
-
-    if [ -z "$active" ]; then
+    elif [ -z "$active" ]; then
         local default=$(pactl get-default-sink)
         active=$(pactl list sinks | grep "$default" -B2 | grep "Sink ")
     fi
@@ -115,8 +113,8 @@ function set_default_playback_device_next {
     num_devices=$(pactl list sinks | grep -c "Sink ")
     sink_arr=($(pactl list sinks | grep "Sink " | grep -o '[0-9]\+'))
     default_sink_index=$(( $(get_active_sink) ))
-    default_sink_index=$(( ($default_sink_index + $num_devices + $inc) % $num_devices ))
-    default_sink=${sink_arr[$default_sink_index]}
+    default_sink_index=$(( ($default_sink_index + $inc) % $num_devices ))
+    default_sink=${sink_arr[$default_sink_index-1]}
     pactl set-default-sink $default_sink
     move_sinks_to_new_default $default_sink
 }
