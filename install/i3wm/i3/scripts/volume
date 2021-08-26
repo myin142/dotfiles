@@ -112,9 +112,16 @@ function set_default_playback_device_next {
     inc=${1:-1}
     num_devices=$(pactl list sinks | grep -c "Sink ")
     sink_arr=($(pactl list sinks | grep "Sink " | grep -o '[0-9]\+'))
-    default_sink_index=$(( $(get_active_sink) ))
+    active=$(get_active_sink)
+    default_sink_index=0
+    for i in "${!sink_arr[@]}"; do
+       if [[ "${sink_arr[$i]}" = "${active}" ]]; then
+           default_sink_index=${i}
+           break
+       fi
+    done
     default_sink_index=$(( ($default_sink_index + $inc) % $num_devices ))
-    default_sink=${sink_arr[$default_sink_index-1]}
+    default_sink=${sink_arr[$default_sink_index]}
     pactl set-default-sink $default_sink
     move_sinks_to_new_default $default_sink
 }
