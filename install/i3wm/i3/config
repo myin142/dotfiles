@@ -154,7 +154,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 #light -U 20 # decrease sc
 bindsym $mod+Shift+z exec ~/.bin/lock && systemctl suspend
 bindsym $mod+Shift+x exec ~/.bin/lock
 
-bindsym $mod+Print exec scrot -u
+bindsym Print exec scrot -u
 
 #######
 # BAR #
