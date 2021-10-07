@@ -71,7 +71,7 @@ git_branch_clean() {
     git fetch --prune
     TEMP_FILE=/tmp/gg_git_remove_branches
 
-    REMOTE_BRANCHES=($(git branch --remote | cut -d '/' -f 2))
+    REMOTE_BRANCHES=($(git branch --remote | cut -d '/' -f 2- | awk '{print $1}'))
     ALL_BRANCHES=($(git branch | sed 's/\*\{0,1\} *//'))
     REMOVE_BRANCHES=($(diff_array ALL_BRANCHES[@] REMOTE_BRANCHES[@]))
 
