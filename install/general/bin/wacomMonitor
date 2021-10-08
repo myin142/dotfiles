@@ -14,5 +14,6 @@ else
     ids=($(xsetwacom --list devices | cut -f 2 | sed 's/[^0-9]*//g'))
     for id in "${ids[@]}"; do
         xsetwacom --set "$id" MapToOutput "${list[$selected]}"
+        # xsetwacom --set "$id" MapToOutput "HEAD-$selected" # In case mapping by name does not work
     done
 fi
