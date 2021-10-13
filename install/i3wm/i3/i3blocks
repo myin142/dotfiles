@@ -28,7 +28,7 @@ interval=5
 
 [battery]
 command=$HOME/.config/i3/scripts/battery
-interval=
+interval=1
 label=
 
 [load]
