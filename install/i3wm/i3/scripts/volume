@@ -89,12 +89,12 @@ CAPABILITY=$(amixer -D $MIXER get $SCONTROL | sed -n "s/  Capabilities:.*cvolume
 function get_active_sink() {
     local active_count=$(pactl list sinks | grep "State: RUNNING" | wc -l)
     local active
-    if [ $active_count -eq 1 ]; then
-        active=$(pactl list sinks | grep "State: RUNNING" -B1 | grep "Sink ")
-    elif [ -z "$active" ]; then
+    #if [ $active_count -eq 1 ]; then
+    #    active=$(pactl list sinks | grep "State: RUNNING" -B1 | grep "Sink ")
+    #elif [ -z "$active" ]; then
         local default=$(pactl get-default-sink)
         active=$(pactl list sinks | grep "$default" -B2 | grep "Sink ")
-    fi
+    #fi
 
     active=$(echo $active | grep -o '[0-9]\+')
     echo $active
