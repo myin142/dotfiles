@@ -38,7 +38,12 @@ git_checkout_branch() {
     else
         git show-ref --verify --quiet "refs/heads/$ARG"
         if [[ $? == 0 ]]; then
-            git checkout "$ARG"
+            if [[ "$ARG" == "remotes/"* ]]; then
+                REMOTE_BRANCH="$(echo $ARG | cut -d/ -f 2-)"
+                git checkout --track $REMOTE_BRANCH
+            else
+                git checkout "$ARG"
+            fi
         else
             git checkout -b "$ARG"
         fi
