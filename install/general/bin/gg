@@ -36,16 +36,16 @@ git_checkout_branch() {
     if [ -z "$ARG" ]; then
         git branch
     else
-        git show-ref --verify --quiet "refs/heads/$ARG"
-        if [[ $? == 0 ]]; then
-            if [[ "$ARG" == "remotes/"* ]]; then
-                REMOTE_BRANCH="$(echo $ARG | cut -d/ -f 2-)"
-                git checkout --track $REMOTE_BRANCH
-            else
-                git checkout "$ARG"
-            fi
+        if [[ "$ARG" == "remotes/"* ]]; then
+            REMOTE_BRANCH="$(echo $ARG | cut -d/ -f 2-)"
+            git checkout --track $REMOTE_BRANCH
         else
-            git checkout -b "$ARG"
+            git show-ref --verify --quiet "refs/heads/$ARG"
+            if [[ $? == 0 ]]; then
+                git checkout "$ARG"
+            else
+                git checkout -b "$ARG"
+            fi
         fi
     fi
 }
