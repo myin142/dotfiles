@@ -109,6 +109,21 @@ git_tag_delete() {
     git push --delete origin $ARG
 }
 
+git_diff_lines() {
+    not_empty "$ARG" "Branch name cannot be empty"
+    git log ${ARG}..HEAD --pretty=tformat: --numstat |
+        awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
+        { printf "added lines: %s removed lines: %s total lines: %s\n",add,subs,loc }'
+}
+
+git_log_day() {
+    DATE="$ARG"
+    if [ -z $DATE ]; then
+        DATE="$(date '+%Y-%m-%d')"
+    fi
+    git log --all --oneline --graph --decorate --after="$DATE 00:00" --before="$DATE 23:59"
+}
+
 system_display_reload() {
     cat ~/.screenlayout/main.sh | sed 's/--pos [0-9]\+x[0-9]\+/--pos 0x0/' | sh
     sh ~/.screenlayout/main.sh
@@ -136,12 +151,14 @@ case "$CMD" in
     ################
 
     "gl") git log --all --oneline --graph --decorate ;;
+    "gld") git_log_day;;
     "gs") git status;;
 
     "gtd") git_tag_delete;;
 
     # Git diff commit
-    "gdc") git diff $ARG~ $ARG;;
+    "gd") git diff $ARG~ $ARG;;
+    "gdl") git_diff_lines;;
 
     # Git commit
     "gca") git commit --amend;;
