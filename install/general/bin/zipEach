@@ -1,0 +1,23 @@
+#!/bin/sh
+
+if [ ! -d $1 ]; then
+    echo "Input is not a directory"
+    exit
+fi
+
+if [ ! -d $2 ]; then
+    echo "Output is not a directory"
+    exit
+fi
+
+FILES="$(ls -1 $1)"
+OUTPUT="${2:-"."}"
+
+for FILE in ${FILES[@]}; do
+    if [ -f $FILE ]; then
+        if [[ $FILE != *".zip" ]]; then
+            FILE_NAME="$(echo $FILE | cut -d \. -f 1)"
+            zip -r "$2/$FILE_NAME.zip" $FILE
+        fi
+    fi
+done
