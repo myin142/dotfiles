@@ -10,14 +10,16 @@ if [ ! -d $2 ]; then
     exit
 fi
 
-FILES="$(ls -1 $1)"
+INPUT="${1:-"."}"
 OUTPUT="${2:-"."}"
+FILES="$(ls -1 $INPUT)"
 
 for FILE in ${FILES[@]}; do
-    if [ -f $FILE ]; then
+    FULL_PATH="$INPUT/$FILE"
+    if [ -f "$FULL_PATH" ]; then
         if [[ $FILE != *".zip" ]]; then
             FILE_NAME="$(echo $FILE | cut -d \. -f 1)"
-            zip -r "$2/$FILE_NAME.zip" $FILE
+            zip -r "$OUTPUT/$FILE_NAME.zip" "$FULL_PATH"
         fi
     fi
 done
