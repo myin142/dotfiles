@@ -27,7 +27,7 @@ copyFiles aseprite $HOME/.config/aseprite/user.aseprite*
 zip -r "$BACKUP_FOLDER/settings.zip" ssh krita krita-local aseprite
 
 # Backup drawings files
-DRAWINGS_FOLDER="$HOME/Shared/Data/krita/drawings"
-rm "$DRAWINGS_FOLDER/*.kra~" -f
-copyFiles "$BACKUP_TEMP/drawings" "$DRAWINGS_FOLDER/*"
-zip -r "$BACKUP_FOLDER/drawings.zip" drawings/*
+#DRAWINGS_FOLDER="$HOME/Shared/Data/krita/drawings"
+#rm "$DRAWINGS_FOLDER/*.kra~" -f
+#copyFiles "$BACKUP_TEMP/drawings" "$DRAWINGS_FOLDER/*"
+#zip -r "$BACKUP_FOLDER/drawings.zip" drawings/*
