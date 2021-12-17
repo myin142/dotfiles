@@ -36,15 +36,31 @@ git_checkout_branch() {
     if [ -z "$ARG" ]; then
         git branch
     else
-        if [[ "$ARG" == "remotes/"* ]]; then
-            REMOTE_BRANCH="$(echo $ARG | cut -d/ -f 2-)"
+        BRANCH=$ARG
+        BRANCHES=( $(git for-each-ref --format='%(refname:short)' refs/heads/) )
+
+        FOUND=false
+        for b in "${BRANCHES[@]}"; do
+            if [[ "$b" == *"$BRANCH"* ]]; then
+                if [ $FOUND = true ]; then
+                    echo "Found multiple branches: $BRANCH, $b"
+                    exit
+                fi
+
+                BRANCH=$b
+                FOUND=true
+            fi
+        done
+
+        if [[ "$BRANCH" == "remotes/"* ]]; then
+            REMOTE_BRANCH="$(echo $BRANCH | cut -d/ -f 2-)"
             git checkout --track $REMOTE_BRANCH
         else
-            git show-ref --verify --quiet "refs/heads/$ARG"
+            git show-ref --verify --quiet "refs/heads/$BRANCH"
             if [[ $? == 0 ]]; then
-                git checkout "$ARG"
+                git checkout "$BRANCH"
             else
-                git checkout -b "$ARG"
+                git checkout -b "$BRANCH"
             fi
         fi
     fi
