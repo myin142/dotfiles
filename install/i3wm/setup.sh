@@ -9,7 +9,8 @@ link() {
 }
 
 sudo pacman -Syy i3-gaps i3blocks i3lock compton dunst redshift rofi rofi-calc kitty \
-    python-pywal feh net-tools noto-fonts-emoji ibus ibus-rime ibus-anthy jq flameshot
+    python-pywal feh net-tools noto-fonts-emoji ibus ibus-rime ibus-anthy jq flameshot \
+    cronie
 
 link i3 $HOME/.config/i3
 link kitty $HOME/.config/kitty
