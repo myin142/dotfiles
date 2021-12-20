@@ -52,9 +52,11 @@ git_checkout_branch() {
             fi
         done
 
-        if [[ "$BRANCH" == "remotes/"* ]]; then
-            REMOTE_BRANCH="$(echo $BRANCH | cut -d/ -f 2-)"
-            git checkout --track $REMOTE_BRANCH
+        if [[ "$BRANCH" == "remotes/"* || "$BRANCH" == "origin/"* ]]; then
+            if [[ "$BRANCH" == "remotes/"* ]]; then
+                BRANCH="$(echo $BRANCH | cut -d/ -f 2-)"
+            fi
+            git checkout --track $BRANCH
         else
             git show-ref --verify --quiet "refs/heads/$BRANCH"
             if [[ $? == 0 ]]; then
