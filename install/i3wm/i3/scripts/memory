@@ -1,0 +1,6 @@
+#!/bin/bash
+
+MEMORY=$(free -h | grep "Mem:" | awk -v x="/" '{print $3x$7}')
+
+echo $MEMORY
+echo $MEMORY

@@ -36,6 +36,11 @@ command=$HOME/.config/i3/scripts/load_average
 interval=1
 label=
 
+[memory]
+command=$HOME/.config/i3/scripts/memory
+interval=1
+label=
+
 [disk]
 command=$HOME/.config/i3/scripts/disk
 interval=1
