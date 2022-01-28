@@ -168,7 +168,8 @@ case "$CMD" in
     # Git commands #
     ################
 
-    "gl") git log --all --oneline --graph --decorate ;;
+    "gl") git log --oneline --graph --decorate;;
+    "gla") git log --all --oneline --graph --decorate;;
     "gld") git_log_day;;
     "gs") git status;;
 
