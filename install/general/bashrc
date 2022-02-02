@@ -81,11 +81,12 @@ alias vim="nvim"
 export EDITOR=nvim
 export VISUAL=$EDITOR
 export DOTFILES=$HOME/.dotfiles
+export GODOT_USER=$HOME/.local/share/godot/app_userdata
 
 export JAVA_HOME=/usr/lib/jvm/default-runtime
 export ANDROID_SDK_ROOT=~/Android
 
-PATH=$PATH:~/.bin:/home/sakkaku/.local/share/gem/ruby/2.7.0/bin/
+PATH=$PATH:~/.bin:/home/sakkaku/.local/share/gem/ruby/2.7.0/bin/:/opt/android-sdk/cmdline-tools/latest/bin
 
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo
 MIC=alsa_input.pci-0000_00_1b.0.analog-stereo
