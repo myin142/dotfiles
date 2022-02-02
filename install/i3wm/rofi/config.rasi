@@ -2,5 +2,7 @@ configuration {
 	modi: "combi,run";
 	font: "Hack Nerd Font 10";
 	combi-modi: "run,drun,ssh";
-	theme: "~/.cache/wal/colors-rofi-dark.rasi";
 }
+
+
+@theme "~/.cache/wal/colors-rofi-dark.rasi"
