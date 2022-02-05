@@ -155,6 +155,7 @@ bindsym $mod+Shift+z exec ~/.bin/lock && systemctl suspend
 bindsym $mod+Shift+x exec ~/.bin/lock
 
 bindsym Print exec flameshot gui #scrot -u
+bindsym $mod+m exec ~/.bin/i3bartoggle
 
 #######
 # BAR #
@@ -162,13 +163,16 @@ bindsym Print exec flameshot gui #scrot -u
 
 bar {
 	colors {
-			background				$bg-color
 			#						border					background				text
+			background				$bg-color
 			focused_workspace		$bg-color				$bg-color				$text-color
 			active_workspace		$bg-color				$bg-color				$text-color
 			inactive_workspace		$inactive-bg-color		$inactive-bg-color		$inactive-text-color
 			urgent_workspace		$urgent-bg-color		$urgent-bg-color		$text-color
 	}
+
+    mode hide
+    modifier Mod1
 
 	tray_output primary
 	status_command i3blocks -c ~/.config/i3/i3blocks
