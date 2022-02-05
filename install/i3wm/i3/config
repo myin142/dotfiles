@@ -171,7 +171,6 @@ bar {
 			urgent_workspace		$urgent-bg-color		$urgent-bg-color		$text-color
 	}
 
-    mode hide
     modifier Mod1
 
 	tray_output primary
