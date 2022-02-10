@@ -171,7 +171,7 @@ bar {
 			urgent_workspace		$urgent-bg-color		$urgent-bg-color		$text-color
 	}
 
-    modifier Mod1
+    modifier $mod
 
 	tray_output primary
 	status_command i3blocks -c ~/.config/i3/i3blocks
