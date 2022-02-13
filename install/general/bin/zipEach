@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Zip each file in a folder individually
+
 if [ ! -d $1 ]; then
     echo "Input is not a directory"
     exit
@@ -22,8 +24,8 @@ for FILE in ${FILES[@]}; do
             zip -r "$OUTPUT/$FILE_NAME.zip" "$FULL_PATH"
         fi
     elif [ -d "$FULL_PATH" ]; then
-            pushd $FULL_PATH
-            zip -r "$OUTPUT/$FILE.zip" .
-            popd
+            NEW_OUTPUT="$OUTPUT/$FILE"
+            mkdir -p $NEW_OUTPUT
+            $0 $FULL_PATH $NEW_OUTPUT
     fi
 done
