@@ -21,5 +21,9 @@ for FILE in ${FILES[@]}; do
             FILE_NAME="$(echo $FILE | cut -d \. -f 1)"
             zip -r "$OUTPUT/$FILE_NAME.zip" "$FULL_PATH"
         fi
+    elif [ -d "$FULL_PATH" ]; then
+            pushd $FULL_PATH
+            zip -r "$OUTPUT/$FILE.zip" .
+            popd
     fi
 done
