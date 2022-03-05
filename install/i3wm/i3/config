@@ -157,6 +157,9 @@ bindsym $mod+Shift+x exec ~/.bin/lock
 bindsym Print exec flameshot gui #scrot -u
 bindsym $mod+m exec ~/.bin/i3bartoggle
 
+bindsym Ctrl+space exec dunstctl close
+bindsym Ctrl+Shift+space exec dunstctl close-all
+
 #######
 # BAR #
 #######
