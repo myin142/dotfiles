@@ -32,6 +32,7 @@ if [ $COMMAND == "basic" ]; then
     cp "$BACKUP_FOLDER/settings.zip" $DROPBOX
 elif [ $COMMAND == "draw" ]; then
     DRAWINGS_FOLDER="$HOME/Shared/Data/krita/drawings"
+    notify-send "Starting backup" "Backing up $DRAWINGS_FOLDER"
     zipEach "$DRAWINGS_FOLDER" "$DROPBOX/Drawings"
 else
     echo "Invalid backup command"
