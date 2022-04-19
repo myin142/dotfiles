@@ -17,11 +17,14 @@ OUTPUT="${2:-"."}"
 FILES="$(ls -1 $INPUT)"
 
 for FILE in ${FILES[@]}; do
-    FULL_PATH="$INPUT/$FILE"
+    FOLDER="$INPUT"
+    FULL_PATH="$FOLDER/$FILE"
     if [ -f "$FULL_PATH" ]; then
         if [[ $FILE != *".zip" && $FILE != *".kra~" ]]; then
             FILE_NAME="$(echo $FILE | cut -d \. -f 1)"
-            zip -r "$OUTPUT/$FILE_NAME.zip" "$FULL_PATH"
+            pushd $FOLDER
+            zip -r "$OUTPUT/$FILE_NAME.zip" $FILE
+            popd
         fi
     elif [ -d "$FULL_PATH" ]; then
             NEW_OUTPUT="$OUTPUT/$FILE"
