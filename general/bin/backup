@@ -24,14 +24,14 @@ if [ $COMMAND == "basic" ]; then
     }
 
     # Backup settings
-    copyFiles krita-local $HOME/.local/share/krita/*
+    #copyFiles krita-local $HOME/.local/share/krita/*
     copyFiles krita $HOME/.config/krita*
     copyFiles ssh $HOME/.ssh/*
     copyFiles aseprite $HOME/.config/aseprite/user.aseprite*
     zip -r "$BACKUP_FOLDER/settings.zip" ssh krita krita-local aseprite
     cp "$BACKUP_FOLDER/settings.zip" $DROPBOX
 elif [ $COMMAND == "draw" ]; then
-    DRAWINGS_FOLDER="$HOME/Shared/Data/krita/drawings"
+    DRAWINGS_FOLDER="$HOME/Documents/krita"
     notify-send "Starting backup" "Backing up $DRAWINGS_FOLDER"
     zipEach "$DRAWINGS_FOLDER" "$DROPBOX/Drawings"
 else
