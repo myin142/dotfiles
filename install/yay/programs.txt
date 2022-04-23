@@ -1,0 +1,3 @@
+brave
+noto-fonts-cjk-vf
+dropbox

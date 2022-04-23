@@ -2,8 +2,8 @@
 
 link() {
 	if [ -d "$2" ]; then
-        echo "Deleting existing $2"
-		rm "$2"
+		echo "Deleting existing $2"
+		rm "$2" -r
 	fi
 	ln -sf "$(pwd)/$1" "$2"
 }
