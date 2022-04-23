@@ -1,7 +1,0 @@
-#1 Enable Periodic Trim if supported - systemctl enable fstrim.timer
-#2 Remove discard option in fstab
-#3 Add noatime option in fstab
-#4 Overprovisioning some space
-#5 Enable Deadline
-	Check with 'cat /sys/block/sda/queue/scheduler' - noop [deadline] cfq
-	Enable: GRUB_CMDLINE_LINUX_DEFAULT add 'elevator=deadline'
