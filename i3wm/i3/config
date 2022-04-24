@@ -18,8 +18,8 @@ floating_modifier $mod
 # WORKSPACE #
 #############
 
-set $monitorHDMI HDMI-A-1
-set $monitorDP DisplayPort-1
+set $monitorHDMI HDMI-A-0
+set $monitorDP DisplayPort-0
 
 # Set Workspace Names (insert icon in insert mode with e.g CTRL+V uf001)
 set $ws1 "1:"
