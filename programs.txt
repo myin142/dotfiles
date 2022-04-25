@@ -2,9 +2,11 @@ pkgfile
 
 discord
 steam
-krita
 blender
 firefox
+
+krita
+python-pyqt5
 
 npm
 jre-openjdk-headless
