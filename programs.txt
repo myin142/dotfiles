@@ -2,7 +2,6 @@ pkgfile
 
 discord
 steam
-code
 krita
 blender
 firefox
