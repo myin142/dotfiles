@@ -51,6 +51,7 @@ assign [class="Slack"] $ws8
 assign [class="discord"] $ws8
 assign [class="Steam"] $ws9
 assign [class="Lutris"] $ws9
+assign [class="pavucontrol"] $ws10
 
 #####################
 # WINDOW APPEARANCE #

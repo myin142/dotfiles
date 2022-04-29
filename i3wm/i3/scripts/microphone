@@ -23,21 +23,31 @@ function get_active_sink() {
 }
 
 function toggle_noise_cancelling() {
-    local active_sink = $(get_active_sink)
-    local vol=$(pactl list sources | grep "$active_sink" -A7 | grep "Volume: front" | grep -o "[0-9]*%" | head -1)
+    local is_active_noise_cancelling=$(pactl list sources | grep $NOISETORCH_NAME)
 
-    # TODO toggle
+    if [[ $is_active_noise_cancelling ]]; then
+        noisetorch -u
+    else
+        local active_sink=$(get_active_sink)
+        local vol=$(pactl list sources | grep "$active_sink" -A7 | grep "Volume: front" | grep -o "[0-9]*%" | head -1)
 
-    noisetorch -i $active_sink
-    pactl set-default-source $NOISETORCH_NAME
-    pactl set-source-volume $vol%
+        noisetorch -i $active_sink
+        pactl set-default-source $NOISETORCH_NAME
+
+        # activating noisetorch causes one or both of the inputs to get to 100%
+        pactl set-source-volume $NOISETORCH_NAME $vol
+        pactl set-source-volume $active_sink $vol
+
+        #move_outputs_to_source $active_sink
+        #move_outputs_to_source $NOISETORCH_NAME
+    fi
 }
 
-function move_sinks_to_new_default {
-    DEFAULT_SINK=$1
-    pactl list sink-inputs | grep index: | grep -o '[0-9]\+' | while read SINK
+function move_outputs_to_source {
+    SOURCE=$1
+    pactl list source-outputs | grep "Source Output" | grep -o '[0-9]\+' | while read SINK
     do
-        pactl move-sink-input $SINK $DEFAULT_SINK
+        pactl move-source-output $SINK $SOURCE
     done
 }
 
