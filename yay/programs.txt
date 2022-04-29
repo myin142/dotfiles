@@ -1,2 +1,4 @@
 dropbox
 visual-studio-code-bin
+pureref
+noisetorch-bin
