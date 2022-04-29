@@ -1,0 +1,83 @@
+#!/bin/bash
+# Displays the default device, volume, and mute status for i3blocks
+
+set -a
+
+AUDIO_UNMUTED_SYMBOL=${AUDIO_HIGH_SYMBOL:-''}
+AUDIO_MUTED_SYMBOL=${AUDIO_MUTED_SYMBOL:-''}
+AUDIO_DELTA=${AUDIO_DELTA:-5}
+
+DEFAULT_COLOR=${DEFAULT_COLOR:-"#ffffff"}
+MUTED_COLOR=${MUTED_COLOR:-"#dfdf32"}
+
+LONG_FORMAT=${LONG_FORMAT:-'${SYMB} ${VOL}% [${INDEX}:${NAME}]'}
+SHORT_FORMAT=${SHORT_FORMAT:-'${SYMB} ${VOL}% [${INDEX}]'}
+
+NOISETORCH_NAME="nui_mic_remap"
+
+function get_active_sink() {
+    local default=$(pactl get-default-source)
+    echo $default
+    #active=$(pactl list sinks | grep "$default" -B2 | grep "Sink ")
+    #echo $active
+}
+
+function toggle_noise_cancelling() {
+    local active_sink = $(get_active_sink)
+    local vol=$(pactl list sources | grep "$active_sink" -A7 | grep "Volume: front" | grep -o "[0-9]*%" | head -1)
+
+    # TODO toggle
+
+    noisetorch -i $active_sink
+    pactl set-default-source $NOISETORCH_NAME
+    pactl set-source-volume $vol%
+}
+
+function move_sinks_to_new_default {
+    DEFAULT_SINK=$1
+    pactl list sink-inputs | grep index: | grep -o '[0-9]\+' | while read SINK
+    do
+        pactl move-sink-input $SINK $DEFAULT_SINK
+    done
+}
+
+case "$BLOCK_BUTTON" in
+    1) pactl set-source-mute $(get_active_sink) toggle ;;
+    2) toggle_noise_cancelling ;;
+    3) i3-msg -q "exec pavucontrol" ;;
+    4) pactl set-source-volume $(get_active_sink) +$AUDIO_DELTA% ;;
+    5) pactl set-source-volume $(get_active_sink) -$AUDIO_DELTA% ;;
+esac
+
+function print_format {
+    echo "$1" | envsubst '${SYMB}${VOL}${INDEX}${NAME}'
+}
+
+function print_block {
+    GREP="Source \|Description:\|Mute:\|Volume: front"
+    ACTIVE_SINK=$(get_active_sink)
+    ACTIVE=$(pactl list sources | grep "$ACTIVE_SINK" -B2 -A7 | grep "$GREP")
+
+    for name in INDEX NAME MUTED VOL; do
+        read $name
+    done < <(echo "$ACTIVE")
+    INDEX=$(echo "$INDEX" | grep -o '[0-9]\+')
+    VOL=$(echo "$VOL" | grep -o "[0-9]*%" | head -1 )
+    VOL="${VOL%?}"
+
+    NAME=$(echo "$NAME" | awk '{ print $2" "$3 }')
+
+    if [[ $MUTED =~ "no" ]] ; then
+        SYMB=$AUDIO_UNMUTED_SYMBOL
+        COLOR=$DEFAULT_COLOR
+    else
+        SYMB=$AUDIO_MUTED_SYMBOL
+        COLOR=$MUTED_COLOR
+    fi
+
+    print_format "$LONG_FORMAT"
+    print_format "$SHORT_FORMAT"
+    echo "$COLOR"
+}
+
+print_block
