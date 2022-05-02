@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pacman -S keychain
+pacman -S keychain bluez
 
 if [ -d "$HOME/.bin" ]; then
 	echo "Deleting existing bin folder"
