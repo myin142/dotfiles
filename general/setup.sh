@@ -1,6 +1,8 @@
 #!/bin/sh
 
 pacman -S keychain bluez
+systemctl enable bluetooth
+
 
 if [ -d "$HOME/.bin" ]; then
 	echo "Deleting existing bin folder"
@@ -12,4 +14,4 @@ ln -sf $(pwd)/bashrc ~/.bashrc
 ln -sf "$(pwd)/xorg.conf.d/00-keyboard.conf" /usr/share/X11/xorg.conf.d/
 ln -sf "$(pwd)/Xmodmap" ~/.Xmodmap
 
-sudo ./grub.sh
+./grub.sh
