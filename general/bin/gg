@@ -197,6 +197,7 @@ case "$CMD" in
     # Git push upstream
     "gpu") git_push_upstream;;
     "gp") git push;;
+    "gpf") git push --force-with-lease;;
 
     # Git executable
     "gx") git update-index --chmod=+x $ARG;;
