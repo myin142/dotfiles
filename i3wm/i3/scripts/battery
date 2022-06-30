@@ -13,7 +13,7 @@ if [ $PERCENT != "" ]; then
 
     SHORT_TEXT="$FULL_TEXT"
 
-    if [ $TIME != "" ]; then
+    if [[ $TIME != "" ]]; then
         FULL_TEXT="$FULL_TEXT ($TIME)"
     fi
 
