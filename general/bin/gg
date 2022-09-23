@@ -185,7 +185,7 @@ case "$CMD" in
         not_empty "$ARG" "Commit message cannot be empty"
         git commit -m "$ARG"
         ;;
-    "ga") git_all_commit;;
+    #"ga") git_all_commit;;
 
     # Git merge (merges current branch to another)
     "gm") git_merge;;
@@ -215,6 +215,12 @@ case "$CMD" in
 
     "pm") pdf_merge;;
     "po") pdf_optimize;;
+
+    ###################
+    # Pacman Commands #
+    ###################
+
+    "pacls") pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nrk 2 | grep MiB | less;;
 
     *) printf "%s command not defined\n" $CMD;;
 esac
