@@ -10,10 +10,10 @@ use=$1
 
 case $use in
 	paint)
-		xsetwacom set "$pad" Button 1 key ctrl shift z
-		xsetwacom set "$pad" Button 3 key ctrl z
-		xsetwacom set "$pad" Button 8 key /
-		xsetwacom set "$pad" Button 9 key .
+		xsetwacom set "$pad" Button 1 key .
+		xsetwacom set "$pad" Button 3 key /
+		xsetwacom set "$pad" Button 8 key ctrl shift z
+		xsetwacom set "$pad" Button 9 key ctrl z
 	;;
 	text)
 		xsetwacom set "$pad" Button 1 key ctrl v
