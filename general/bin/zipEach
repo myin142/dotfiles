@@ -20,7 +20,7 @@ for FILE in ${FILES[@]}; do
     FOLDER="$INPUT"
     FULL_PATH="$FOLDER/$FILE"
     if [ -f "$FULL_PATH" ]; then
-        if [[ $FILE != *".zip" && $FILE != *".kra~" ]]; then
+        if [[ $FILE != *".zip" && $FILE != *".kra~" && $FILE != *".blend1" ]]; then
             FILE_NAME="$(echo $FILE | cut -d \. -f 1)"
             pushd $FOLDER
             zip -r "$OUTPUT/$FILE_NAME.zip" $FILE

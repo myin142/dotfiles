@@ -34,6 +34,10 @@ elif [ $COMMAND == "draw" ]; then
     DRAWINGS_FOLDER="$HOME/Documents/krita"
     notify-send "Starting backup" "Backing up $DRAWINGS_FOLDER"
     zipEach "$DRAWINGS_FOLDER" "$DROPBOX/Drawings"
+elif [ $COMMAND == "models" ]; then
+    FOLDER="$HOME/Documents/blender"
+    notify-send "Starting backup" "Backing up $FOLDER"
+    zipEach "$FOLDER" "$DROPBOX/Models"
 else
     echo "Invalid backup command"
 fi
