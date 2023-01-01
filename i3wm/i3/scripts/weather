@@ -3,11 +3,12 @@
 full=""
 short=""
 
-URL="https://darksky.net/forecast/48.2084,16.3725/ca12/en"
+URL="https://www.accuweather.com/en/at/vienna/31868/weather-forecast/31868"
 
-currently="$(curl $URL | awk -F= '/currently = /{print $2}')"
-weather="$(echo "$currently" | jq -r '.icon')"
+currently="$(curl $URL | awk -F= '/data-api= /')"
+weather="$(echo "$currently" | grep "current_main_descr")"
 temp="$(echo "$currently" | jq -r '.temperature')"
+t=${temp:-"? "}
 
 case "$weather" in
 clear-day)
@@ -52,7 +53,7 @@ partly-cloudy*)
 	;;
 esac
 
-full="$icon $temp°"
+full="$icon $t°"
 short="$icon"
 
 echo $full
