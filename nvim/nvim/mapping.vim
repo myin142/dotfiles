@@ -15,9 +15,9 @@ noremap <C-s> :w<cr>
 noremap <space> :noh<cr>
 
 noremap <C-p> :CtrlP<cr>
+noremap <C-/> :Commentary<cr>
 noremap <Leader>pb :CtrlPBuffer<cr>
 noremap <Leader>pr :CtrlPMRU<cr>
-noremap <Leader>c :Commentary<cr>
 noremap <Leader>s :ToggleWorkspace<cr>
 noremap <Leader>ff :NERDTreeFind<cr>
 noremap <Leader>fl :Autoformat<cr>

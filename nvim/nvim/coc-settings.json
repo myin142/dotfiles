@@ -2,5 +2,14 @@
     "tslint.enable": true,
     "tslint.autoFixOnSave": true,
     "java.jdt.ls.vmargs": "-javaagent:/home/sakkaku/.lsp/lombok/lombok.jar -Xbootclasspath/a:/home/sakkaku/.lsp/lombok/lombok.jar",
-    "disableWorkspaceFolders": true
+    "disableWorkspaceFolders": true,
+    "languageserver": {
+        "godot": {
+            "host": "127.0.0.1",
+            "filetypes": [
+                "gdscript"
+            ],
+            "port": 6008
+        }
+    }
 }

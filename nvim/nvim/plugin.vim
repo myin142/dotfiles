@@ -4,17 +4,17 @@
 call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
-#Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'spolu/dwm.vim'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-rooter'
-" Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'tpope/vim-commentary', { 'on': 'Commentary' }
 Plug 'Chiel92/vim-autoformat', { 'on': 'Autoformat' }
 Plug 'ctrlpvim/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPBuffer', 'CtrlPMRU'] }
 
-Plug 'habamax/vim-godot'
+" Plug 'habamax/vim-godot'
 
 " Plug 'janko/vim-test' " Karma tests currently not working
 
