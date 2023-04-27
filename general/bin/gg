@@ -172,6 +172,7 @@ case "$CMD" in
     "gla") git log --all --oneline --graph --decorate;;
     "gld") git_log_day;;
     "gs") git status;;
+    "gsub") git submodule update --init --recursive;;
 
     "gtd") git_tag_delete;;
 
