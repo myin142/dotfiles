@@ -1,0 +1,6 @@
+#!/bin/sh
+
+discord &
+firefox &
+krita &
+wacom "Port-0"
