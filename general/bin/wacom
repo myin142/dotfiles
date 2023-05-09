@@ -1,4 +1,4 @@
 #!/bin/sh
 
 wacomMap paint
-wacomMonitor
+wacomMonitor $1
