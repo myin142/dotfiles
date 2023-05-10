@@ -1,6 +1,14 @@
 #!/bin/sh
 
-discord &
-firefox &
-krita &
-wacom "Port-0"
+if [ "$1" = "work" ]; then
+    firefox &
+    brave &
+    slack &
+    teams &
+    code &
+else
+    discord &
+    firefox &
+    krita &
+    wacom "Port-0"
+fi
