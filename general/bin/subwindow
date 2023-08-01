@@ -1,0 +1,6 @@
+#!/bin/sh
+
+Xephyr -br -ac -noreset -screen 1920x1080 :9 &
+export DISPLAY=:9
+
+bspwm -c ~/.bspwmrc &
