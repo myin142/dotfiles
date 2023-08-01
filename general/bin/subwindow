@@ -3,4 +3,7 @@
 Xephyr -br -ac -noreset -screen 1920x1080 :9 &
 export DISPLAY=:9
 
+sleep 1
 bspwm -c ~/.bspwmrc &
+
+$1
