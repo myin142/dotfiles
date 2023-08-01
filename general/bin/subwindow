@@ -1,6 +1,6 @@
 #!/bin/sh
 
-Xephyr -br -ac -noreset -screen 1920x1080 :9 &
+Xephyr -once -screen 2560x1440 :9 &
 export DISPLAY=:9
 
 sleep 1
