@@ -49,10 +49,19 @@ assign [class="youtube-player"] $ws6
 assign [class="Gimp"] $ws7
 assign [class="krita"] $ws7
 assign [class="Slack"] $ws8
+assign [class="firefox"] $ws1
+assign [class="Brave-browser"] $ws10
+assign [class="microsoft teams - preview"] $ws8
+assign [class="Microsoft Teams - Preview"] $ws8
 assign [class="discord"] $ws8
 assign [class="steam"] $ws9
 assign [class="Lutris"] $ws9
 assign [class="pavucontrol"] $ws10
+
+for_window [class="Wfica"] floating enable
+for_window [class="wfica"] floating enable
+for_window [class="Remotedesktopverbindung"] floating enable
+for_window [class="Sitzungsaufzeichnung"] floating enable
 
 #####################
 # WINDOW APPEARANCE #
@@ -148,8 +157,8 @@ bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -R
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 #light -A 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 #light -U 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 20 #xbacklight -inc 20 #light -A 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 20 #xbacklight -dec 20 #light -U 20 # decrease screen brightness
 
 # Extra Keys / Shortcuts
 #bindsym XF86Sleep exec ~/.bin/lock && systemctl suspend

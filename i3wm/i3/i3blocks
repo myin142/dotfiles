@@ -2,11 +2,11 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=20
 color=#E0E0E0
 
-[youtube]
-command=$HOME/.config/i3/scripts/ytplay
-markup=pango
-interval=1
-signal=4
+#[youtube]
+#command=$HOME/.config/i3/scripts/ytplay
+#markup=pango
+#interval=1
+#signal=4
 
 [weather]
 command=$HOME/.config/i3/scripts/weather
