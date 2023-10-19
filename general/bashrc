@@ -85,6 +85,7 @@ export GODOT_USER=$HOME/.local/share/godot/app_userdata
 
 export JAVA_HOME=/usr/lib/jvm/default-runtime
 export ANDROID_SDK_ROOT=~/Android
+export BROWSER=/usr/bin/firefox
 
 PATH=$PATH:~/.bin:/home/sakkaku/.local/share/gem/ruby/2.7.0/bin/:/opt/android-sdk/cmdline-tools/latest/bin:~/.dotnet/tools:~/Downloads/flutter-git/bin
 
