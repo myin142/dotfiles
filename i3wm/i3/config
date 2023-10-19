@@ -20,6 +20,7 @@ floating_modifier $mod
 
 set $monitorHDMI DP-2-1
 set $monitorDP DP-2-2
+set $laptop eDP-1
 
 
 # Set Workspace Names (insert icon in insert mode with e.g CTRL+V uf001)
@@ -39,7 +40,7 @@ workspace $ws7 output $monitorDP
 workspace $ws9 output $monitorDP
 workspace $ws10 output $monitorDP
 workspace $ws2 output $monitorHDMI
-workspace $ws8 output $monitorHDMI
+workspace $ws8 output $laptop
 
 # Program on specific workspaces (xprop command)
 #assign [class="Firefox"] $ws1

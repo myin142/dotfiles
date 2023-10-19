@@ -6,9 +6,10 @@ if [ "$1" = "work" ]; then
     slack &
     teams &
     code &
+    ~/.screenlayout/work.sh
 else
     discord &
     firefox &
     krita &
-    wacom "Port-0"
+    wacom "DP-2-2"
 fi
