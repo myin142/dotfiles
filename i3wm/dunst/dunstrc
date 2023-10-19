@@ -12,7 +12,7 @@
     sort = yes
     idle_threshold = 120
 
-    font = Monospace 8
+    font = Monospace 14
     markup = full
     format = "<b>%a:</b> %s\n%b"
     alignment = left

@@ -9,7 +9,7 @@ set_from_resource $inactive-text-color color3 #676E7D
 set_from_resource $urgent-bg-color     color3 #E53935
 
 # Set Font
-font pango:Hack Nerd Font,10
+font pango:Hack Nerd Font,12
 
 # Floating Mod
 floating_modifier $mod
@@ -18,8 +18,8 @@ floating_modifier $mod
 # WORKSPACE #
 #############
 
-set $monitorHDMI DisplayPort-1
-set $monitorDP DisplayPort-0
+set $monitorHDMI DP-2-1
+set $monitorDP DP-2-2
 
 
 # Set Workspace Names (insert icon in insert mode with e.g CTRL+V uf001)
@@ -49,7 +49,7 @@ assign [class="youtube-player"] $ws6
 assign [class="Gimp"] $ws7
 assign [class="krita"] $ws7
 assign [class="Slack"] $ws8
-assign [class="firefox"] $ws1
+# assign [class="firefox"] $ws1
 assign [class="Brave-browser"] $ws10
 assign [class="microsoft teams - preview"] $ws8
 assign [class="Microsoft Teams - Preview"] $ws8

@@ -24,7 +24,7 @@ if [ $COMMAND == "basic" ]; then
     }
 
     # Backup settings
-    #copyFiles krita-local $HOME/.local/share/krita/*
+    copyFiles krita-local $HOME/.local/share/krita/*
     copyFiles krita $HOME/.config/krita*
     copyFiles ssh $HOME/.ssh/*
     copyFiles aseprite $HOME/.config/aseprite/user.aseprite*

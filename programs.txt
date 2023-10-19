@@ -12,3 +12,6 @@ python-pyqt5
 npm
 jre-openjdk-headless
 jdk-openjdk
+
+docker
+docker-compose

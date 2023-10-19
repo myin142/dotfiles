@@ -1,6 +1,6 @@
 configuration {
 	modi: "combi,run";
-	font: "Hack Nerd Font 10";
+	font: "Hack Nerd Font 12";
 	combi-modi: "run,drun,ssh";
 }
 

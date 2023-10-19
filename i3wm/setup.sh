@@ -8,9 +8,9 @@ link() {
 	ln -sf "$(pwd)/$1" "$2"
 }
 
-sudo pacman -Syy i3-gaps i3blocks i3lock compton dunst redshift rofi rofi-calc kitty \
+sudo pacman -S i3-gaps i3blocks i3lock picom dunst redshift rofi rofi-calc kitty \
     python-pywal feh net-tools noto-fonts-cjk noto-fonts-emoji ibus ibus-sunpinyin ibus-anthy jq flameshot \
-    cronie
+    cronie light
 
 link i3 $HOME/.config/i3
 link kitty $HOME/.config/kitty
