@@ -1,13 +1,14 @@
 #!/bin/sh
 
 if [ "$1" = "work" ]; then
+    ~/.screenlayout/work.sh
     firefox &
     brave &
     slack &
     teams &
     code &
-    ~/.screenlayout/work.sh
 else
+    ~/.screenlayout/main.sh
     discord &
     firefox &
     krita &
