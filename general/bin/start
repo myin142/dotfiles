@@ -14,3 +14,6 @@ else
     krita &
     wacom "DP-2-2"
 fi
+
+# Touchscreen to laptop monitor
+xinput --map-to-output 'ELAN900C:00 04F3:2D25' eDP-1
