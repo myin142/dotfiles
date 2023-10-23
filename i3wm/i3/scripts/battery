@@ -24,14 +24,13 @@ fi
 
 # consider color and urgent flag only on discharge
 if [ $STATUS == 'Discharging' ]; then
-
-	if [ $PERCENT < 20 ]; then
+	if [ $PERCENT -lt 20 ]; then
 		echo "#FF4444"
-    elif [ $PERCENT < 40 ]; then
+    elif [ $PERCENT -lt 40 ]; then
 		echo "#FFAE00"
-    elif [ $PERCENT < 60]; then
+    elif [ $PERCENT -lt 60 ]; then
 		echo "#FFF600"
-    elif [ $PERCENT < 85 ]; then
+    elif [ $PERCENT -lt 85 ]; then
 		echo "#A8FF00"
     fi
 fi
