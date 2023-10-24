@@ -10,7 +10,7 @@ if [ "$1" = "work" ]; then
 elif [ "$1" = "map" ]; then
     ~/.screenlayout/main.sh
     wacom "DP-2-2"
-else
+elif [ "$1" = "home" ]; then
     discord &
     firefox &
     krita &
