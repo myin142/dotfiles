@@ -18,8 +18,8 @@ floating_modifier $mod
 # WORKSPACE #
 #############
 
-set $monitorHDMI DP-2-1
-set $monitorDP DP-2-2
+set $monitorHDMI DP-3-2
+set $monitorDP DP-3-3
 set $laptop eDP-1
 
 
@@ -36,8 +36,9 @@ set $ws9 "9:"
 set $ws10 "10:"
 
 workspace $ws1 output $monitorDP
+workspace $ws3 output $monitorDP
 workspace $ws7 output $monitorDP
-workspace $ws9 output $monitorDP
+# workspace $ws9 output $monitorDP
 workspace $ws10 output $monitorDP
 workspace $ws2 output $monitorHDMI
 workspace $ws8 output $laptop
@@ -162,7 +163,7 @@ bindsym XF86MonBrightnessUp exec light -A 20 #xbacklight -inc 20 #light -A 20 # 
 bindsym XF86MonBrightnessDown exec light -U 20 #xbacklight -dec 20 #light -U 20 # decrease screen brightness
 
 # Extra Keys / Shortcuts
-#bindsym XF86Sleep exec ~/.bin/lock && systemctl suspend
+bindsym XF86Sleep exec ~/.bin/lock && systemctl suspend
 bindsym $mod+Shift+z exec ~/.bin/lock && systemctl suspend
 bindsym $mod+Shift+x exec ~/.bin/lock
 
@@ -229,7 +230,8 @@ exec --no-startup-id dropbox
 exec --no-startup-id ~/.bin/wmReload
 exec --no-startup-id ~/.bin/remapCaps
 
-exec --no-startup-id ~/.screenlayout/main.sh
+# exec --no-startup-id ~/.screenlayout/main.sh
 exec --no-startup-id "sleep 1; picom --config ~/.config/picom/picom.conf"
 exec --no-startup-id ~/.bin/blue-on
+# exec --no-startup-id ~/.bin/wacom DP-3-2
 

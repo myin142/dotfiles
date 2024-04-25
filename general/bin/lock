@@ -4,7 +4,7 @@ INPUT="/tmp/screen.png"
 OUTPUT="/tmp/screen.blur.png"
 
 scrot $INPUT
-ffmpeg -loglevel quiet -y -i $INPUT -vf "gblur=8" $OUTPUT
+ffmpeg -loglevel quiet -y -i $INPUT -vf "gblur=10" $OUTPUT
 i3lock -i $OUTPUT
 
 rm $INPUT $OUTPUT

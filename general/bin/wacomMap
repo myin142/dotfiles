@@ -3,6 +3,10 @@
 pad="$(xsetwacom --list devices | grep 'type: PAD' | cut -f 1 | xargs)"
 use=$1
 
+if [ -z $pad ]; then
+    exit 0
+fi
+
 # Button 1: Left Bottom
 # Button 3: Left Top
 # Button 8: Right Bottom

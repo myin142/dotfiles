@@ -1,16 +1,17 @@
 #!/bin/sh
 
 if [ "$1" = "work" ]; then
-    ~/.screenlayout/work.sh
+    # ~/.screenlayout/work.sh
     firefox &
     brave &
     slack &
     teams &
     code &
 elif [ "$1" = "map" ]; then
-    ~/.screenlayout/main.sh
-    wacom "DP-2-2"
+    # ~/.screenlayout/main.sh
+    wacom "DP-3-3"
 elif [ "$1" = "home" ]; then
+    ~/.screenlayout/main.sh
     discord &
     firefox &
     krita &

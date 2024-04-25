@@ -87,7 +87,7 @@ export JAVA_HOME=/usr/lib/jvm/default-runtime
 export ANDROID_SDK_ROOT=~/Android
 export BROWSER=/usr/bin/firefox
 
-PATH=$PATH:~/.bin:/home/sakkaku/.local/share/gem/ruby/2.7.0/bin/:/opt/android-sdk/cmdline-tools/latest/bin:~/.dotnet/tools:~/Downloads/flutter-git/bin
+PATH=$PATH:~/.bin:/home/sakkaku/.local/share/gem/ruby/2.7.0/bin/:/opt/android-sdk/cmdline-tools/latest/bin:~/.dotnet/tools:~/Downloads/flutter-git/bin:/opt/cuda-10.0/bin
 
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo
 MIC=alsa_input.pci-0000_00_1b.0.analog-stereo
@@ -98,4 +98,5 @@ eval $(keychain --eval --quiet)
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
-#
+
+setxkbmap -option caps:escape

@@ -13,9 +13,11 @@ for i in "${!list[@]}";do
     fi
     selections="$selections\n$i: ${list[$i]}"
 done
-echo $found
 
 if [[ -z $found ]]; then
+    if [[ ! -z $text ]]; then
+        exit 0
+    fi
     selected=$(zenity --text "$selections" --entry | sed 's/[^0-9]*//g')
 else
     selected=$found
