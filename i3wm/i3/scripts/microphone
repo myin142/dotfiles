@@ -17,33 +17,36 @@ NOISETORCH_NAME="nui_mic_remap"
 
 function get_active_sink() {
     local default=$(pactl get-default-source)
-    echo $default
+    local active=$(pactl list sources | grep "$default" -B2 | grep "Source ")
+    active=$(echo $active | grep -o '[0-9]\+')
+    echo $active
+
     #active=$(pactl list sinks | grep "$default" -B2 | grep "Sink ")
     #echo $active
 }
 
-function toggle_noise_cancelling() {
-    local is_active_noise_cancelling=$(pactl list sources | grep $NOISETORCH_NAME)
+#function toggle_noise_cancelling() {
+#    local is_active_noise_cancelling=$(pactl list sources | grep $NOISETORCH_NAME)
 
-    if [[ $is_active_noise_cancelling ]]; then
-        noisetorch -u
-    else
-        local active_sink=$(get_active_sink)
-        local vol=$(pactl list sources | grep "$active_sink" -A7 | grep "Volume: front" | grep -o "[0-9]*%" | head -1)
+#    if [[ $is_active_noise_cancelling ]]; then
+#        noisetorch -u
+#    else
+#        local active_sink=$(get_active_sink)
+#        local vol=$(pactl list sources | grep "$active_sink" -A7 | grep "Volume: front" | grep -o "[0-9]*%" | head -1)
 
-        noisetorch -i $active_sink
-        pactl set-default-source $NOISETORCH_NAME
+#        noisetorch -i $active_sink
+#        pactl set-default-source $NOISETORCH_NAME
 
-        sleep 1
+#        sleep 1
 
-        # activating noisetorch causes one or both of the inputs to get to 100%
-        pactl set-source-volume $NOISETORCH_NAME $vol
-        pactl set-source-volume $active_sink $vol
+#        # activating noisetorch causes one or both of the inputs to get to 100%
+#        pactl set-source-volume $NOISETORCH_NAME $vol
+#        pactl set-source-volume $active_sink $vol
 
-        #move_outputs_to_source $active_sink
-        #move_outputs_to_source $NOISETORCH_NAME
-    fi
-}
+#        #move_outputs_to_source $active_sink
+#        #move_outputs_to_source $NOISETORCH_NAME
+#    fi
+#}
 
 function move_outputs_to_source {
     SOURCE=$1
@@ -53,9 +56,36 @@ function move_outputs_to_source {
     done
 }
 
+function set_default_playback_device_next {
+    inc=${1:-1}
+    num_devices=$(pactl list sources | grep -c "Source ")
+    sink_arr=($(pactl list sources | grep "Source " | grep -o '[0-9]\+'))
+    active=$(get_active_sink)
+    default_sink_index=0
+    for i in "${!sink_arr[@]}"; do
+       if [[ "${sink_arr[$i]}" = "${active}" ]]; then
+           default_sink_index=${i}
+           break
+       fi
+    done
+    default_sink_index=$(( ($default_sink_index + $inc) % $num_devices ))
+    default_sink=${sink_arr[$default_sink_index]}
+    pactl set-default-source $default_sink
+    move_sinks_to_new_default $default_sink
+}
+
+function move_sinks_to_new_default {
+    DEFAULT_SINK=$1
+    pactl list source-outputs | grep index: | grep -o '[0-9]\+' | while read SINK
+    do
+        pactl move-source-output $SINK $DEFAULT_SINK
+    done
+}
+
 case "$BLOCK_BUTTON" in
     1) pactl set-source-mute $(get_active_sink) toggle ;;
-    2) toggle_noise_cancelling ;;
+    # 2) toggle_noise_cancelling ;;
+    2) set_default_playback_device_next 1 ;;
     3) i3-msg -q "exec pavucontrol" ;;
     4) pactl set-source-volume $(get_active_sink) +$AUDIO_DELTA% ;;
     5) pactl set-source-volume $(get_active_sink) -$AUDIO_DELTA% ;;
@@ -67,7 +97,7 @@ function print_format {
 
 function print_block {
     GREP="Source \|Description:\|Mute:\|Volume: front"
-    ACTIVE_SINK=$(get_active_sink)
+    ACTIVE_SINK=$(pactl get-default-source)
     ACTIVE=$(pactl list sources | grep "$ACTIVE_SINK" -B2 -A7 | grep "$GREP")
 
     for name in INDEX NAME MUTED VOL; do
