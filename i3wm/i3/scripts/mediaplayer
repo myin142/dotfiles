@@ -12,8 +12,7 @@ esac
 DEFAULT_COLOR=${DEFAULT_COLOR:-"#ffffff"}
 MUTED_COLOR=${MUTED_COLOR:-"#dfdf32"}
 
-CURRENT=$(mpc current)
-SHORT=$(mpc current | awk '{print $3, $4, $5}') # $1 and $2 is not part of title
+CURRENT=$(mpc current | cut -d- -f2-)
 
 if [ -z "$CURRENT" ]; then
     exit
@@ -30,5 +29,5 @@ VOLUME=$(mpc | grep "volume:" | cut -d':' -f 2 | awk '{print $1}')
 
 ICON=""
 echo "$ICON $CURRENT ($VOLUME)"
-echo "$ICON $SHORT"
+echo "$ICON $VOLUME"
 echo "$COLOR"
