@@ -18,8 +18,8 @@ if [ $PERCENT != "" ]; then
     fi
 
     # print text
-    echo "$FULL_TEXT"
-    echo "$SHORT_TEXT"
+    echo "$FULL_TEXT"
+    echo "$SHORT_TEXT"
 fi
 
 # consider color and urgent flag only on discharge
