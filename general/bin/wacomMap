@@ -1,31 +1,39 @@
 #!/bin/bash
 
 pad="$(xsetwacom --list devices | grep 'type: PAD' | cut -f 1 | xargs)"
+stylus="$(xsetwacom --list devices | grep 'type: STYLUS' | cut -f 1 | xargs)"
 use=$1
 
-if [ -z $pad ]; then
+if [[ -z $pad ]]; then
     exit 0
 fi
 
-# Button 1: Left Bottom
-# Button 3: Left Top
-# Button 8: Right Bottom
-# Button 9: Right Top
+# Top
+# Button 12
+# Button 11
+# Button 10
+# Button 9
+#
+# Bottom
+# Button 8
+# Button 3
+# Button 2
+# Button 1
+#
+# Mid
+# Button 13
+
+xsetwacom set "$stylus" Rotate half
 
 case $use in
-	paint)
-		xsetwacom set "$pad" Button 1 key .
-		xsetwacom set "$pad" Button 3 key /
-		xsetwacom set "$pad" Button 8 key ctrl shift z
-		xsetwacom set "$pad" Button 9 key ctrl z
-	;;
-	text)
-		xsetwacom set "$pad" Button 1 key ctrl v
-		xsetwacom set "$pad" Button 3 key ctrl c
-		xsetwacom set "$pad" Button 8 key backspace
-		xsetwacom set "$pad" Button 9 key return
-	;;
-
 	*)
-		echo "Unknown use";
+		xsetwacom set "$pad" Button 9 key 7 # Selection
+		xsetwacom set "$pad" Button 12 key / # Eraser
+		xsetwacom set "$pad" Button 10 key ctrl shift z
+		xsetwacom set "$pad" Button 11 key ctrl z
+
+		xsetwacom set "$pad" Button 1 key . # Reset
+		xsetwacom set "$pad" Button 2 key ctrl
+		xsetwacom set "$pad" Button 3 key shift
+		xsetwacom set "$pad" Button 8 key del
 esac
