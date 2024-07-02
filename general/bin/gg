@@ -130,8 +130,8 @@ git_tag_delete() {
 git_diff_lines() {
     not_empty "$ARG" "Branch name cannot be empty"
     git log ${ARG}..HEAD --pretty=tformat: --numstat |
-        awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
-        { printf "added lines: %s removed lines: %s total lines: %s\n",add,subs,loc }'
+        awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 ; files += 1 } END \
+        { printf "\033[32madded lines: %s \033[31mremoved lines: %s \033[34mtotal lines: %s\n\033[37mChanged %s files\n",add,subs,loc,files }'
 }
 
 git_log_day() {
