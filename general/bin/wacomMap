@@ -28,9 +28,11 @@ xsetwacom set "$stylus" Rotate half
 case $use in
 	*)
 		xsetwacom set "$pad" Button 9 key 7 # Selection
-		xsetwacom set "$pad" Button 12 key / # Eraser
-		xsetwacom set "$pad" Button 10 key ctrl shift z
-		xsetwacom set "$pad" Button 11 key ctrl z
+		xsetwacom set "$pad" Button 10 key / # Eraser
+		xsetwacom set "$pad" Button 11 key ctrl shift z
+		xsetwacom set "$pad" Button 12 key ctrl z
+
+		xsetwacom set "$pad" Button 13 key m
 
 		xsetwacom set "$pad" Button 1 key . # Reset
 		xsetwacom set "$pad" Button 2 key ctrl
