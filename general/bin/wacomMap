@@ -29,7 +29,7 @@ done
 
 PAD=()
 while IFS= read -r line; do
-	STYLUS+=("$line")
+	PAD+=("$line")
 done < <(xsetwacom --list devices | grep 'type: PAD' | grep -o -E '[0-9]+')
 
 for id in "${PAD[@]}"; do
