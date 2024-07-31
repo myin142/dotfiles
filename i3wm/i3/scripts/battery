@@ -1,13 +1,13 @@
 #!/bin/sh
 
-PERCENT=$(acpi -b | awk '{ print $4 }' | grep -o '[0-9]\+')
-STATUS=$(acpi -b | awk '{ print $3}' | cut -f 1 -d,)
-TIME=$(acpi -b | awk '{ print $5}' | grep '[0-9]\+:[0-9]\+:[0-9]\+')
+PERCENT=$(acpi -b | awk '{ print $4 }' | grep -o '[0-9]\+' | head -1)
+STATUS=$(acpi -b | awk '{ print $3}' | cut -f 1 -d, | head -1)
+TIME=$(acpi -b | awk '{ print $5}' | grep '[0-9]\+:[0-9]\+:[0-9]\+' | head -1)
 
-if [ $PERCENT != "" ]; then
+if [[ $PERCENT != "" ]]; then
     FULL_TEXT="$PERCENT%"
 
-    if [ $STATUS == 'Charging' ]; then
+    if [[ $STATUS == 'Charging' ]]; then
         FULL_TEXT="$FULL_TEXT "
     fi
 
@@ -18,19 +18,19 @@ if [ $PERCENT != "" ]; then
     fi
 
     # print text
-    echo "$FULL_TEXT"
-    echo "$SHORT_TEXT"
+    echo " $FULL_TEXT"
+    echo " $SHORT_TEXT"
 fi
 
 # consider color and urgent flag only on discharge
-if [ $STATUS == 'Discharging' ]; then
-	if [ $PERCENT -lt 20 ]; then
+if [[ $STATUS == 'Discharging' ]]; then
+	if [[ $PERCENT -lt 20 ]]; then
 		echo "#FF4444"
-    elif [ $PERCENT -lt 40 ]; then
+    elif [[ $PERCENT -lt 40 ]]; then
 		echo "#FFAE00"
-    elif [ $PERCENT -lt 60 ]; then
+    elif [[ $PERCENT -lt 60 ]]; then
 		echo "#FFF600"
-    elif [ $PERCENT -lt 85 ]; then
+    elif [[ $PERCENT -lt 85 ]]; then
 		echo "#A8FF00"
     fi
 fi
