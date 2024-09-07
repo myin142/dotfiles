@@ -1,0 +1,17 @@
+FILE=/sys/class/backlight/intel_backlight/brightness
+MAX_FILE=/sys/class/backlight/intel_backlight/max_brightness
+VALUE=$1
+
+if [[ -z $VALUE ]]; then
+    echo "Specify a value for the brightness"
+    exit 0
+fi
+
+MAX_VALUE=$(cat $MAX_FILE)
+
+if [[ $VALUE -gt $MAX_VALUE ]]; then
+    echo "Value cannot be greater than $MAX_VALUE"
+    exit 0
+fi
+
+echo $VALUE > $FILE
