@@ -169,6 +169,7 @@ bindsym $mod+Shift+x exec ~/.bin/lock
 
 bindsym Print exec flameshot gui #scrot -u
 bindsym XF86Calculator exec flameshot gui # cannot find the Print button on the new keyboard...
+bindsym Ctrl+XF86Calculator exec ~/.bin/grayscale
 bindsym Shift+Print exec flameshot screen
 bindsym $mod+m exec ~/.bin/i3bartoggle
 

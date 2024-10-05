@@ -1,0 +1,12 @@
+#!/usr/bin/sh
+
+killall picom
+
+# use a file to track grayscale mode
+if grep -q '1' /tmp/grayscale; then
+    echo 0 > /tmp/grayscale 
+else
+    sleep 0.1
+    picom -b --backend glx --window-shader-fg ~/.config/picom/grayscale.glsl
+    echo 1 > /tmp/grayscale
+fi
