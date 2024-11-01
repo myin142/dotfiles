@@ -1,8 +1,14 @@
 #!/bin/sh
 
-PERCENT=$(acpi -b | awk '{ print $4 }' | grep -o '[0-9]\+' | head -1)
-STATUS=$(acpi -b | awk '{ print $3}' | cut -f 1 -d, | head -1)
-TIME=$(acpi -b | awk '{ print $5}' | grep '[0-9]\+:[0-9]\+:[0-9]\+' | head -1)
+BATTERY=$(acpi -b | grep "Charging")
+if [[ -z $BATTERY ]]; then
+    BATTERY=$(acpi -b | head -1)
+fi
+
+
+PERCENT=$(echo $BATTERY | awk '{ print $4 }' | grep -o '[0-9]\+' | head -1)
+STATUS=$(echo $BATTERY | awk '{ print $3}' | cut -f 1 -d, | head -1)
+TIME=$(echo $BATTERY | awk '{ print $5}' | grep '[0-9]\+:[0-9]\+:[0-9]\+' | head -1)
 
 if [[ $PERCENT != "" ]]; then
     FULL_TEXT="$PERCENT%"
