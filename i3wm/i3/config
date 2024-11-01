@@ -168,6 +168,7 @@ bindsym $mod+Shift+z exec ~/.bin/lock && systemctl suspend
 bindsym $mod+Shift+x exec ~/.bin/lock
 
 bindsym Print exec flameshot gui #scrot -u
+bindsym Ctrl+Print exec ~/.bin/grayscale
 bindsym XF86Calculator exec flameshot gui # cannot find the Print button on the new keyboard...
 bindsym Ctrl+XF86Calculator exec ~/.bin/grayscale
 bindsym Shift+Print exec flameshot screen
