@@ -170,6 +170,7 @@ case "$CMD" in
 
     "gl") git log --oneline --graph --decorate;;
     "gla") git log --all --oneline --graph --decorate;;
+    "glm") git log --oneline --graph --decorate --first-parent origin/${ARG:-master};;
     "gld") git_log_day;;
     "gs") git status;;
     "gsub") git submodule update --init --recursive;;
