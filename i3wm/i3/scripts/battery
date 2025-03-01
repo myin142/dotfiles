@@ -2,7 +2,7 @@
 
 BATTERY=$(acpi -b | grep "Charging")
 if [[ -z $BATTERY ]]; then
-    BATTERY=$(acpi -b | head -1)
+    BATTERY=$(acpi -b | grep -v "0%" | head -1)
 fi
 
 
