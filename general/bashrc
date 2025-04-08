@@ -86,8 +86,9 @@ export GODOT_USER=$HOME/.local/share/godot/app_userdata
 export JAVA_HOME=/usr/lib/jvm/default-runtime
 export ANDROID_SDK_ROOT=~/Android
 export BROWSER=/usr/bin/firefox
+export NODE_OPTIONS=--max_old_space_size=16448
 
-PATH=$PATH:~/.bin:/home/sakkaku/.local/share/gem/ruby/2.7.0/bin/:/opt/android-sdk/cmdline-tools/latest/bin:~/.dotnet/tools:~/Downloads/flutter-git/bin:/opt/cuda-10.0/bin
+PATH=$PATH:~/.bin:/home/sakkaku/.local/share/gem/ruby/2.7.0/bin/:/opt/android-sdk/cmdline-tools/latest/bin:~/.dotnet/tools:~/Downloads/flutter-git/bin:/opt/cuda-10.0/bin:/opt/google-cloud-cli/bin
 
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo
 MIC=alsa_input.pci-0000_00_1b.0.analog-stereo
@@ -99,6 +100,16 @@ eval $(keychain --eval --quiet)
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
 
-xset s off
-xset s noblank
-setxkbmap -option caps:escape
+if [[ "$XDG_SESSION_TYPE" = "x11" ]]; then
+    xset s off
+    xset s noblank
+    setxkbmap -option caps:escape
+fi
+
+export KENDO_UI_LICENSE="$(cat $HOME/Documents/evolit/data/kendo-ui-license.txt)"
+
+PATH="/home/myin/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/myin/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/myin/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/myin/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/myin/perl5"; export PERL_MM_OPT;
