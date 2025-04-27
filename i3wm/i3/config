@@ -71,7 +71,6 @@ for_window [class="Sitzungsaufzeichnung"] floating enable
 
 # Hide Thin Borders
 hide_edge_borders none
-
 new_window pixel 0
 
 # Gaps
@@ -89,7 +88,7 @@ new_window pixel 0
 bindsym $mod+Return exec kitty
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+t focus mode_toggle
-bindsym $mod+d exec rofi -run-list-command "~/.config/rofi/rofi-list ~/.bin" -run-command "/bin/bash -i -c '{cmd}'" -rnow -show run
+bindsym $mod+d exec rofi -run-list-command "~/.config/rofi/rofi-list ~/.bin" -run-command "/bin/bash -i -c '{cmd}'" -rnow -show run -icon-theme "Papirus" -show-icons
 bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
 bindsym $mod+Shift+d exec rofi -show window
 
@@ -231,7 +230,7 @@ exec --no-startup-id redshift-gtk
 exec --no-startup-id dropbox
 
 exec --no-startup-id ~/.bin/wmReload
-exec --no-startup-id ~/.bin/remapCaps
+# exec --no-startup-id ~/.bin/remapCaps
 
 # exec --no-startup-id ~/.screenlayout/main.sh
 exec --no-startup-id "sleep 1; picom --config ~/.config/picom/picom.conf"

@@ -10,4 +10,5 @@ configuration {
 element-text, element-icon {
     background-color: inherit;
     text-color: inherit;
+    padding: 3px;
 }
