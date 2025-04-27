@@ -72,6 +72,8 @@ for_window [class="Sitzungsaufzeichnung"] floating enable
 # Hide Thin Borders
 hide_edge_borders none
 default_border none
+titlebar_border_thickness 0
+titlebar_padding 0
 
 # Prevent focus on all new opened windows
 #no_focus [class=".*"]
