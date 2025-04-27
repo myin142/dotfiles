@@ -1,0 +1,18 @@
+#!/bin/bash
+set -a
+
+AUDIO_DELTA=${AUDIO_DELTA:-5}
+
+function get_active_sink() {
+    local default=$(pactl get-default-source)
+    local active=$(pactl list sources | grep "$default" -B2 | grep "Source ")
+    active=$(echo $active | grep -o '[0-9]\+')
+    echo $active
+}
+
+case "$1" in
+    "mute") pactl set-source-mute $(get_active_sink) toggle ;;
+    "up") pactl set-source-volume $(get_active_sink) +$AUDIO_DELTA% ;;
+    "down") pactl set-source-volume $(get_active_sink) -$AUDIO_DELTA% ;;
+esac
+

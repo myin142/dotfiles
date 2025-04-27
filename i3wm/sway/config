@@ -1,0 +1,211 @@
+# Set Mod
+set $mod Mod4
+
+# Set Colours
+# set_from_resource $bg-color            color0 #2f343f
+# set_from_resource $inactive-bg-color   color0 #2f343f
+# set_from_resource $text-color          color7 #f3f4f5
+# set_from_resource $inactive-text-color color3 #676E7D
+# set_from_resource $urgent-bg-color     color3 #E53935
+
+# Set Font
+font pango:Hack Nerd Font,12
+
+# Floating Mod
+floating_modifier $mod
+
+#############
+# WORKSPACE #
+#############
+
+set $monitorHDMI DP-3-2
+set $monitorDP DP-3-3
+set $laptop eDP-1
+
+
+# Set Workspace Names (insert icon in insert mode with e.g CTRL+V uf001)
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
+
+workspace $ws1 output $monitorDP
+workspace $ws3 output $monitorDP
+workspace $ws7 output $monitorDP
+# workspace $ws9 output $monitorDP
+workspace $ws10 output $monitorDP
+workspace $ws2 output $monitorHDMI
+workspace $ws8 output $laptop
+
+# Program on specific workspaces (xprop command)
+#assign [class="Firefox"] $ws1
+#assign [class="Chromium"] $ws1
+assign [class="vlc"] $ws6
+assign [class="youtube-player"] $ws6
+assign [class="Gimp"] $ws7
+assign [class="krita"] $ws7
+assign [class="Slack"] $ws8
+# assign [class="firefox"] $ws1
+assign [class="Brave-browser"] $ws10
+assign [class="microsoft teams - preview"] $ws8
+assign [class="Microsoft Teams - Preview"] $ws8
+assign [class="discord"] $ws8
+assign [class="steam"] $ws9
+assign [class="Lutris"] $ws9
+assign [class="pavucontrol"] $ws10
+
+for_window [class="Wfica"] floating enable
+for_window [class="wfica"] floating enable
+for_window [class="Remotedesktopverbindung"] floating enable
+for_window [class="Sitzungsaufzeichnung"] floating enable
+
+#####################
+# WINDOW APPEARANCE #
+#####################
+
+# Hide Thin Borders
+hide_edge_borders none
+default_border none
+
+# Prevent focus on all new opened windows
+#no_focus [class=".*"]
+
+################
+# KEY BINDINGS #
+################
+
+bindsym $mod+Return exec kitty
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+t focus mode_toggle
+bindsym $mod+d exec rofi -run-list-command "~/.config/rofi/rofi-list ~/.bin" -run-command "/bin/bash -i -c '{cmd}'" -rnow -show run
+bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
+bindsym $mod+Shift+d exec rofi -show window
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+a focus parent
+
+# Mode Binding
+bindsym $mod+Shift+e mode "quit"
+#exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# resize window
+bindsym $mod+Mod1+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Mod1+j resize grow height 10 px or 10 ppt
+bindsym $mod+Mod1+k resize shrink height 10 px or 10 ppt
+bindsym $mod+Mod1+l resize grow width 10 px or 10 ppt
+
+# split in horizontal orientation
+bindsym $mod+Shift+v split h
+bindsym $mod+v split v
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 swaybar
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 swaybar
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 swaybar
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec light -A 20 #xbacklight -inc 20 #light -A 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 20 #xbacklight -dec 20 #light -U 20 # decrease screen brightness
+
+# Extra Keys / Shortcuts
+bindsym XF86Sleep exec ~/.bin/lock && systemctl suspend
+bindsym $mod+Shift+z exec ~/.bin/lock && systemctl suspend
+bindsym $mod+Shift+x exec ~/.bin/lock
+
+bindsym Print exec flameshot gui #scrot -u
+bindsym Ctrl+Print exec ~/.bin/grayscale
+bindsym XF86Calculator exec flameshot gui # cannot find the Print button on the new keyboard...
+bindsym Ctrl+XF86Calculator exec ~/.bin/grayscale
+bindsym Shift+Print exec flameshot screen
+bindsym $mod+m exec ~/.bin/i3bartoggle
+
+bindsym Ctrl+space exec dunstctl close
+bindsym Ctrl+Shift+space exec dunstctl close-all
+
+bar {
+    modifier $mod
+
+	tray_output primary
+	# status_command while ~/.config/sway/swaybar.sh; do sleep 1; done
+    swaybar_command waybar
+}
+
+input "type:keyboard" {
+    xkb_options caps:escape
+}
+
+input "type:touchpad" {
+    dwt enabled
+    dwtp enabled
+    tap enabled
+    natural_scroll enabled
+    tap_button_map lrm
+}
+
+
+mode "quit" {
+	bindsym $mod+Shift+e exit
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+output * bg ~/.wallpaper.png fill
+output eDP-1 resolution 3456x2160 position 3640,0 scale 1.5
+output "LG Electronics LG ULTRAGEAR 210MAMBSK931" resolution 2560x1440 position 1080,0
+output "Iiyama North America PL2530H 1154382104198" resolution 1920x1080 position 0,0 transform 90
+
+exec --no-startup-id gammastep
+exec --no-startup-id ibus start --type kde-wayland
+exec --no-startup-id dropbox

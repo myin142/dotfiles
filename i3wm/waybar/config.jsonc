@@ -1,0 +1,174 @@
+// -*- mode: json -*-
+
+{
+	"layer": "top",
+	"position": "bottom",
+
+	"modules-left": [
+		"sway/workspaces",
+		"custom/right-arrow-dark",
+        "sway/mode"
+	],
+	"modules-center": [
+		"custom/left-arrow-dark",
+		"clock#1",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"clock#2",
+		"custom/right-arrow-dark",
+		"custom/right-arrow-light",
+		"clock#3",
+		"custom/right-arrow-dark"
+	],
+	"modules-right": [
+		"custom/left-arrow-dark",
+		"mpd",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"pulseaudio",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"pulseaudio#mic",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"network",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"memory",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"cpu",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"battery",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"disk",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"tray"
+	],
+
+	"custom/left-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"sway/workspaces": {
+		"disable-scroll": true
+	},
+	"clock#1": {
+		"format": "{:%a}",
+		"tooltip": false
+	},
+	"clock#2": {
+		"format": "{:%H:%M}",
+		"tooltip": false,
+        "on-click": "zenity --calendar"
+	},
+	"clock#3": {
+		"format": "{:%m-%d}",
+		"tooltip": false
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon} {volume}% ",
+        "format-muted": "󰖁 {volume}%",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
+    "pulseaudio#mic": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "on-click": "$HOME/.config/waybar/scripts/mic mute",
+        "on-click-right": "pavucontrol -t 4",
+        "on-scroll-up": "$HOME/.config/waybar/scripts/mic up",
+        "on-scroll-down": "$HOME/.config/waybar/scripts/mic down",
+        "tooltip-format": "{source_desc} | {source_volume}%",
+        "scroll-step": 5
+    },
+    "network": {
+        "format": "{ipaddr}",
+        "format-wifi": "{icon} {ipaddr}",
+        "format-ethernet": "󰌘 {ipaddr}",
+        "format-disconnected": "󰌙",
+        "format-linked": "󰈁 {ifname} (No IP)",
+        "tooltip-format-wifi": "{icon} {essid} {signalStrength}%",
+        "tooltip-format-ethernet": "󰌘 {ifname} {ipaddr}",
+        "tooltip-format-disconnected": "󰌙 Disconnected",
+        "max-length": 30,
+        "format-icons": [
+            "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
+        ]
+    },
+    "mpd": {
+        "format": "{stateIcon} {volume}%",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "interval": 10,
+        "state-icons": {
+            "paused": "󰝛",
+            "playing": ""
+        },
+        "tooltip-format": "{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        "tooltip-format-disconnected": "MPD (disconnected)",
+        "on-click": "mpc toggle -q",
+        "on-click-right": "mpc next -q",
+        "on-scroll-up": "mpc volume -q +5",
+        "on-scroll-down": "mpc volume -q -5"
+    },
+	"memory": {
+		"interval": 5,
+		"format": " {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "󰾆 {usage:2}%",
+        "on-click": "htop"
+	},
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"disk": {
+		"interval": 5,
+		"format": " {percentage_used:2}%",
+		"path": "/"
+	},
+	"tray": {
+		"icon-size": 20
+	}
+}
+
