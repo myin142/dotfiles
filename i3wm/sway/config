@@ -83,7 +83,7 @@ default_border none
 bindsym $mod+Return exec kitty
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+t focus mode_toggle
-bindsym $mod+d exec rofi -run-list-command "~/.config/rofi/rofi-list ~/.bin" -run-command "/bin/bash -i -c '{cmd}'" -rnow -show run
+bindsym $mod+d exec rofi -run-list-command "~/.config/rofi/rofi-list ~/.bin" -run-command "/bin/bash -i -c '{cmd}'" -rnow -show run -icon-theme "Papirus" -show-icons
 bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
 bindsym $mod+Shift+d exec rofi -show window
 
