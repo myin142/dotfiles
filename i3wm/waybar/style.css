@@ -3,6 +3,10 @@
 	font-family: monospace;
 }
 
+window.eDP-1 * {
+    font-size: 16px;
+}
+
 window#waybar {
 	background: #292b2e;
 	color: #fdf6e3;
