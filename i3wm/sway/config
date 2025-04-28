@@ -18,9 +18,12 @@ floating_modifier $mod
 # WORKSPACE #
 #############
 
-set $monitorHDMI DP-6
-set $monitorDP DP-7
-set $laptop eDP-1
+# "Iiyama North America PL2530H 1154382104198" 
+set $monitorSide DP-6
+# "LG Electronics LG ULTRAGEAR 210MAMBSK931"
+set $monitorMain DP-7
+# "Samsung Display Corp. 0x414D Unknown"
+set $monitorLap eDP-1
 
 # Set Workspace Names (insert icon in insert mode with e.g CTRL+V uf001)
 set $ws1 "1:"
@@ -34,13 +37,13 @@ set $ws8 "8:"
 set $ws9 "9:"
 set $ws10 "10:"
 
-workspace $ws1 output $monitorDP
-workspace $ws3 output $monitorDP
-workspace $ws7 output $monitorDP
-# workspace $ws9 output $monitorDP
-workspace $ws10 output $monitorDP
-workspace $ws2 output $monitorHDMI
-workspace $ws8 output $laptop
+workspace $ws1 output $monitorMain
+workspace $ws3 output $monitorMain
+workspace $ws7 output $monitorMain
+# workspace $ws9 output $monitorMain
+workspace $ws10 output $monitorMain
+workspace $ws2 output $monitorSide
+workspace $ws8 output $monitorLap
 
 # Program on specific workspaces (xprop command)
 #assign [class="Firefox"] $ws1
@@ -200,10 +203,16 @@ mode "quit" {
 }
 
 output * bg ~/.wallpaper.png fill
-output eDP-1 resolution 3456x2160 position 3640,0 scale 1.5
-output "LG Electronics LG ULTRAGEAR 210MAMBSK931" resolution 2560x1440 position 1080,0
-output "Iiyama North America PL2530H 1154382104198" resolution 1920x1080 position 0,0 transform 90
+output $monitorLap resolution 3456x2160 position 3640,0 scale 1.5
+output $monitorMain resolution 2560x1440 position 1080,0
+output $monitorSide resolution 1920x1080 position 0,0 transform 90
+
+input type:tablet_pad map_to_output $monitorMain
+input type:tablet_pad left_handed 1
+input type:tablet_tool map_to_output $monitorMain
+input type:tablet_tool left_handed 1
 
 exec --no-startup-id gammastep
 exec --no-startup-id fcitx5
 exec --no-startup-id dropbox
+exec --no-startup-id dunst
