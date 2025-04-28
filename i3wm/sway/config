@@ -18,8 +18,8 @@ floating_modifier $mod
 # WORKSPACE #
 #############
 
-set $monitorHDMI DP-3-2
-set $monitorDP DP-3-3
+set $monitorHDMI DP-6
+set $monitorDP DP-7
 set $laptop eDP-1
 
 # Set Workspace Names (insert icon in insert mode with e.g CTRL+V uf001)
