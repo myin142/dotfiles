@@ -9,17 +9,6 @@
 		"custom/right-arrow-dark",
         "sway/mode"
 	],
-	"modules-center": [
-		"custom/left-arrow-dark",
-		"clock#1",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"clock#2",
-		"custom/right-arrow-dark",
-		"custom/right-arrow-light",
-		"clock#3",
-		"custom/right-arrow-dark"
-	],
 	"modules-right": [
 		"custom/left-arrow-dark",
 		"mpd",
@@ -46,6 +35,9 @@
 		"disk",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
+		"clock",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
 		"tray"
 	],
 
@@ -66,24 +58,34 @@
 		"tooltip": false
 	},
 	"sway/workspaces": {
-		"disable-scroll": true
+		"disable-scroll": false
 	},
-	"clock#1": {
-		"format": "{:%a}",
-		"tooltip": false
+	"clock": {
+		"format": "{:%H:%M %Y-%m-%d %a}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode"          : "year",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                      "months":     "<span color='#ffead3'><b>{}</b></span>",
+                      "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                      "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                      "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                      "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                      }
+            },
+        "actions":  {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
 	},
-	"clock#2": {
-		"format": "{:%H:%M}",
-		"tooltip": false,
-        "on-click": "zenity --calendar"
-	},
-	"clock#3": {
-		"format": "{:%m-%d}",
-		"tooltip": false
-	},
-
 	"pulseaudio": {
-		"format": "{icon} {volume:2}%",
+		"format": "{icon}{volume:2}%",
 		"format-bluetooth": "{icon} {volume}% ",
         "format-muted": "󰖁 {volume}%",
 		"format-icons": {
@@ -100,7 +102,7 @@
     "pulseaudio#mic": {
         "format": "{format_source}",
         "format-source": " {volume}%",
-        "format-source-muted": "",
+        "format-source-muted": " {volume}%",
         "on-click": "$HOME/.config/waybar/scripts/mic mute",
         "on-click-right": "pavucontrol -t 4",
         "on-scroll-up": "$HOME/.config/waybar/scripts/mic up",
@@ -125,7 +127,7 @@
     "mpd": {
         "format": "{stateIcon} {volume}%",
         "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "format-stopped": "Stopped ",
         "interval": 10,
         "state-icons": {
             "paused": "󰝛",
