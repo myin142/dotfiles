@@ -58,7 +58,8 @@
 		"tooltip": false
 	},
 	"sway/workspaces": {
-		"disable-scroll": false
+		"disable-scroll": false,
+        "disable-scroll-wraparound": true
 	},
 	"clock": {
 		"format": "{:%H:%M %Y-%m-%d %a}",
