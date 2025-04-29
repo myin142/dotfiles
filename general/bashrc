@@ -88,6 +88,12 @@ export ANDROID_SDK_ROOT=~/Android
 export BROWSER=/usr/bin/firefox
 export NODE_OPTIONS=--max_old_space_size=16448
 
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+export QT_QPA_PLATFORM=wayland
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_DESKTOP=sway
+
 PATH=$PATH:~/.bin:/home/sakkaku/.local/share/gem/ruby/2.7.0/bin/:/opt/android-sdk/cmdline-tools/latest/bin:~/.dotnet/tools:~/Downloads/flutter-git/bin:/opt/cuda-10.0/bin:/opt/google-cloud-cli/bin
 
 HEADSET=alsa_output.usb-Logitech_Logitech_G430_Gaming_Headset-00.analog-stereo

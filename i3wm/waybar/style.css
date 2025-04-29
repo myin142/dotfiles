@@ -31,7 +31,8 @@ window#waybar {
 #disk,
 #network,
 #mpd,
-#tray {
+#tray,
+#idle_inhibitor {
 	background: #1a1a1a;
 }
 
@@ -56,8 +57,8 @@ window#waybar {
     background: red;
 }
 
-#pulseaudio {
-	color: #268bd2;
+#pulseaudio,#mpd {
+	color: aqua;
 }
 #memory {
 	color: #2aa198;
@@ -66,16 +67,22 @@ window#waybar {
 	color: #6c71c4;
 }
 #battery {
-	color: #859900;
+	color: green;
+}
+#battery.warning {
+	color: orange;
+}
+#battery.critical {
+	color: red;
+}
+#battery.charging {
+	color: yellow;
 }
 #disk {
 	color: #b58900;
 }
 #network {
 	color: #33DD33;
-}
-#mpd {
-	color: #268bd2;
 }
 #tray {
     padding: 4px 8px;
@@ -89,7 +96,8 @@ window#waybar {
 #mode,
 #network,
 #mpd,
-#disk {
+#disk,
+#idle_inhibitor {
 	padding: 0 8px;
 }
 

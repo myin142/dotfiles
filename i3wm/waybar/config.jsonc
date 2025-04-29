@@ -5,6 +5,7 @@
 	"position": "bottom",
 
 	"modules-left": [
+        "idle_inhibitor",
 		"sway/workspaces",
 		"custom/right-arrow-dark",
         "sway/mode"
@@ -61,6 +62,14 @@
 		"disable-scroll": false,
         "disable-scroll-wraparound": true
 	},
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "timeout": 60
+    },
 	"clock": {
 		"format": "{:%H:%M %Y-%m-%d %a}",
         "tooltip-format": "<tt>{calendar}</tt>",
@@ -86,7 +95,7 @@
         }
 	},
 	"pulseaudio": {
-		"format": "{icon}{volume:2}%",
+		"format": "{icon} {volume:2}%",
 		"format-bluetooth": "{icon} {volume}% ",
         "format-muted": "󰖁 {volume}%",
 		"format-icons": {
@@ -112,12 +121,12 @@
         "scroll-step": 5
     },
     "network": {
-        "format": "{ipaddr}",
-        "format-wifi": "{icon} {ipaddr}",
-        "format-ethernet": "󰌘 {ipaddr}",
+        "format": "{ifname}",
+        "format-wifi": "{icon} {ifname}",
+        "format-ethernet": "󰌘 {ifname}",
         "format-disconnected": "󰌙",
         "format-linked": "󰈁 {ifname} (No IP)",
-        "tooltip-format-wifi": "{icon} {essid} {signalStrength}%",
+        "tooltip-format-wifi": "{icon} {essid} {ipaddr} {signalStrength}%",
         "tooltip-format-ethernet": "󰌘 {ifname} {ipaddr}",
         "tooltip-format-disconnected": "󰌙 Disconnected",
         "max-length": 30,
@@ -144,7 +153,8 @@
     },
 	"memory": {
 		"interval": 5,
-		"format": " {}%"
+		"format": " {}%",
+        "tooltip-format": "{used}G/{total}G"
 	},
 	"cpu": {
 		"interval": 5,
@@ -158,6 +168,7 @@
 			"critical": 15
 		},
 		"format": "{icon} {capacity}%",
+        "format-charging": "{icon} {capacity}%",
 		"format-icons": [
 			"",
 			"",
@@ -169,7 +180,8 @@
 	"disk": {
 		"interval": 5,
 		"format": " {percentage_used:2}%",
-		"path": "/"
+		"path": "/",
+        "tooltip-format": "{used}/{total}"
 	},
 	"tray": {
 		"icon-size": 20

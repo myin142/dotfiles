@@ -9,10 +9,11 @@ link() {
 }
 
 sudo pacman -S i3-gaps i3blocks i3lock picom dunst redshift rofi rofi-calc kitty \
-    python-pywal feh net-tools noto-fonts-cjk noto-fonts-emoji ibus ibus-sunpinyin ibus-anthy jq flameshot \
-    cronie light \
-    sway swaylock swaybg swaybar gammastep \
-    fcitx5 fcitx5-rime fcitx5-anthy fcitx5-hangul
+    python-pywal feh net-tools noto-fonts-cjk noto-fonts-emoji jq flameshot \
+    cronie brightnessctl \
+    sway swaylock swayidle swaybg waybar gammastep \
+    fcitx5 fcitx5-rime fcitx5-anthy fcitx5-hangul \
+    xdg-desktop-portal xdg-desktop-portal-wlr grim
 
 link i3 $HOME/.config/i3
 link kitty $HOME/.config/kitty
@@ -30,4 +31,5 @@ link sway $HOME/.config/sway
 link waybar $HOME/.config/waybar
 link gammastep $HOME/.config/gammastep
 link wofi $HOME/.config/wofi
+link eww $HOME/.config/eww
 
