@@ -63,7 +63,7 @@ window#waybar {
 #mpd.stopped {
     color: #777777;
 }
-#battery, #disk {
+#battery {
 	color: #33DD33;
 }
 #battery.good {
