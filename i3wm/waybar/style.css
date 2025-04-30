@@ -57,32 +57,26 @@ window#waybar {
     background: red;
 }
 
-#pulseaudio,#mpd {
-	color: aqua;
+#pulseaudio.mic.source-muted, #pulseaudio:not(.mic).muted, #mpd.paused {
+    color: red;
 }
-#memory {
-	color: #2aa198;
+#mpd.stopped {
+    color: #777777;
 }
-#cpu {
-	color: #6c71c4;
+#battery, #disk {
+	color: #33DD33;
 }
-#battery {
-	color: green;
+#battery.good {
+	color: yellow;
 }
-#battery.warning {
+#battery.warning, #disk.warning, #memory.warning, #cpu.warning {
 	color: orange;
 }
-#battery.critical {
+#battery.critical, #disk.critical, #memory.critical, #cpu.critical {
 	color: red;
 }
 #battery.charging {
-	color: yellow;
-}
-#disk {
-	color: #b58900;
-}
-#network {
-	color: #33DD33;
+	color: white;
 }
 #tray {
     padding: 4px 8px;
