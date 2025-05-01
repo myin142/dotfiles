@@ -136,8 +136,8 @@
     },
     "mpd": {
         "format": "{stateIcon} {volume}%",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "Stopped ",
+        "format-disconnected": " ",
+        "format-stopped": "",
         "interval": 10,
         "state-icons": {
             "paused": "󰝛",
