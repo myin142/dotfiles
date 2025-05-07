@@ -167,7 +167,7 @@ bindsym XF86Sleep exec swaylock -C ~/.config/sway/lock-config && systemctl suspe
 bindsym $mod+Shift+z exec swaylock -C ~/.config/sway/lock-config && systemctl suspend
 bindsym $mod+Shift+x exec swaylock -C ~/.config/sway/lock-config
 
-bindsym Print exec flameshot gui
+bindsym Print exec QT_QPA_PLATFORM=xcb flameshot gui
 bindsym Ctrl+Print exec ~/.bin/grayscale
 bindsym Shift+Print exec flameshot screen
 bindsym XF86Calculator exec flameshot gui # cannot find the Print button on the new keyboard...
@@ -203,9 +203,10 @@ mode "quit" {
 }
 
 output * bg ~/.wallpaper.png fill
-output $monitorLap resolution 3456x2160 position 3640,0 scale 1.5
+output $monitorLap resolution 3456x2160 position 3640,0 scale 1
 output $monitorMain resolution 2560x1440 position 1080,0
 output $monitorSide resolution 1920x1080 position 0,0 transform 90
+bindsym Alt+Shift+D exec swaymsg 'output $monitorLap resolution 3456x2160 position "0,0" scale 1'
 
 input type:tablet_pad map_to_output $monitorMain
 input type:tablet_pad left_handed 1
@@ -224,3 +225,9 @@ exec swayidle -w \
 	before-sleep 'swaylock -f -c 000000'
 
 seat seat0 hide_cursor 5000
+
+# For flameshot
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
