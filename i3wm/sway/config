@@ -163,8 +163,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl s 20%+
 bindsym XF86MonBrightnessDown exec brightnessctl s 20%-
 
 # Extra Keys / Shortcuts
-bindsym XF86Sleep exec swaylock -C ~/.config/sway/lock-config && systemctl suspend
-bindsym $mod+Shift+z exec swaylock -C ~/.config/sway/lock-config && systemctl suspend
+bindsym XF86Sleep exec systemctl suspend
+bindsym $mod+Shift+z exec systemctl suspend
 bindsym $mod+Shift+x exec swaylock -C ~/.config/sway/lock-config
 
 bindsym Print exec QT_QPA_PLATFORM=xcb flameshot gui
@@ -217,6 +217,7 @@ exec --no-startup-id gammastep
 exec --no-startup-id fcitx5
 exec --no-startup-id dropbox
 exec --no-startup-id dunst
+
 exec_always apply-theme
 
 exec swayidle -w \
@@ -228,6 +229,8 @@ seat seat0 hide_cursor 5000
 
 # For flameshot
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec hash dbus-update-activation-environment 2>/dev/null && \
+exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
+exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
