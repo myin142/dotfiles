@@ -32,7 +32,7 @@ window#waybar {
 #network,
 #mpd,
 #tray,
-#weather,
+#custom-weather,
 #idle_inhibitor {
 	background: #1a1a1a;
 }
@@ -99,7 +99,7 @@ window#waybar {
 #network,
 #mpd,
 #disk,
-#weather,
+#custom-weather,
 #idle_inhibitor {
 	padding: 0 8px;
 }

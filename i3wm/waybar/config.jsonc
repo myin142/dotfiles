@@ -13,7 +13,7 @@
 	],
 	"modules-right": [
 		"custom/left-arrow-dark",
-        "weather",
+        "custom/weather",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
 		"mpd",
@@ -129,7 +129,7 @@
         "tooltip-format": "{source_desc} | {source_volume}%",
         "scroll-step": 5
     },
-    "weather": {
+    "custom/weather": {
         "format": "{}",
         "tooltip": true,
         "interval": 600,
