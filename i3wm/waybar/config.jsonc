@@ -7,10 +7,14 @@
 	"modules-left": [
         "idle_inhibitor",
 		"sway/workspaces",
+        "hyprland/workspaces",
 		"custom/right-arrow-dark",
         "sway/mode"
 	],
 	"modules-right": [
+		"custom/left-arrow-dark",
+        "weather",
+		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
 		"mpd",
 		"custom/left-arrow-light",
@@ -62,6 +66,11 @@
 		"disable-scroll": false,
         "disable-scroll-wraparound": true
 	},
+    "hyprland/workspaces": {
+         "format": "{icon}",
+         "on-scroll-up": "hyprctl dispatch workspace e+1",
+         "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -113,12 +122,21 @@
         "format": "{format_source}",
         "format-source": " {volume}%",
         "format-source-muted": " {volume}%",
-        "on-click": "$HOME/.config/waybar/scripts/mic mute",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
         "on-click-right": "pavucontrol -t 4",
-        "on-scroll-up": "$HOME/.config/waybar/scripts/mic up",
-        "on-scroll-down": "$HOME/.config/waybar/scripts/mic down",
+        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
         "tooltip-format": "{source_desc} | {source_volume}%",
         "scroll-step": 5
+    },
+    "weather": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 600,
+        "exec": "wttrbar",
+        // TODO: find out how to --hold without instantiating full shell profile
+        // "on-click": "kitty --hold curl http://wttr.in/Vienna",
+        "return-type": "json"
     },
     "network": {
         "format": "{ifname}",
