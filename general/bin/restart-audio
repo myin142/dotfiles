@@ -1,0 +1,7 @@
+#!/bin/sh
+
+systemctl --user restart pipewire
+systemctl --user restart pipewire-pulse
+
+sudo -i
+echo 0 > /sys/module/snd_hda_intel/parameters/power_save
