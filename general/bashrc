@@ -84,13 +84,13 @@ export DOTFILES=$HOME/.dotfiles
 export GODOT_USER=$HOME/.local/share/godot/app_userdata
 
 export JAVA_HOME=/usr/lib/jvm/default-runtime
-export ANDROID_SDK_ROOT=~/Android
+# export ANDROID_SDK_ROOT=~/Android
 export BROWSER=/usr/bin/firefox
 export NODE_OPTIONS=--max_old_space_size=16448
 
-export SDL_VIDEODRIVER=wayland
+export SDL_VIDEODRIVER=wayland,x11,windows
 export _JAVA_AWT_WM_NONREPARENTING=1
-export QT_QPA_PLATFORM=wayland
+# export QT_QPA_PLATFORM=wayland
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_DESKTOP=sway
 
@@ -112,6 +112,8 @@ if [[ "$XDG_SESSION_TYPE" = "x11" ]]; then
     setxkbmap -option caps:escape
 fi
 
+bind Space:magic-space
+
 export KENDO_UI_LICENSE="$(cat $HOME/Documents/evolit/data/kendo-ui-license.txt)"
 
 PATH="/home/myin/perl5/bin${PATH:+:${PATH}}"; export PATH;
@@ -119,3 +121,11 @@ PERL5LIB="/home/myin/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/myin/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/myin/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/myin/perl5"; export PERL_MM_OPT;
+
+export VRCHAT_PATH="/home/myin/.local/share/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/AppData/LocalLow/VRChat/VRChat"
+
+# ICD_DIR="/usr/share/vulkan/icd.d"
+# export DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1
+# export VK_DRIVER_FILES="${ICD_DIR}/radeon_icd.i686.json:${ICD_DIR}/radeon_icd.x86_64.json"
+# export DXVK_FILTER_DEVICE_NAME="AMD Radeon RX"
+
