@@ -3,14 +3,8 @@
 # https://liolok.com/containerize-steam-with-systemd-nspawn/
 
 # Steam needs a locale
-sed -i '/^# en_US.UTF-8/s/^..//' /etc/locale.gen
+sed -i '/^#en_US.UTF-8/s/^.//' /etc/locale.gen
 locale-gen
-
-dpkg --add-architecture i386
-apt update
-apt install steam
-
-ln --verbose --symbolic /usr/games/steam /usr/local/bin/
 
 useradd --create-home steam
 su --login steam
