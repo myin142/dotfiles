@@ -1,0 +1,26 @@
+#!/bin/sh
+
+STEAMAPPSPATH="$HOME/.steam/steam/steamapps"
+BEP_WIN="$HOME/Downloads/bep-win"
+
+GAME="$1"
+APP_ID="$2"
+
+if [ -z "$GAME" ]; then
+    exit
+fi
+
+if [ -z "$APP_ID" ]; then
+    exit
+fi
+
+# Add this to steam properties
+# WINEDLLOVERRIDES="winhttp=n,b" %command%
+
+cp $BEP_WIN/* "$STEAMAPPSPATH/common/$GAME/" -rf
+
+cd "$STEAMAPPSPATH/compatdata/$APP_ID/pfx/drive_c/windows/syswow64"
+rm winhttp.dll
+ln -sf "$STEAMAPPSPATH/common/$GAME/winhttp.dll" .
+
+# protontricks --gui

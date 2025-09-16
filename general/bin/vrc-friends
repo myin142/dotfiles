@@ -1,0 +1,3 @@
+#!/bin/sh
+
+wine $HOME/.wine/drive_c/users/myin/AppData/Local/Programs/vrc-friend-connect/VRC\ Friend\ Connect.exe

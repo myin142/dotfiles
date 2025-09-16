@@ -1,4 +1,0 @@
-#!/bin/sh
-
-rm $HOME/Dropbox/Minecraft/* -rf
-cp /srv/papermc/backup/* $HOME/Dropbox/Minecraft

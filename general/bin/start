@@ -1,11 +1,13 @@
 #!/bin/sh
 
 # Touchscreen to laptop monitor
-xinput --map-to-output 'ELAN900C:00 04F3:2D25' eDP-1
+# xinput --map-to-output 'ELAN900C:00 04F3:2D25' eDP-1
+#
+BROWSER="zen-browser"
 
 if [ "$1" = "work" ]; then
-    ~/.screenlayout/work.sh
-    firefox &
+    # ~/.screenlayout/work.sh
+    $BROWSER &
     slack &
     teams &
 elif [ "$1" = "map" ]; then
@@ -13,7 +15,7 @@ elif [ "$1" = "map" ]; then
     wacom "DP-3-3"
 elif [ "$1" = "home" ]; then
     discord &
-    firefox &
+    $BROWSER &
     krita &
-   ~/.screenlayout/main.sh
+   # ~/.screenlayout/main.sh
 fi

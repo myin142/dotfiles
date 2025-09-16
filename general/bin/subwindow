@@ -1,9 +1,0 @@
-#!/bin/sh
-
-Xephyr -once -screen 2560x1440 :9 &
-export DISPLAY=:9
-
-sleep 1
-bspwm -c ~/.bspwmrc &
-
-$1
