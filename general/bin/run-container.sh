@@ -24,8 +24,9 @@ xauth nextract - "$DISPLAY" | sed -e 's/^..../ffff/' | xauth -f "$XAUTH" nmerge 
 
 # --bind=$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/tmp/wayland.sock --setenv=WAYLAND_DISPLAY=/tmp/wayland.sock \
 sudo systemd-nspawn -D $CONTAINER_NAME \
+    --user=steam \
     --bind-ro=/etc/resolv.conf \
     --bind=/tmp/.X11-unix --setenv=DISPLAY=$DISPLAY \
     --bind="$XAUTH" --setenv=XAUTHORITY="$XAUTH" \
     --bind=/dev/dri --property=DeviceAllow='char-drm rw' \
-    --bind-ro=/home/myin/Documents/games:/home/$CONTAINER_NAME/games:idmap
+    --bind=/home/myin/Documents/games:/home/games

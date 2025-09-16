@@ -11,3 +11,8 @@ apt update
 apt install steam
 
 ln --verbose --symbolic /usr/games/steam /usr/local/bin/
+
+useradd --create-home steam
+su --login steam
+mkdir --parents ~/.config ~/.local/share
+logout
