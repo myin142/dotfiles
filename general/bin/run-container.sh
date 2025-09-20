@@ -10,7 +10,7 @@ if [ -z $CONTAINER_NAME ]; then
 fi
 
 if [ ! -d "$CONTAINER_NAME" ]; then
-    mkdir arch
+    mkdir $CONTAINER_NAME
     sudo pacstrap -K -c $CONTAINER_NAME base steam vulkan-icd-loader vulkan-intel vulkan-radeon pulseaudio
     sudo systemd-nspawn -D $CONTAINER_NAME --bind=$HOME/.bin:/home/bin /home/bin/setup-steam-container
     sudo systemd-nspawn -D $CONTAINER_NAME passwd
