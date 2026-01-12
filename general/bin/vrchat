@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# required programs
+#
+# wivrn: streaming server
+# xrizer: steamvr replacement
+# wayvr: vr overlay
+# umu-launcher: run games outside of steam
+# GE-Proton RTSP: recommended proton for vrchat
+
+# Some registry changes required for vr with: umu-run regedit.exe
+# https://lvra.gitlab.io/docs/games/vr-no-steam/
+
+cd $HOME/.steam/steam/steamapps/common/VRChat
+WINEPREFIX="$HOME/.steam/steam/steamapps/compatdata/438100/pfx" PROTONPATH="$HOME/.steam/steam/compatibilitytools.d/GE-Proton10-26-rtsp20" PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1 umu-run launch.exe
