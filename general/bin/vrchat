@@ -11,5 +11,11 @@
 # Some registry changes required for vr with: umu-run regedit.exe
 # https://lvra.gitlab.io/docs/games/vr-no-steam/
 
+# Setup stuff for encoders?
+# https://wiki.archlinux.org/title/Hardware_video_acceleration
+
 cd $HOME/.steam/steam/steamapps/common/VRChat
-WINEPREFIX="$HOME/.steam/steam/steamapps/compatdata/438100/pfx" PROTONPATH="$HOME/.steam/steam/compatibilitytools.d/GE-Proton10-26-rtsp20" PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1 umu-run launch.exe
+WINEPREFIX="$HOME/.steam/steam/steamapps/compatdata/438100/pfx" \
+    PROTONPATH="$HOME/.steam/steam/compatibilitytools.d/GE-Proton10-26-rtsp20" \
+    LIBVA_DRIVER_NAME="radeonsi" VDPAU_DRIVER="radeonsi" \
+    PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1 vk_radv umu-run launch.exe
