@@ -1,4 +1,4 @@
-# Set Mod
+# Se Mod
 set $mod Mod4
 
 # Set Colours
@@ -19,9 +19,9 @@ floating_modifier $mod
 #############
 
 # "Iiyama North America PL2530H 1154382104198" 
-set $monitorSide DP-6
+# set $monitorSide DP-6
 # "LG Electronics LG ULTRAGEAR 210MAMBSK931"
-set $monitorMain DP-7
+set $monitorMain DP-6
 # "Samsung Display Corp. 0x414D Unknown"
 set $monitorLap eDP-1
 
@@ -214,9 +214,9 @@ mode "quit" {
 }
 
 output * bg ~/.wallpaper.png fill
-output $monitorLap resolution 3456x2160 position 3640,0 scale 1
-output $monitorMain resolution 2560x1440 position 1080,0
-output $monitorSide resolution 1920x1080 position 0,0 transform 90
+output $monitorLap resolution 3456x2160 position 2560,0 scale 2
+output $monitorMain resolution 2560x1440 position 0,0
+# output $monitorSide resolution 1920x1080 position 0,0 transform 90
 bindsym Alt+Shift+D exec swaymsg 'output $monitorLap resolution 3456x2160 position "0,0" scale 1'
 
 input type:tablet_pad map_to_output $monitorMain
@@ -232,7 +232,7 @@ exec --no-startup-id dunst
 exec_always apply-theme
 
 exec swayidle -w \
-	timeout 600 'swaymsg "output * power off"' \
+	timeout 300 'swaymsg "output * power off"' \
 		resume 'swaymsg "output * power on"' \
 	before-sleep 'swaylock -C ~/.config/sway/lock-config'
 
@@ -243,5 +243,6 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+# for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
