@@ -9,7 +9,16 @@
 # GE-Proton RTSP: recommended proton for vrchat
 
 # Some registry changes required for vr with: umu-run regedit.exe
-# https://lvra.gitlab.io/docs/games/vr-no-steam/
+# https://wiki.vronlinux.org/docs/games/vr-no-steam/
+#
+# WINEPREFIX=~/.wine/ umu-run regedit.exe
+#
+# [HKEY_USERS\S-1-5-21-652184699-4063250528-1000-1000\Software\Wine\VR]
+# "openvr_vulkan_instance_extensions"="VK_KHR_external_memory_capabilities VK_KHR_get_physical_device_properties2 VK_KHR_external_semaphore_capabilities"
+# "openxr_vulkan_device_extensions"="VK_KHR_external_memory VK_KHR_external_semaphore VK_KHR_dedicated_allocation VK_KHR_get_memory_requirements2 VK_KHR_external_memory_fd VK_KHR_external_semaphore_fd"
+# "openxr_vulkan_instance_extensions"="VK_KHR_external_memory_capabilities VK_KHR_get_physical_device_properties2 VK_KHR_external_semaphore_capabilities"
+# "PROTON_VR_RUNTIME"="/home/$USER/Documents/wivrn/xrizer-v0.4"
+# "state"=dword:00000001
 
 # Setup stuff for encoders?
 # https://wiki.archlinux.org/title/Hardware_video_acceleration
@@ -17,5 +26,5 @@
 cd $HOME/.steam/steam/steamapps/common/VRChat
 WINEPREFIX="$HOME/.steam/steam/steamapps/compatdata/438100/pfx" \
     PROTONPATH="$HOME/.steam/steam/compatibilitytools.d/GE-Proton10-26-rtsp20" \
-    LIBVA_DRIVER_NAME="radeonsi" VDPAU_DRIVER="radeonsi" \
+    #LIBVA_DRIVER_NAME="radeonsi" VDPAU_DRIVER="radeonsi" \
     PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1 vk_radv umu-run launch.exe
