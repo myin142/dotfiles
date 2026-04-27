@@ -1,10 +1,36 @@
 #!/bin/bash
 
-INPUT="/tmp/screen.png"
-OUTPUT="/tmp/screen.blur.png"
+# INPUT="/tmp/screen.png"
+# OUTPUT="/tmp/screen.blur.png"
 
-scrot $INPUT
-ffmpeg -loglevel quiet -y -i $INPUT -vf "gblur=10" $OUTPUT
-i3lock -i $OUTPUT
+# scrot $INPUT
+# ffmpeg -loglevel quiet -y -i $INPUT -vf "gblur=10" $OUTPUT
+# i3lock -i $OUTPUT
 
-rm $INPUT $OUTPUT
+# rm $INPUT $OUTPUT
+
+swaylock -f \
+	--screenshots \
+	--clock \
+	--indicator \
+	--indicator-radius 150 \
+	--indicator-thickness 7 \
+	--font-size 24 \
+	--effect-blur 7x5 \
+	--effect-vignette 0.5:0.5 \
+	--ring-color 9ccfd8 \
+	--ring-ver-color f6c177 \
+	--ring-wrong-color eb6f92 \
+	--key-hl-color eb6f92 \
+	--line-color 00000000 \
+	--inside-color 191724aa \
+	--inside-ver-color 191724aa \
+	--inside-wrong-color 191724aa \
+	--separator-color 00000000 \
+	--text-color e0def4 \
+	--text-ver-color e0def4 \
+	--text-wrong-color e0def4 \
+	--text-caps-lock-color f6c177 \
+	--grace 2 \
+	--fade-in 0.2
+
