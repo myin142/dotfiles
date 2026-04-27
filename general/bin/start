@@ -9,13 +9,13 @@ if [ "$1" = "work" ]; then
     # ~/.screenlayout/work.sh
     $BROWSER &
     slack &
-    teams &
+    # teams &
 elif [ "$1" = "map" ]; then
-    ~/.screenlayout/main.sh
+    # ~/.screenlayout/main.sh
     wacom "DP-3-3"
 elif [ "$1" = "home" ]; then
     discord &
     $BROWSER &
-    krita &
+    # krita &
    # ~/.screenlayout/main.sh
 fi
