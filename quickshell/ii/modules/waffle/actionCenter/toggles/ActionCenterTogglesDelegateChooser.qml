@@ -62,13 +62,6 @@ DelegateChooser {
         }
     }
     DelegateChoice {
-        roleValue: "easyEffects"
-        ActionCenterToggleButton {
-            toggleModel: EasyEffectsToggle {}
-            icon: "device-eq"
-        }
-    }
-    DelegateChoice {
         roleValue: "gameMode"
         ActionCenterToggleButton {
             toggleModel: GameModeToggle {}
@@ -92,13 +85,6 @@ DelegateChooser {
                     output: false
                 }
             }
-        }
-    }
-    DelegateChoice {
-        roleValue: "musicRecognition"
-        ActionCenterToggleButton {
-            toggleModel: MusicRecognitionToggle {}
-            icon: "music-note-2"
         }
     }
     DelegateChoice {
@@ -127,13 +113,6 @@ DelegateChooser {
         ActionCenterToggleButton {
             toggleModel: NotificationToggle {}
             icon: WIcons.notificationsIcon
-        }
-    }
-    DelegateChoice {
-        roleValue: "onScreenKeyboard"
-        ActionCenterToggleButton {
-            toggleModel: OnScreenKeyboardToggle {}
-            icon: GlobalStates.oskOpen ? "keyboard-dock" : "keyboard"
         }
     }
     DelegateChoice {
