@@ -2,3 +2,9 @@ fonts/.uuid
 
 .netrwhist
 plugged/
+
+*.AppImage
+*.Appimage
+*.TTF
+*.ttf
+*.otf

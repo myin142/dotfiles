@@ -2,7 +2,7 @@
 
 {
 	"layer": "top",
-	"position": "bottom",
+	"position": "top",
 
 	"modules-left": [
         "idle_inhibitor",
@@ -132,10 +132,9 @@
     "custom/weather": {
         "format": "{}",
         "tooltip": true,
-        "interval": 600,
-        "exec": "wttrbar",
-        // TODO: find out how to --hold without instantiating full shell profile
-        // "on-click": "kitty --hold curl http://wttr.in/Vienna",
+        "exec": "wttrbar --location Vienna",
+        "on-click": "pkill -SIGRTMIN+1 waybar",
+        "signal": 1,
         "return-type": "json"
     },
     "network": {

@@ -22,7 +22,7 @@ DelegateChooser {
 
     role: "type"
 
-    DelegateChoice { roleValue: "antiFlashbang"; AndroidAntiFlashbangToggle {
+    DelegateChoice { roleValue: "greyscale"; AndroidGreyscaleToggle {
         required property int index
         required property var modelData
         buttonIndex: root.startingIndex + index
@@ -33,9 +33,6 @@ DelegateChooser {
         baseCellHeight: root.baseCellHeight
         cellSpacing: root.spacing
         cellSize: modelData.size
-        onOpenMenu: {
-            root.openNightLightDialog()
-        }
     } }
 
     DelegateChoice { roleValue: "audio"; AndroidAudioToggle {
@@ -68,19 +65,6 @@ DelegateChooser {
         onOpenMenu: {
             root.openBluetoothDialog()
         }
-    } }
-
-    DelegateChoice { roleValue: "cloudflareWarp"; AndroidCloudflareWarpToggle {
-        required property int index
-        required property var modelData
-        buttonIndex: root.startingIndex + index
-        buttonData: modelData
-        editMode: root.editMode
-        expandedSize: modelData.size > 1
-        baseCellWidth: root.baseCellWidth
-        baseCellHeight: root.baseCellHeight
-        cellSpacing: root.spacing
-        cellSize: modelData.size
     } }
 
     DelegateChoice { roleValue: "colorPicker"; AndroidColorPickerToggle {
@@ -184,19 +168,6 @@ DelegateChooser {
     } }
 
     DelegateChoice { roleValue: "notifications"; AndroidNotificationToggle {
-        required property int index
-        required property var modelData
-        buttonIndex: root.startingIndex + index
-        buttonData: modelData
-        editMode: root.editMode
-        expandedSize: modelData.size > 1
-        baseCellWidth: root.baseCellWidth
-        baseCellHeight: root.baseCellHeight
-        cellSpacing: root.spacing
-        cellSize: modelData.size
-    } }
-
-    DelegateChoice { roleValue: "powerProfile"; AndroidPowerProfileToggle {
         required property int index
         required property var modelData
         buttonIndex: root.startingIndex + index
