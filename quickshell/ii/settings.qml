@@ -24,11 +24,6 @@ ApplicationWindow {
     property bool showNextTime: false
     property var pages: [
         {
-            name: Translation.tr("Quick"),
-            icon: "instant_mix",
-            component: "modules/settings/QuickConfig.qml"
-        },
-        {
             name: Translation.tr("General"),
             icon: "browse",
             component: "modules/settings/GeneralConfig.qml"
@@ -38,11 +33,6 @@ ApplicationWindow {
             icon: "toast",
             iconRotation: 180,
             component: "modules/settings/BarConfig.qml"
-        },
-        {
-            name: Translation.tr("Background"),
-            icon: "texture",
-            component: "modules/settings/BackgroundConfig.qml"
         },
         {
             name: Translation.tr("Interface"),
@@ -58,11 +48,6 @@ ApplicationWindow {
             name: Translation.tr("Advanced"),
             icon: "construction",
             component: "modules/settings/AdvancedConfig.qml"
-        },
-        {
-            name: Translation.tr("About"),
-            icon: "info",
-            component: "modules/settings/About.qml"
         }
     ]
     property int currentPage: 0

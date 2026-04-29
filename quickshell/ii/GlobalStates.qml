@@ -23,7 +23,6 @@ Singleton {
     property bool sessionOpen: false
     property bool superDown: false
     property bool superReleaseMightTrigger: true
-    property bool wallpaperSelectorOpen: false
 
     onSidebarRightOpenChanged: {
         if (GlobalStates.sidebarRightOpen) {

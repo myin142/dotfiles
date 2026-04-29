@@ -148,7 +148,7 @@ Singleton {
                 property string taskManager: "plasma-systemmonitor --page-name Processes"
                 property string terminal: "kitty -1" // This is only for shell actions
                 property string update: "kitty -1 --hold=yes fish -i -c 'pkexec pacman -Syu'"
-                property string volumeMixer: `~/.config/hypr/hyprland/scripts/launch_first_available.sh "pavucontrol-qt" "pavucontrol"`
+                property string volumeMixer: "pavucontrol"
             }
 
             property JsonObject background: JsonObject {
@@ -502,10 +502,6 @@ Singleton {
                 property int checkInterval: 120 // minutes
                 property int adviseUpdateThreshold: 75 // packages
                 property int stronglyAdviseUpdateThreshold: 200 // packages
-            }
-            
-            property JsonObject wallpaperSelector: JsonObject {
-                property bool useSystemFileDialog: false
             }
             
             property JsonObject windows: JsonObject {
