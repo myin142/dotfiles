@@ -17,6 +17,7 @@ Item {
     property var tabButtonList: [
         ...(root.aiChatEnabled ? [{"icon": "neurology", "name": Translation.tr("Intelligence")}] : []),
         ...(root.translatorEnabled ? [{"icon": "translate", "name": Translation.tr("Translator")}] : []),
+        {"icon": "content_paste", "name": Translation.tr("Clipboard")},
     ]
     property int tabCount: swipeView.count
 
@@ -83,7 +84,7 @@ Item {
                 contentChildren: [
                     ...(root.aiChatEnabled ? [aiChat.createObject()] : []),
                     ...(root.translatorEnabled ? [translator.createObject()] : []),
-                    ...(root.tabButtonList.length === 0 ? [placeholder.createObject()] : []),
+                    clipboardHistory.createObject(),
                 ]
             }
         }
@@ -97,14 +98,8 @@ Item {
             Translator {}
         }
         Component {
-            id: placeholder
-            Item {
-                StyledText {
-                    anchors.centerIn: parent
-                    text: Translation.tr("Enjoy your empty sidebar...")
-                    color: Appearance.colors.colSubtext
-                }
-            }
+            id: clipboardHistory
+            ClipboardHistory {}
         }
     }
 }

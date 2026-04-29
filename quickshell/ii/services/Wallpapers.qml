@@ -49,11 +49,11 @@ Singleton {
 
     function apply(path, darkMode = Appearance.m3colors.darkmode) {
         if (!path || path.length === 0) return
-        applyProc.exec([
-            Directories.wallpaperSwitchScriptPath,
-            "--image", path,
-            "--mode", (darkMode ? "dark" : "light")
-        ])
+        // applyProc.exec([
+        //     Directories.wallpaperSwitchScriptPath,
+        //     "--image", path,
+        //     "--mode", (darkMode ? "dark" : "light")
+        // ])
         root.changed()
     }
 

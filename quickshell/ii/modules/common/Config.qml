@@ -335,10 +335,6 @@ Singleton {
                 }
             }
 
-            property JsonObject launcher: JsonObject {
-                property list<string> pinnedApps: [ "org.kde.dolphin", "kitty", "cmake-gui"]
-            }
-
             property JsonObject light: JsonObject {
                 property JsonObject night: JsonObject {
                     property bool automatic: true
@@ -380,16 +376,6 @@ Singleton {
                 }
             }
 
-            property JsonObject overview: JsonObject {
-                property bool enable: true
-                property real scale: 0.18 // Relative to screen size
-                property real rows: 2
-                property real columns: 5
-                property bool orderRightLeft: false
-                property bool orderBottomUp: false
-                property bool centerIcons: true
-            }
-
             property JsonObject regionSelector: JsonObject {
                 property JsonObject targetRegions: JsonObject {
                     property bool windows: true
@@ -428,27 +414,6 @@ Singleton {
             property JsonObject musicRecognition: JsonObject {
                 property int timeout: 16
                 property int interval: 4
-            }
-
-            property JsonObject search: JsonObject {
-                property int nonAppResultDelay: 30 // This prevents lagging when typing
-                property string engineBaseUrl: "https://www.google.com/search?q="
-                property list<string> excludedSites: ["quora.com", "facebook.com"]
-                property bool sloppy: false // Uses levenshtein distance based scoring instead of fuzzy sort. Very weird.
-                property JsonObject prefix: JsonObject {
-                    property bool showDefaultActionsWithoutPrefix: true
-                    property string action: "/"
-                    property string app: ">"
-                    property string clipboard: ";"
-                    property string emojis: ":"
-                    property string math: "="
-                    property string shellCommand: "$"
-                    property string webSearch: "?"
-                }
-                property JsonObject imageSearch: JsonObject {
-                    property string imageSearchEngineBaseUrl: "https://lens.google.com/uploadbyurl?url="
-                    property bool useCircleSelection: false
-                }
             }
 
             property JsonObject sidebar: JsonObject {

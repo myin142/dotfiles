@@ -18,15 +18,12 @@ Singleton {
     property bool osdVolumeOpen: false
     property bool oskOpen: false
     property bool overlayOpen: false
-    property bool overviewOpen: false
     property bool regionSelectorOpen: false
-    property bool searchOpen: false
     property bool screenTranslatorOpen: false
     property bool sessionOpen: false
     property bool superDown: false
     property bool superReleaseMightTrigger: true
     property bool wallpaperSelectorOpen: false
-    property bool workspaceShowNumbers: false
 
     onSidebarRightOpenChanged: {
         if (GlobalStates.sidebarRightOpen) {
