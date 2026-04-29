@@ -13,18 +13,10 @@ Item {
     id: root
     property bool borderless: Config.options.bar.borderless
     readonly property MprisPlayer activePlayer: MprisController.activePlayer
-    readonly property string cleanedTitle: StringUtils.cleanMusicTitle(activePlayer?.trackTitle) || Translation.tr("No media")
 
     Layout.fillHeight: true
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: Appearance.sizes.barHeight
-
-    Timer {
-        running: activePlayer?.playbackState == MprisPlaybackState.Playing
-        interval: Config.options.resources.updateInterval
-        repeat: true
-        onTriggered: activePlayer.positionChanged()
-    }
 
     MouseArea {
         anchors.fill: parent
@@ -40,6 +32,12 @@ Item {
                 GlobalStates.mediaControlsOpen = !GlobalStates.mediaControlsOpen
             }
         }
+        onWheel: (event) => {
+            if (MprisController.canChangeVolume) {
+                const step = 0.05;
+                activePlayer.volume = Math.max(0, Math.min(1, activePlayer.volume + (event.angleDelta.y > 0 ? step : -step)));
+            }
+        }
     }
 
     RowLayout { // Real content
@@ -52,7 +50,7 @@ Item {
             id: mediaCircProg
             Layout.alignment: Qt.AlignVCenter
             lineWidth: Appearance.rounding.unsharpen
-            value: activePlayer?.position / activePlayer?.length
+            value: activePlayer?.volume ?? 0
             implicitSize: 20
             colPrimary: Appearance.colors.colOnSecondaryContainer
             enableAnimation: false
@@ -65,7 +63,7 @@ Item {
                 MaterialSymbol {
                     anchors.centerIn: parent
                     fill: 1
-                    text: activePlayer?.isPlaying ? "pause" : "music_note"
+                    text: (activePlayer?.volume ?? 0) == 0 ? "volume_mute" : (activePlayer?.volume ?? 0) < 0.5 ? "volume_down" : "volume_up"
                     iconSize: Appearance.font.pixelSize.normal
                     color: Appearance.m3colors.m3onSecondaryContainer
                 }
@@ -81,7 +79,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight // Truncates the text on the right
             color: Appearance.colors.colOnLayer1
-            text: `${cleanedTitle}${activePlayer?.trackArtist ? ' • ' + activePlayer.trackArtist : ''}`
+            text: MprisController.canChangeVolume ? `${Math.round((activePlayer?.volume ?? 0) * 100)}%` : ''
         }
 
     }

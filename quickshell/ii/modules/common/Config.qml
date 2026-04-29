@@ -357,15 +357,6 @@ Singleton {
                 property int timeout: 7000
             }
 
-            property JsonObject osd: JsonObject {
-                property int timeout: 1000
-            }
-
-            property JsonObject osk: JsonObject {
-                property string layout: "qwerty_full"
-                property bool pinnedOnStartup: false
-            }
-
             property JsonObject overlay: JsonObject {
                 property bool openingZoomAnimation: true
                 property bool darkenScreen: true

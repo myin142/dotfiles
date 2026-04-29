@@ -1,6 +1,7 @@
 import qs.modules.common
 import qs.modules.common.widgets
 import qs.services
+import qs
 import QtQuick
 import QtQuick.Layouts
 
@@ -40,10 +41,8 @@ Item {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        hoverEnabled: !Config.options.bar.tooltips.clickToShow
+        hoverEnabled: false
 
-        ClockWidgetPopup {
-            hoverTarget: mouseArea
-        }
+        onClicked: GlobalStates.calendarOpen = !GlobalStates.calendarOpen
     }
 }

@@ -59,47 +59,6 @@ post_process() {
     "$SCRIPT_DIR/code/material-code-set-color.sh" &
 }
 
-check_and_prompt_upscale() {
-    local img="$1"
-    min_width_desired="$(hyprctl monitors -j | jq '([.[].width] | max)' | xargs)" # max monitor width
-    min_height_desired="$(hyprctl monitors -j | jq '([.[].height] | max)' | xargs)" # max monitor height
-
-    if command -v identify &>/dev/null && [ -f "$img" ]; then
-        local img_width img_height
-        if is_video "$img"; then # Not check resolution for videos, just let em pass
-            img_width=$min_width_desired
-            img_height=$min_height_desired
-        else
-            img_width=$(identify -format "%w" "$img" 2>/dev/null)
-            img_height=$(identify -format "%h" "$img" 2>/dev/null)
-        fi
-        if [[ "$img_width" -lt "$min_width_desired" || "$img_height" -lt "$min_height_desired" ]]; then
-            action=$(notify-send "Upscale?" \
-                "Image resolution (${img_width}x${img_height}) is lower than screen resolution (${min_width_desired}x${min_height_desired})" \
-                -A "open_upscayl=Open Upscayl"\
-                -a "Wallpaper switcher")
-            if [[ "$action" == "open_upscayl" ]]; then
-                if command -v upscayl &>/dev/null; then
-                    nohup upscayl > /dev/null 2>&1 &
-                else
-                    action2=$(notify-send \
-                        -a "Wallpaper switcher" \
-                        -c "im.error" \
-                        -A "install_upscayl=Install Upscayl (Arch)" \
-                        "Install Upscayl?" \
-                        "yay -S upscayl-bin")
-                    if [[ "$action2" == "install_upscayl" ]]; then
-                        kitty -1 yay -S upscayl-bin
-                        if command -v upscayl &>/dev/null; then
-                            nohup upscayl > /dev/null 2>&1 &
-                        fi
-                    fi
-                fi
-            fi
-        fi
-    fi
-}
-
 CUSTOM_DIR="$XDG_CONFIG_HOME/hypr/custom"
 RESTORE_SCRIPT_DIR="$CUSTOM_DIR/scripts"
 RESTORE_SCRIPT="$RESTORE_SCRIPT_DIR/__restore_video_wallpaper.sh"
@@ -192,71 +151,13 @@ switch() {
             exit 0
         fi
 
-        check_and_prompt_upscale "$imgpath" &
         kill_existing_mpvpaper
 
-        if is_video "$imgpath"; then
-            mkdir -p "$THUMBNAIL_DIR"
-
-            missing_deps=()
-            if ! command -v mpvpaper &> /dev/null; then
-                missing_deps+=("mpvpaper")
-            fi
-            if ! command -v ffmpeg &> /dev/null; then
-                missing_deps+=("ffmpeg")
-            fi
-            if [ ${#missing_deps[@]} -gt 0 ]; then
-                echo "Missing deps: ${missing_deps[*]}"
-                echo "Arch: sudo pacman -S ${missing_deps[*]}"
-                action=$(notify-send \
-                    -a "Wallpaper switcher" \
-                    -c "im.error" \
-                    -A "install_arch=Install (Arch)" \
-                    "Can't switch to video wallpaper" \
-                    "Missing dependencies: ${missing_deps[*]}")
-                if [[ "$action" == "install_arch" ]]; then
-                    kitty -1 sudo pacman -S "${missing_deps[*]}"
-                    if command -v mpvpaper &>/dev/null && command -v ffmpeg &>/dev/null; then
-                        notify-send 'Wallpaper switcher' 'Alright, try again!' -a "Wallpaper switcher"
-                    fi
-                fi
-                exit 0
-            fi
-
-            # Set wallpaper path
-            set_wallpaper_path "$imgpath"
-
-            # Set video wallpaper
-            local video_path="$imgpath"
-            monitors=$(hyprctl monitors -j | jq -r '.[] | .name')
-            for monitor in $monitors; do
-                mpvpaper -o "$VIDEO_OPTS" "$monitor" "$video_path" &
-                sleep 0.1
-            done
-
-            # Extract first frame for color generation
-            thumbnail="$THUMBNAIL_DIR/$(basename "$imgpath").jpg"
-            ffmpeg -y -i "$imgpath" -vframes 1 "$thumbnail" 2>/dev/null
-
-            # Set thumbnail path
-            set_thumbnail_path "$thumbnail"
-
-            if [ -f "$thumbnail" ]; then
-                matugen_args+=(image "$thumbnail")
-                generate_colors_material_args=(--path "$thumbnail")
-                create_restore_script "$video_path"
-            else
-                echo "Cannot create image to colorgen"
-                remove_restore
-                exit 1
-            fi
-        else
-            matugen_args+=(image "$imgpath")
-            generate_colors_material_args=(--path "$imgpath")
-            # Update wallpaper path in config
-            set_wallpaper_path "$imgpath"
-            remove_restore
-        fi
+        matugen_args+=(image "$imgpath")
+        generate_colors_material_args=(--path "$imgpath")
+        # Update wallpaper path in config
+        set_wallpaper_path "$imgpath"
+        remove_restore
     fi
 
     # Determine mode if not set

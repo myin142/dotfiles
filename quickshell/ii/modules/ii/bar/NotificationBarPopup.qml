@@ -2,22 +2,22 @@ import qs
 import qs.services
 import qs.modules.common
 import qs.modules.common.widgets
-import qs.modules.ii.bar.calendar
+import qs.modules.ii.bar.notifications
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
 
 Scope {
     Loader {
-        id: calendarLoader
-        active: GlobalStates.calendarOpen
+        id: notifLoader
+        active: GlobalStates.notificationsBarOpen
 
         sourceComponent: PanelWindow {
             id: popupWindow
             color: "transparent"
             exclusionMode: ExclusionMode.Ignore
             exclusiveZone: 0
-            WlrLayershell.namespace: "quickshell:calendarPopup"
+            WlrLayershell.namespace: "quickshell:notificationsBarPopup"
             WlrLayershell.layer: WlrLayer.Overlay
 
             implicitWidth: popupBackground.implicitWidth + Appearance.sizes.elevationMargin * 2
@@ -26,12 +26,12 @@ Scope {
             anchors {
                 top: !Config.options.bar.bottom || Config.options.bar.vertical
                 bottom: Config.options.bar.bottom && !Config.options.bar.vertical
-                left: true
+                right: true
             }
             margins {
                 top: Config.options.bar.vertical ? 0 : Appearance.sizes.barHeight
                 bottom: Appearance.sizes.barHeight
-                left: Math.max(0, (popupWindow.screen.width - popupBackground.implicitWidth) / 2 - Appearance.sizes.elevationMargin)
+                right: Appearance.rounding.screenRounding
             }
 
             mask: Region { item: popupBackground }
@@ -41,7 +41,7 @@ Scope {
             Connections {
                 target: GlobalFocusGrab
                 function onDismissed() {
-                    GlobalStates.calendarOpen = false;
+                    GlobalStates.notificationsBarOpen = false;
                 }
             }
 
@@ -57,16 +57,19 @@ Scope {
                     topMargin: Appearance.sizes.elevationMargin
                     bottomMargin: Appearance.sizes.elevationMargin
                 }
-                implicitWidth: calendarWidget.implicitWidth + padding * 2
-                implicitHeight: calendarWidget.implicitHeight + padding * 2
+                implicitWidth: 320
+                implicitHeight: 480
                 color: Appearance.colors.colLayer0
                 radius: Appearance.rounding.screenRounding - Appearance.sizes.hyprlandGapsOut + 1
                 border.width: 1
                 border.color: Appearance.colors.colLayer0Border
 
-                CalendarWidget {
-                    id: calendarWidget
-                    anchors.centerIn: parent
+                NotificationList {
+                    id: notificationList
+                    anchors {
+                        fill: parent
+                        margins: popupBackground.padding
+                    }
                 }
             }
         }
