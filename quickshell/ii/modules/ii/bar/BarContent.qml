@@ -14,8 +14,7 @@ Item { // Bar content region
 
     property var screen: root.QsWindow.window?.screen
     property var brightnessMonitor: Brightness.getMonitorForScreen(screen)
-    property real useShortenedForm: (Appearance.sizes.barHellaShortenScreenWidthThreshold >= screen?.width) ? 2 : (Appearance.sizes.barShortenScreenWidthThreshold >= screen?.width) ? 1 : 0
-    readonly property int centerSideModuleWidth: (useShortenedForm == 2) ? Appearance.sizes.barCenterSideModuleWidthHellaShortened : (useShortenedForm == 1) ? Appearance.sizes.barCenterSideModuleWidthShortened : Appearance.sizes.barCenterSideModuleWidth
+    readonly property int centerSideModuleWidth: Appearance.sizes.barCenterSideModuleWidth
 
     component VerticalBarSeparator: Rectangle {
         Layout.topMargin: Appearance.sizes.baseBarHeight / 3
@@ -81,7 +80,6 @@ Item { // Bar content region
                 Layout.rightMargin: Appearance.rounding.screenRounding
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                visible: root.useShortenedForm === 0
             }
         }
     }
@@ -142,20 +140,19 @@ Item { // Bar content region
                 anchors.fill: parent
 
                 ClockWidget {
-                    showDate: (Config.options.bar.verbose && root.useShortenedForm < 2)
                     Layout.alignment: Qt.AlignVCenter
                     Layout.fillWidth: true
                 }
 
                 BatteryIndicator {
-                    visible: (root.useShortenedForm < 2 && Battery.available)
+                    visible: Battery.available
                     Layout.alignment: Qt.AlignVCenter
                 }
             }
         }
     }
 
-    FocusedScrollMouseArea { // Right side | scroll to change volume
+    FocusedScrollMouseArea { // Right side
         id: barRightSideMouseArea
 
         anchors {
@@ -225,7 +222,6 @@ Item { // Bar content region
             }
 
             SysTray {
-                visible: root.useShortenedForm === 0
                 Layout.fillWidth: false
                 Layout.fillHeight: true
                 invertSide: Config?.options.bar.bottom
@@ -236,7 +232,6 @@ Item { // Bar content region
                 Layout.fillHeight: true
             }
 
-            // Weather
             Loader {
                 Layout.leftMargin: 4
                 active: Config.options.bar.weather.enable
