@@ -22,7 +22,7 @@ ShellRoot {
     ReloadPopup {}
 
     Component.onCompleted: {
-        MaterialThemeLoader.reapplyTheme()
+        // MaterialThemeLoader.reapplyTheme()
         Hyprsunset.load()
         ConflictKiller.load()
         Cliphist.refresh()
