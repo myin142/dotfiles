@@ -16,6 +16,7 @@ Item {
         implicitWidth: notifIcon.implicitWidth
         implicitHeight: notifIcon.implicitHeight
         hoverEnabled: false
+        cursorShape: Qt.PointingHandCursor
 
         onClicked: {
             GlobalStates.notificationsBarOpen = !GlobalStates.notificationsBarOpen;

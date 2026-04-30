@@ -8,7 +8,6 @@ import qs.modules.ii.mediaControls
 import qs.modules.ii.notificationPopup
 import qs.modules.ii.polkit
 import qs.modules.ii.regionSelector
-import qs.modules.ii.screenCorners
 import qs.modules.ii.sidebarLeft
 import qs.modules.ii.overlay
 
@@ -19,10 +18,10 @@ Scope {
     PanelLoader { component: MediaControls {} }
     PanelLoader { component: NotificationBarPopup {} }
     PanelLoader { component: BluetoothBarPopup {} }
+    PanelLoader { component: NetworkBarPopup {} }
     PanelLoader { component: NotificationPopup {} }
     PanelLoader { component: Overlay {} }
     PanelLoader { component: Polkit {} }
     PanelLoader { component: RegionSelector {} }
-    PanelLoader { component: ScreenCorners {} }
     PanelLoader { component: SidebarLeft {} }
 }

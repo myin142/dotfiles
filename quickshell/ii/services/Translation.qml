@@ -23,12 +23,7 @@ Singleton {
     property string generatedTranslationsDir: Directories.shellConfig + "/translations"
 
     property string languageCode: {
-        var configLang = Config?.options.language.ui ?? "auto";
-
-        if (configLang !== "auto")
-            return configLang;
-
-        return Qt.locale().name;
+        return Config.options?.language || "en_US";
     }
 
     TranslationScanner {

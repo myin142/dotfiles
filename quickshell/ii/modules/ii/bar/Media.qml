@@ -63,7 +63,7 @@ Item {
                 MaterialSymbol {
                     anchors.centerIn: parent
                     fill: 1
-                    text: (activePlayer?.volume ?? 0) == 0 ? "volume_mute" : (activePlayer?.volume ?? 0) < 0.5 ? "volume_down" : "volume_up"
+                    text: 'music_note'
                     iconSize: Appearance.font.pixelSize.normal
                     color: Appearance.m3colors.m3onSecondaryContainer
                 }
@@ -79,7 +79,6 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight // Truncates the text on the right
             color: Appearance.colors.colOnLayer1
-            text: MprisController.canChangeVolume ? `${Math.round((activePlayer?.volume ?? 0) * 100)}%` : ''
         }
 
     }

@@ -15,12 +15,37 @@ Item {
         anchors.fill: parent
         spacing: 8
 
-        ToolbarTextField {
-            id: searchField
+        RowLayout {
             Layout.fillWidth: true
-            Layout.fillHeight: false
-            placeholderText: Translation.tr("Search clipboard...")
-            colBackground: Appearance.colors.colLayer2
+            spacing: 6
+
+            ToolbarTextField {
+                id: searchField
+                Layout.fillWidth: true
+                Layout.fillHeight: false
+                placeholderText: Translation.tr("Search clipboard...")
+                colBackground: Appearance.colors.colLayer2
+            }
+
+            MaterialSymbol {
+                id: wipeIcon
+                text: "delete_sweep"
+                iconSize: Appearance.font.pixelSize.large
+                color: Appearance.colors.colSubtext
+
+                Behavior on color {
+                    ColorAnimation { duration: Appearance.animation.elementMoveFast.duration }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        Cliphist.wipe()
+                    }
+                }
+            }
         }
 
         StyledListView {

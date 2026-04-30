@@ -1,17 +1,10 @@
 import QtQuick
 import qs
-import qs.services
 import qs.modules.common
 import qs.modules.common.widgets
 
 RippleButton {
     id: root
-
-    property bool showPing: false
-
-    property bool aiChatEnabled: Config.options.policies.ai !== 0
-    property bool translatorEnabled: Config.options.sidebar.translator.enable
-    visible: aiChatEnabled || translatorEnabled
 
     property real buttonPadding: 5
     implicitWidth: distroIcon.width + buttonPadding * 2
@@ -28,29 +21,6 @@ RippleButton {
         GlobalStates.sidebarLeftOpen = !GlobalStates.sidebarLeftOpen;
     }
 
-    Connections {
-        target: Ai
-        function onResponseFinished() {
-            if (GlobalStates.sidebarLeftOpen) return;
-            root.showPing = true;
-        }
-    }
-
-    Connections {
-        target: Booru
-        function onResponseFinished() {
-            if (GlobalStates.sidebarLeftOpen) return;
-            root.showPing = true;
-        }
-    }
-
-    Connections {
-        target: GlobalStates
-        function onSidebarLeftOpenChanged() {
-            root.showPing = false;
-        }
-    }
-
     CustomIcon {
         id: distroIcon
         anchors.centerIn: parent
@@ -60,23 +30,5 @@ RippleButton {
         colorize: true
         color: Appearance.colors.colOnLayer0
 
-        Rectangle {
-            opacity: root.showPing ? 1 : 0
-            visible: opacity > 0
-            anchors {
-                bottom: parent.bottom
-                right: parent.right
-                bottomMargin: -2
-                rightMargin: -2
-            }
-            implicitWidth: 8
-            implicitHeight: 8
-            radius: Appearance.rounding.full
-            color: Appearance.colors.colTertiary
-
-            Behavior on opacity {
-                animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-            }
-        }
     }
 }

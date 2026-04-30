@@ -15,10 +15,10 @@ Singleton {
     property bool calendarOpen: false
     property bool notificationsBarOpen: false
     property bool bluetoothDialogOpen: false
+    property bool networkDialogOpen: false
     property bool mediaControlsOpen: false
     property bool overlayOpen: false
     property bool regionSelectorOpen: false
-    property bool screenTranslatorOpen: false
     property bool sessionOpen: false
     property bool superDown: false
     property bool superReleaseMightTrigger: true

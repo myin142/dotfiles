@@ -34,6 +34,8 @@ Singleton {
 
     property string networkName: ""
     property int networkStrength
+    property string wlanIpAddress: ""
+    property string ethernetIpAddress: ""
     property string materialSymbol: root.ethernet
         ? "lan"
         : (root.wifiEnabled && root.wifiStatus === "connected")
@@ -158,6 +160,7 @@ Singleton {
         wifiStatusProcess.running = true
         updateNetworkName.running = true;
         updateNetworkStrength.running = true;
+        updateIpAddresses.running = true;
     }
 
     Process {
@@ -252,6 +255,26 @@ Singleton {
         stdout: StdioCollector {
             onStreamFinished: {
                 root.wifiEnabled = text.trim() === "enabled";
+            }
+        }
+    }
+
+    Process {
+        id: updateIpAddresses
+        running: true
+        command: ["sh", "-c", "ip -4 -o addr show scope global"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                root.wlanIpAddress = "";
+                root.ethernetIpAddress = "";
+                text.trim().split("\n").forEach(line => {
+                    const parts = line.trim().split(/\s+/);
+                    if (parts.length < 4) return;
+                    const iface = parts[1];
+                    const addr = parts[3].split("/")[0];
+                    if (/^(wlan|wlp)/.test(iface)) root.wlanIpAddress = addr;
+                    else if (/^(eth|en[ops])/.test(iface)) root.ethernetIpAddress = addr;
+                });
             }
         }
     }

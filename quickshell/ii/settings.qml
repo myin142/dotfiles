@@ -9,7 +9,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Window
 import Quickshell
 import qs.services
 import qs.modules.common
@@ -19,7 +18,6 @@ import qs.modules.common.functions as CF
 ApplicationWindow {
     id: root
     property real contentPadding: 8
-    property bool showNextTime: false
     property var pages: [
         {
             name: Translation.tr("General"),
@@ -49,7 +47,6 @@ ApplicationWindow {
         }
     ]
     property int currentPage: 0
-
     visible: true
     onClosing: Qt.quit()
     title: "illogical-impulse Settings"

@@ -12,12 +12,10 @@ Item {
     required property var scopeRoot
     property int sidebarPadding: 10
     anchors.fill: parent
-    property bool aiChatEnabled: Config.options.policies.ai !== 0
-    property bool translatorEnabled: Config.options.sidebar.translator.enable
     property var tabButtonList: [
-        ...(root.aiChatEnabled ? [{"icon": "neurology", "name": Translation.tr("Intelligence")}] : []),
-        ...(root.translatorEnabled ? [{"icon": "translate", "name": Translation.tr("Translator")}] : []),
+        {"icon": "translate", "name": Translation.tr("Translator")},
         {"icon": "content_paste", "name": Translation.tr("Clipboard")},
+        {"icon": "calculate", "name": Translation.tr("Calculator")},
     ]
     property int tabCount: swipeView.count
 
@@ -82,17 +80,13 @@ Item {
                 }
 
                 contentChildren: [
-                    ...(root.aiChatEnabled ? [aiChat.createObject()] : []),
-                    ...(root.translatorEnabled ? [translator.createObject()] : []),
+                    translator.createObject(),
                     clipboardHistory.createObject(),
+                    calculator.createObject(),
                 ]
             }
         }
 
-        Component {
-            id: aiChat
-            AiChat {}
-        }
         Component {
             id: translator
             Translator {}
@@ -100,6 +94,10 @@ Item {
         Component {
             id: clipboardHistory
             ClipboardHistory {}
+        }
+        Component {
+            id: calculator
+            Calculator {}
         }
     }
 }

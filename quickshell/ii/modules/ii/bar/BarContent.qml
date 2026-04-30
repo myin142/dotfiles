@@ -193,10 +193,23 @@ Item { // Bar content region
                         Layout.alignment: Qt.AlignVCenter
                         Layout.rightMargin: indicatorsRowLayout.realSpacing
                     }
-                    MaterialSymbol {
-                        text: Network.materialSymbol
-                        iconSize: Appearance.font.pixelSize.larger
-                        color: Appearance.colors.colOnLayer0
+                    Item {
+                        Layout.alignment: Qt.AlignVCenter
+                        implicitWidth: Appearance.font.pixelSize.larger
+                        implicitHeight: Appearance.font.pixelSize.larger
+
+                        MaterialSymbol {
+                            anchors.centerIn: parent
+                            text: Network.materialSymbol
+                            iconSize: Appearance.font.pixelSize.larger
+                            color: Appearance.colors.colOnLayer0
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: GlobalStates.networkDialogOpen = !GlobalStates.networkDialogOpen
+                        }
                     }
                     Item {
                         Layout.leftMargin: indicatorsRowLayout.realSpacing
