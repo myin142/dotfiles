@@ -9,6 +9,7 @@ import qs.modules.ii.notificationPopup
 import qs.modules.ii.polkit
 import qs.modules.ii.regionSelector
 import qs.modules.ii.sidebarLeft
+import qs.modules.ii.brightnessOsd
 import qs.modules.ii.overlay
 
 Scope {
@@ -24,4 +25,5 @@ Scope {
     PanelLoader { component: Polkit {} }
     PanelLoader { component: RegionSelector {} }
     PanelLoader { component: SidebarLeft {} }
+    PanelLoader { component: BrightnessOsd {} }
 }
