@@ -64,7 +64,7 @@ Item {
             ShapePath {
                 id: primaryPath
                 pathHints: ShapePath.PathSolid & ShapePath.PathNonIntersecting
-                strokeColor: root.colPrimary
+                strokeColor: root.value > 0 ? root.colPrimary : "transparent"
                 strokeWidth: root.lineWidth
                 capStyle: ShapePath.RoundCap
                 fillColor: root.colPrimary

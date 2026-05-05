@@ -70,7 +70,7 @@ Item {
         }
         ShapePath {
             id: primaryPath
-            strokeColor: root.colPrimary
+            strokeColor: root.value > 0 ? root.colPrimary : "transparent"
             strokeWidth: root.lineWidth
             capStyle: ShapePath.RoundCap
             fillColor: "transparent"
