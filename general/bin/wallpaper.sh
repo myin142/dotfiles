@@ -7,7 +7,7 @@ if [[ -z $FILE ]]; then
     FILE="$(cat ~/Wallpapers/temp)"
 fi
 
-FILE="$(realpath $1)"
+FILE="$(realpath $FILE)"
 if [[ ! -f $FILE ]]; then
     echo "Invalid file"
     exit 1
@@ -18,8 +18,8 @@ if [[ -z $(file $FILE | grep -e JPEG -e PNG -e JPG) ]]; then
     exit 1
 fi
 
-
 echo $FILE
+~/.config/quickshell/ii/scripts/colors/switchwall.sh $FILE
 matugen image $FILE --source-color-index 0
 wal -i $FILE
 

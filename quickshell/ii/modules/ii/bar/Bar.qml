@@ -241,6 +241,14 @@ Scope {
     }
 
     GlobalShortcut {
+        name: "greyscaleToggle"
+        description: "Toggle greyscale shader"
+        onPressed: {
+            HyprlandGreyscaleShader.toggle()
+        }
+    }
+
+    GlobalShortcut {
         name: "barOpen"
         description: "Opens bar on press"
 
