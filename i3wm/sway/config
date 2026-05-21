@@ -231,6 +231,7 @@ exec --no-startup-id dunst
 
 # exec_always apply-theme
 
+exec "~/.bin/auto_exit_fullscreen.sh"
 exec swayidle -w \
          timeout 600 'swaylock -C ~/.config/sway/lock-config' \
          before-sleep 'swaylock -C ~/.config/sway/lock-config' \
