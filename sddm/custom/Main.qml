@@ -79,7 +79,7 @@ Item {
         // Username
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: sddm.lastUser
+            text: userModel.lastUser
             font.family: root.fontFamily
             font.pixelSize: 12
             font.weight: Font.Light
@@ -117,7 +117,7 @@ Item {
             }
 
             Keys.onReturnPressed: {
-                sddm.login(sddm.lastUser, passwordField.text, sessionModel.lastIndex)
+                sddm.login(userModel.lastUser, passwordField.text, sessionModel.lastIndex)
             }
 
             onTextChanged: {
