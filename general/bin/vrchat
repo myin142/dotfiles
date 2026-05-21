@@ -1,11 +1,11 @@
 #!/bin/sh
 
-# required programs
+# required programs (try keep all local to control the exact version)
 #
 # wivrn: streaming server
 # xrizer: steamvr replacement
 # wayvr: vr overlay
-# umu-launcher: run games outside of steam
+# umu-launcher: run games outside of steam -> could case video player error on newer version
 # GE-Proton RTSP: recommended proton for vrchat
 
 # Some registry changes required for vr with: umu-run regedit.exe
@@ -22,12 +22,14 @@
 
 # Setup stuff for encoders?
 # https://wiki.archlinux.org/title/Hardware_video_acceleration
-
+#
 cd $HOME/.steam/steam/steamapps/common/VRChat
-WINEPREFIX="$HOME/Games/VRC" \
-    PROTONPATH="$HOME/.steam/steam/compatibilitytools.d/GE-Proton10-33-rtsp22-4" \
-    VR_OVERRIDE="$HOME/home/myin/Documents/wivrn/xrizer-v0.4" \
+WINEPREFIX="$HOME/Games/VRC-New" \
+    GAMEID=438100 \
+    PROTONPATH="$HOME/.steam/steam/compatibilitytools.d/GE-Proton10-33-rtsp23-4" \
+    VR_OVERRIDE="$HOME/Documents/wivrn/xrizer-v0.4" \
     PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1 \
     DRI_PRIME=1 \
-    # $HOME/Documents/wivrn/spout2pw-0.2.3/spout2pw.sh \
-    umu-run launch.exe -screen-width 1280 -screen-height 800 -no-analytics -screen-fullscreen 0 --enable-hw-video-decoding --enable-debug-gui
+    $HOME/Documents/wivrn/umu/umu-run launch.exe -screen-width 1280 -screen-height 800 -no-analytics -screen-fullscreen 0 --enable-avpro-in-proton --disable-hw-video-decoding --enable-debug-gui
+
+# $HOME/Documents/wivrn/spout2pw-0.2.3/spout2pw.sh \
