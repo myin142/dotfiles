@@ -1,6 +1,6 @@
 ignore-empty-password
 
-color=222222
+image=~/.lockscreen.png
 
 indicator-radius=120
 indicator-thickness=16

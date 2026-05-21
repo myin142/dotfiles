@@ -175,8 +175,8 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 20%-
 
 # Extra Keys / Shortcuts
 bindsym XF86Sleep exec systemctl suspend
-bindsym $mod+Shift+z exec systemctl suspend
-bindsym $mod+Shift+x exec swaylock -C ~/.config/sway/lock-config
+bindsym $mod+Ctrl+Shift+x exec systemctl suspend
+bindsym $mod+Shift+x exec loginctl lock
 
 bindsym Print exec python $HOME/Documents/VRCProjects/VRCControls/screenshot.py -r
 bindsym Ctrl+Print exec ~/.bin/grayscale
@@ -229,7 +229,7 @@ exec --no-startup-id fcitx5
 exec --no-startup-id dropbox
 exec --no-startup-id dunst
 
-exec_always apply-theme
+# exec_always apply-theme
 
 exec swayidle -w \
          timeout 600 'swaylock -C ~/.config/sway/lock-config' \
@@ -238,7 +238,7 @@ exec swayidle -w \
 
 seat seat0 hide_cursor 5000
 
-# For flameshot
+# For Screen Share / Screenshot?
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
