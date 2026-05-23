@@ -47,12 +47,20 @@ window#waybar {
 #custom-weather,
 #idle_inhibitor,
 #tray {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   margin-left: 0.5rem;
+  margin-top: 0.25rem;
+  border-radius: 1rem;
+}
+
+#workspaces {
+  margin-top: 0.25rem;
+  border-radius: 1rem;
 }
 
 #workspaces button {
-  padding: 0 0.5rem;
+  padding: 0 1rem;
+  border-radius: 1rem;
   color: @tertiary;
 }
 #workspaces button.focused {
