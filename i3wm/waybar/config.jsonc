@@ -8,20 +8,20 @@
         "idle_inhibitor",
 		"memory",
 		"cpu",
-		"battery",
 		"disk",
-		"mpd",
-        "custom/weather"
+		"battery"
 	],
 	"modules-center": [
+		"clock",
 		"sway/workspaces",
-		"sway/mode"
+		"sway/mode",
+        "custom/weather"
 	],
 	"modules-right": [
+		"mpd",
 		"pulseaudio",
 		"pulseaudio#mic",
 		"network",
-		"clock",
 		"tray"
 	],
 	"sway/workspaces": {
@@ -37,7 +37,7 @@
         "timeout": 60
     },
 	"clock": {
-		"format": "{:%H:%M %Y-%m-%d %a}",
+		"format": "{:%H:%M %a}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode"          : "year",
@@ -54,8 +54,6 @@
             },
         "actions":  {
             "on-click-right": "mode",
-            "on-scroll-up": "tz_up",
-            "on-scroll-down": "tz_down",
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }

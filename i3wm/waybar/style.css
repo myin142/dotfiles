@@ -6,7 +6,7 @@
   min-height: 0px;
   border: none;
   border-radius: 0;
-  font-size: 12px;
+  font-size: 14px;
   font-family: monospace;
 }
 
@@ -48,13 +48,16 @@ window#waybar {
 #idle_inhibitor,
 #tray {
   padding: 0.5rem 1rem;
-  margin-left: 0.5rem;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
   margin-top: 0.25rem;
   border-radius: 1rem;
 }
 
 #workspaces {
   margin-top: 0.25rem;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
   border-radius: 1rem;
 }
 

@@ -8,14 +8,13 @@ link() {
 	ln -sf "$(pwd)/$1" "$2"
 }
 
-sudo pacman -S i3-gaps i3blocks i3lock picom dunst redshift rofi rofi-calc kitty \
-    python-pywal feh net-tools noto-fonts-cjk noto-fonts-emoji jq flameshot \
+sudo pacman -S dunst rofi rofi-calc kitty \
+    matugen feh net-tools noto-fonts-cjk noto-fonts-emoji jq \
     cronie brightnessctl \
     sway swaylock swayidle swaybg waybar gammastep \
     fcitx5 fcitx5-rime fcitx5-anthy fcitx5-hangul \
     xdg-desktop-portal xdg-desktop-portal-wlr grim
 
-link i3 $HOME/.config/i3
 link kitty $HOME/.config/kitty
 link dunst $HOME/.config/dunst
 link rofi $HOME/.config/rofi
