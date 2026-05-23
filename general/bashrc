@@ -124,7 +124,7 @@ PERL_MB_OPT="--install_base \"/home/myin/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/myin/perl5"; export PERL_MM_OPT;
 
 alias cdvrc="cd ~/Documents/VRCProjects/NewAvatar/Assets"
-export VRCHAT_PATH="/home/myin/.local/share/Steam/steamapps/compatdata/438100/pfx/drive_c/users/steamuser/AppData/LocalLow/VRChat/VRChat"
+export VRCHAT_PATH="/home/myin/Games/VRC/drive_c/users/steamuser/AppData/LocalLow/VRChat/VRChat"
 
 # ICD_DIR="/usr/share/vulkan/icd.d"
 # export DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1

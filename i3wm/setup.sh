@@ -19,17 +19,10 @@ link i3 $HOME/.config/i3
 link kitty $HOME/.config/kitty
 link dunst $HOME/.config/dunst
 link rofi $HOME/.config/rofi
-link picom $HOME/.config/picom
-link redshift $HOME/.config/redshift
 link fonts $HOME/.local/share/fonts
-
-link img/lockscreen.png $HOME/.lock.png
-link img/wallpaper.png $HOME/.wallpaper.png
 
 # Wayland stuff
 link sway $HOME/.config/sway
 link waybar $HOME/.config/waybar
 link gammastep $HOME/.config/gammastep
-link wofi $HOME/.config/wofi
-link eww $HOME/.config/eww
 

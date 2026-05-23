@@ -1,25 +1,21 @@
+@import "colors.css";
+
 * {
-	font-size: 12px;
-	font-family: monospace;
+  margin: 0;
+  padding: 0;
+  min-height: 0px;
+  border: none;
+  border-radius: 0;
+  font-size: 12px;
+  font-family: monospace;
 }
 
 window.eDP-1 * {
-    font-size: 16px;
+  font-size: 14px;
 }
 
 window#waybar {
-	background: #292b2e;
-	color: #fdf6e3;
-}
-
-#custom-right-arrow-dark,
-#custom-left-arrow-dark {
-	color: #1a1a1a;
-}
-#custom-right-arrow-light,
-#custom-left-arrow-light {
-	color: #292b2e;
-	background: #1a1a1a;
+  background: transparent;
 }
 
 #workspaces,
@@ -32,62 +28,11 @@ window#waybar {
 #network,
 #mpd,
 #tray,
+#mode,
 #custom-weather,
-#idle_inhibitor {
-	background: #1a1a1a;
-}
-
+#idle_inhibitor,
 #workspaces button {
-	padding: 0 2px;
-	color: #268bd2;
-}
-#workspaces button.focused {
-	color: #fdf6e3;
-}
-#workspaces button.urgent {
-	color: red;
-}
-#workspaces button.visible{
-	color: white;
-}
-
-#workspaces button:hover {
-	box-shadow: inherit;
-	text-shadow: inherit;
-}
-#workspaces button:hover {
-	background: #1a1a1a;
-	border: #1a1a1a;
-	padding: 0 3px;
-}
-
-#mode {
-    background: red;
-}
-
-#pulseaudio.mic.source-muted, #pulseaudio:not(.mic).muted, #mpd.paused {
-    color: red;
-}
-#mpd.stopped {
-    color: #777777;
-}
-#battery {
-	color: #33DD33;
-}
-#battery.good {
-	color: yellow;
-}
-#battery.warning, #disk.warning, #memory.warning, #cpu.warning {
-	color: orange;
-}
-#battery.critical, #disk.critical, #memory.critical, #cpu.critical {
-	color: red;
-}
-#battery.charging {
-	color: white;
-}
-#tray {
-    padding: 4px 8px;
+  background: @surface_container;
 }
 
 #clock,
@@ -100,7 +45,61 @@ window#waybar {
 #mpd,
 #disk,
 #custom-weather,
-#idle_inhibitor {
-	padding: 0 8px;
+#idle_inhibitor,
+#tray {
+  padding: 0.5rem;
+  margin-left: 0.5rem;
 }
 
+#workspaces button {
+  padding: 0 0.5rem;
+  color: @tertiary;
+}
+#workspaces button.focused {
+  background: @primary;
+  color: @on_primary;
+}
+#workspaces button.urgent {
+  color: @error_container;
+}
+#workspaces button:hover {
+  background-color: @surface_container_highest;
+  color: @primary;
+}
+#workspaces button.empty {
+  color: @outline_variant;
+}
+
+#mode {
+  background: @error_container;
+}
+
+#pulseaudio.mic.source-muted,
+#pulseaudio:not(.mic).muted,
+#mpd.paused {
+  color: @error_container;
+}
+#mpd.stopped {
+  color: @outline_variant;
+}
+#battery {
+  color: @success_container;
+}
+#battery.good {
+  color: @error;
+}
+#battery.warning,
+#disk.warning,
+#memory.warning,
+#cpu.warning {
+  color: @error;
+}
+#battery.critical,
+#disk.critical,
+#memory.critical,
+#cpu.critical {
+  color: @error_container;
+}
+#battery.charging {
+  color: @on_primary;
+}

@@ -6,71 +6,28 @@
 
 	"modules-left": [
         "idle_inhibitor",
+		"memory",
+		"cpu",
+		"battery",
+		"disk",
+		"mpd",
+        "custom/weather"
+	],
+	"modules-center": [
 		"sway/workspaces",
-        "hyprland/workspaces",
-		"custom/right-arrow-dark",
-        "sway/mode"
+		"sway/mode"
 	],
 	"modules-right": [
-		"custom/left-arrow-dark",
-        "custom/weather",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"mpd",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"pulseaudio",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"pulseaudio#mic",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"network",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"memory",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"cpu",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"battery",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"disk",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"clock",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"tray"
 	],
-
-	"custom/left-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
 	"sway/workspaces": {
 		"disable-scroll": false,
         "disable-scroll-wraparound": true
 	},
-    "hyprland/workspaces": {
-         "format": "{icon}",
-         "on-scroll-up": "hyprctl dispatch workspace e+1",
-         "on-scroll-down": "hyprctl dispatch workspace e-1"
-    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -131,11 +88,9 @@
     },
     "custom/weather": {
         "format": "{}",
-        "tooltip": true,
-        "exec": "wttrbar --location Vienna",
+        "exec": "curl wttr.in/Vienna?format=1",
         "on-click": "pkill -SIGRTMIN+1 waybar",
-        "signal": 1,
-        "return-type": "json"
+        "signal": 1
     },
     "network": {
         "format": "{ifname}",

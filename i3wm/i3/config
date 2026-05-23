@@ -230,10 +230,5 @@ exec --no-startup-id redshift-gtk
 exec --no-startup-id dropbox
 
 exec --no-startup-id ~/.bin/wmReload
-# exec --no-startup-id ~/.bin/remapCaps
-
-# exec --no-startup-id ~/.screenlayout/main.sh
-exec --no-startup-id "sleep 1; picom --config ~/.config/picom/picom.conf"
 exec --no-startup-id ~/.bin/blue-on
-# exec --no-startup-id ~/.bin/wacom DP-3-2
 

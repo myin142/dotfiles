@@ -31,3 +31,5 @@ set smartcase               " case-sensitive if expresson contains a capital let
 source $HOME/.config/nvim/plugin.vim
 source $HOME/.config/nvim/mapping.vim
 source $HOME/.config/nvim/coc-config.vim
+
+set termguicolors | if filereadable(expand('~/.cache/wal/colors-wal.vim')) | execute 'source ~/.cache/wal/colors-wal.vim' | endif
