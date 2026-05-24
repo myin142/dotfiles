@@ -7,7 +7,7 @@ indicator-thickness=12
 indicator-caps-lock
 disable-caps-lock-text
 
-key-hl-color=#acd28e
+key-hl-color={{colors.primary.default.hex}}
 separator-color=00000000
 
 inside-color=00000099
@@ -16,11 +16,11 @@ inside-caps-lock-color=00000099
 inside-ver-color=00000099
 inside-wrong-color=00000099
 
-ring-color=#191d16
-ring-clear-color=#a0cfce
-ring-caps-lock-color=#ffb4ab
-ring-ver-color=#47672f
-ring-wrong-color=#93000a
+ring-color={{colors.surface_container_low.default.hex}}
+ring-clear-color={{colors.tertiary.default.hex}}
+ring-caps-lock-color={{colors.error.default.hex}}
+ring-ver-color={{colors.inverse_primary.default.hex}}
+ring-wrong-color={{colors.error_container.default.hex}}
 
 line-color=00000000
 line-clear-color=00000000
