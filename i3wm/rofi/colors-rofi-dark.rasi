@@ -36,7 +36,7 @@
     alternate-active-foreground: var(background);
 
     /* For Screens with 1920x1080 resolution */
-    screen-margin:               310px 500px;
+    screen-margin:               400px 800px;
     box-spacing:                 8px;
     element-padding:             8px;
     element-radius:              8px;
@@ -50,11 +50,6 @@ window {
     transparency:                "real";
     location:                    center;
     anchor:                      center;
-    fullscreen:                  true;
-    width:                       1366px;
-    height:                      768px;
-    x-offset:                    0px;
-    y-offset:                    0px;
 
     /* properties for all widgets */
     enabled:                     true;
@@ -71,8 +66,7 @@ window {
 mainbox {
     enabled:                     true;
     spacing:                     @box-spacing;
-    margin:                      @screen-margin;
-    padding:                     0px;
+    padding:                     16px;
     border:                      0px solid;
     border-radius:               8px;
     border-color:                @border-colour;

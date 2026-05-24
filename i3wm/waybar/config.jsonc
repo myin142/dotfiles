@@ -25,8 +25,16 @@
 		"tray"
 	],
 	"sway/workspaces": {
+        "format": "{name}",
 		"disable-scroll": false,
-        "disable-scroll-wraparound": true
+        "disable-scroll-wraparound": true,
+        "persistent-workspaces": {
+            "1:一": [],
+            "2:二": [],
+            "3:三": [],
+            "4:四": [],
+            "5:五": []
+        }
 	},
     "idle_inhibitor": {
         "format": "{icon}",
