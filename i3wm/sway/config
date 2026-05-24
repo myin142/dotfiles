@@ -178,7 +178,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 20%-
 # Extra Keys / Shortcuts
 bindsym XF86Sleep exec systemctl suspend
 bindsym $mod+Ctrl+Shift+x exec systemctl suspend
-bindsym $mod+Shift+x exec loginctl lock
+bindsym $mod+Shift+x exec loginctl lock-session
 
 bindsym Print exec python $HOME/Documents/VRCProjects/VRCControls/screenshot.py -r
 bindsym Ctrl+Print exec ~/.bin/grayscale
