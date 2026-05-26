@@ -1,3 +1,0 @@
-#/bin/bash
-
-redshift -O 2500

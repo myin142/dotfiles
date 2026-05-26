@@ -46,7 +46,7 @@
         "timeout": 60
     },
 	"clock": {
-		"format": "{:%H:%M %a}",
+        "format": "{:%Y-%m-%d %H:%M %a}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode"          : "year",
