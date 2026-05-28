@@ -1,5 +1,0 @@
-#!/bin/bash
-
-CITY="${1:-vienna}"
-
-curl wttr.in/$CITY

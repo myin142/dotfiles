@@ -1,7 +1,7 @@
 [global]
     follow = keyboard
-    width = 400
-    height = 400
+    width = 300
+    height = 240
     offset = 10x10
     scale = 0
     notification_limit = 0
@@ -41,6 +41,8 @@
     always_run_script = true
     title = Dunst
     class = Dunst
+    word_wrap = no
+    ellipsize = middle
     corner_radius = 8
     ignore_dbusclose = false
     force_xwayland = false

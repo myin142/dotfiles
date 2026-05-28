@@ -66,7 +66,7 @@ window#waybar {
   border-radius: 1rem;
   color: @tertiary;
 }
-#workspaces button.focused {
+#workspaces button.focused, #workspaces button.visible {
   background: @primary;
   color: @on_primary;
 }

@@ -8,7 +8,7 @@ post_hook = "pkill -SIGUSR2 waybar"
 
 [templates.rofi]
 input_path = 'templates/rofi-colors.rasi'
-output_path = '~/.config/rofi/colors.rasi'
+output_path = '~/.config/rofi/colors-matugen.rasi'
 
 [templates.dunst]
 input_path = "templates/dunstrc-colors"
@@ -17,3 +17,7 @@ output_path = "~/.config/dunst/dunstrc"
 [templates.swaylock]
 input_path = "templates/swaylock"
 output_path = "~/.config/sway/lock-config-matugen"
+
+[templates.kitty]
+input_path = 'templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors-matugen.conf'

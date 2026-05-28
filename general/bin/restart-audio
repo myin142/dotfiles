@@ -1,7 +1,0 @@
-#!/bin/sh
-
-systemctl --user restart pipewire pipewire-pulse wireplumber
-
-if [[ ! -z $1 ]]; then
-    echo 0 | sudo tee /sys/module/snd_hda_intel/parameters/power_save
-fi

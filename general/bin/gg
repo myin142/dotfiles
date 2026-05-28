@@ -168,17 +168,15 @@ case "$CMD" in
     # Git commands #
     ################
 
-    "gl") git log --oneline --graph --decorate;;
-    "gla") git log --all --oneline --graph --decorate;;
+    #"gl") git log --oneline --graph --decorate;;
+    #"gla") git log --all --oneline --graph --decorate;;
     "glm") git log --oneline --graph --decorate --first-parent origin/${ARG:-master};;
     "gld") git_log_day;;
-    "gs") git status;;
     "gsub") git submodule update --init --recursive;;
 
     "gtd") git_tag_delete;;
 
     # Git diff commit
-    "gd") git diff $ARG~ $ARG;;
     "gdl") git_diff_lines;;
 
     # Git commit
@@ -198,7 +196,6 @@ case "$CMD" in
 
     # Git push upstream
     "gpu") git_push_upstream;;
-    "gp") git push;;
     "gpf") git push --force-with-lease;;
 
     # Git executable

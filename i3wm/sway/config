@@ -235,9 +235,9 @@ exec --no-startup-id dunst
 
 exec "~/.bin/auto_exit_fullscreen.sh"
 exec swayidle -w \
-         timeout 600 'swaylock -C ~/.config/sway/lock-config-matugen' \
-         before-sleep 'swaylock -C ~/.config/sway/lock-config-matugen' \
-         lock 'swaylock -C ~/.config/sway/lock-config-matugen'
+         timeout 600 'swaylock -f -C ~/.config/sway/lock-config-matugen' \
+         before-sleep 'swaylock -f -C ~/.config/sway/lock-config-matugen' \
+         lock 'swaylock -f -C ~/.config/sway/lock-config-matugen'
 
 seat seat0 hide_cursor 5000
 

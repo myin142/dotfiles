@@ -1,7 +1,5 @@
-"""""""""""
-" Plugins "
-"""""""""""
 call plug#begin()
+
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 " Plug 'tpope/vim-fugitive'
@@ -28,7 +26,6 @@ Plug 'rhysd/vim-fixjson', { 'for': 'json' }
 
 call plug#end()
 
-" Plugin Settings
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
