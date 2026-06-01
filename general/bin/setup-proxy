@@ -2,8 +2,8 @@
 
 URL="${1:http://localhost:8080}"
 
-export http_proxy=$URL
-export https_proxy=$http_proxy
-export ftp_proxy=$http_proxy
-export rsync_proxy=$http_proxy
-export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+export HTTP_PROXY=$URL
+export HTTPS_PROXY=$http_proxy
+export FTP_PROXY=$http_proxy
+export RSYNC_PROXY=$http_proxy
+export NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"

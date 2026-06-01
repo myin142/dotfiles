@@ -31,10 +31,4 @@ if status is-interactive
     if test "$TERM" = "xterm-kitty"
         alias ssh 'kitten ssh'
     end
-
-    # alias vim "nvim"
-    # set -gx SDL_VIDEODRIVER=wayland,x11,windows
-
-    set COPILOT_OTEL_ENABLED true
-    set COPILOT_OTEL_FILE_EXPORTER_PATH $HOME/copilot-logs.json
 end

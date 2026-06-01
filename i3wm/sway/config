@@ -182,10 +182,8 @@ bindsym $mod+Shift+x exec loginctl lock-session
 
 bindsym Print exec python $HOME/Documents/VRCProjects/VRCControls/screenshot.py -r
 bindsym Ctrl+Print exec ~/.bin/grayscale
-bindsym Shift+Print exec flameshot screen
-bindsym XF86Calculator exec flameshot gui # cannot find the Print button on the new keyboard...
+bindsym XF86Calculator exec python $HOME/Documents/VRCProjects/VRCControls/screenshot.py -r
 bindsym Ctrl+XF86Calculator exec ~/.bin/grayscale
-bindsym Shift+XF86Calculator exec flameshot screen
 
 bindsym Ctrl+space exec dunstctl close
 bindsym Ctrl+Shift+space exec dunstctl close-all

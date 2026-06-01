@@ -95,6 +95,7 @@
     },
     "custom/weather": {
         "format": "{}",
+        "max-length": 10,
         "exec": "curl wttr.in/Vienna?format=1",
         "on-click": "pkill -SIGRTMIN+1 waybar",
         "signal": 1

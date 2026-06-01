@@ -25,7 +25,7 @@
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60
-    ellipsize = middle
+    ellipsize = end
     ignore_newline = no
     stack_duplicates = true
     hide_duplicate_count = false
@@ -33,7 +33,6 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 32
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
     icon_path = /usr/share/icons/Papirus-Dark/48x48/actions/:/usr/share/icons/Papirus-Dark/48x48/apps/:/usr/share/icons/Papirus-Dark/48x48/devices/:/usr/share/icons/Papirus-Dark/48x48/emblems/:/usr/share/icons/Papirus-Dark/48x48/emotes/:/usr/share/icons/Papirus-Dark/48x48/mimetypes/:/usr/share/icons/Papirus-Dark/48x48/places/:/usr/share/icons/Papirus-Dark/48x48/status/
     sticky_history = yes
     history_length = 10
@@ -42,7 +41,6 @@
     title = Dunst
     class = Dunst
     word_wrap = no
-    ellipsize = middle
     corner_radius = 8
     ignore_dbusclose = false
     force_xwayland = false
