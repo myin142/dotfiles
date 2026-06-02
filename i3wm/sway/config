@@ -17,6 +17,10 @@ floating_modifier $mod
 gaps inner 5
 include /etc/sway/config.d/*
 
+# Doesn't work ?!?
+# focus_on_window_activation focus
+# set $focus_on_window_activation focus
+
 #############
 # WORKSPACE #
 #############
@@ -205,6 +209,7 @@ exec --no-startup-id dropbox
 exec --no-startup-id dunst
 
 exec "~/.bin/auto_exit_fullscreen.sh"
+exec "~/.bin/auto_focus_workspace.sh"
 exec swayidle -w \
          timeout 600 'swaylock -f -C ~/.config/sway/lock-config-matugen' \
          before-sleep 'swaylock -f -C ~/.config/sway/lock-config-matugen' \
