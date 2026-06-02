@@ -15,19 +15,15 @@ font pango:Hack Nerd Font,12
 floating_modifier $mod
 
 gaps inner 5
+include /etc/sway/config.d/*
 
 #############
 # WORKSPACE #
 #############
 
-# "Iiyama North America PL2530H 1154382104198" 
-# set $monitorSide DP-6
-# "LG Electronics LG ULTRAGEAR 210MAMBSK931"
 set $monitorMain DP-6
-# "Samsung Display Corp. 0x414D Unknown"
 set $monitorLap eDP-1
 
-# Set Workspace Names (insert icon in insert mode with e.g CTRL+V uf001)
 set $ws1 "1:一"
 set $ws2 "2:二"
 set $ws3 "3:三"
@@ -42,32 +38,16 @@ set $ws10 "10:十"
 workspace $ws1 output $monitorMain
 workspace $ws3 output $monitorMain
 workspace $ws7 output $monitorMain
-# workspace $ws9 output $monitorMain
 workspace $ws10 output $monitorMain
 workspace $ws2 output $monitorSide
 workspace $ws8 output $monitorLap
 
 # Program on specific workspaces (xprop command)
-#assign [class="Firefox"] $ws1
-#assign [class="Chromium"] $ws1
-assign [class="vlc"] $ws6
-assign [class="youtube-player"] $ws6
-assign [class="Gimp"] $ws7
 assign [class="krita"] $ws7
 assign [class="Slack"] $ws8
-# assign [class="firefox"] $ws1
-assign [class="Brave-browser"] $ws10
-assign [class="microsoft teams - preview"] $ws8
-assign [class="Microsoft Teams - Preview"] $ws8
 assign [class="discord"] $ws8
 assign [class="steam"] $ws9
 assign [class="Lutris"] $ws9
-assign [class="pavucontrol"] $ws10
-
-for_window [class="Wfica"] floating enable
-for_window [class="wfica"] floating enable
-for_window [class="Remotedesktopverbindung"] floating enable
-for_window [class="Sitzungsaufzeichnung"] floating enable
 
 #####################
 # WINDOW APPEARANCE #
@@ -92,9 +72,9 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+t focus mode_toggle
 bindsym $mod+d exec rofi -run-list-command "$HOME/.config/rofi/rofi-list $HOME/.bin" -run-command "/bin/bash -i -c '{cmd}'" -rnow -show run 
-#-icon-theme "Papirus" -show-icons
-# bindsym $mod+d exec wofi --show drun,run -I
 bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
+bindsym $mod+v exec rofi -modi clipboard:$HOME/.config/sway/cliphist-rofi-img -show clipboard -show-icons -theme-str '#element-icon {size: 64px; }'
+bindsym $mod+Shift+v exec cliphist wipe && wl-copy --clear && notify-send "Clipboard cleared!"
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -123,14 +103,12 @@ bindsym $mod+Mod1+j resize grow height 10 px or 10 ppt
 bindsym $mod+Mod1+k resize shrink height 10 px or 10 ppt
 bindsym $mod+Mod1+l resize grow width 10 px or 10 ppt
 
-# split in horizontal orientation
-bindsym $mod+Shift+v split h
-bindsym $mod+v split v
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+# layout
+bindsym $mod+b split v
 bindsym $mod+e layout toggle split
+# bindsym $mod+b split h
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -181,9 +159,7 @@ bindsym $mod+Ctrl+Shift+x exec systemctl suspend
 bindsym $mod+Shift+x exec loginctl lock-session
 
 bindsym Print exec python $HOME/Documents/VRCProjects/VRCControls/screenshot.py -r
-bindsym Ctrl+Print exec ~/.bin/grayscale
 bindsym XF86Calculator exec python $HOME/Documents/VRCProjects/VRCControls/screenshot.py -r
-bindsym Ctrl+XF86Calculator exec ~/.bin/grayscale
 
 bindsym Ctrl+space exec dunstctl close
 bindsym Ctrl+Shift+space exec dunstctl close-all
@@ -216,7 +192,6 @@ mode "quit" {
 output * bg ~/.wallpaper.png fill
 output $monitorLap resolution 3456x2160 position 2560,0 scale 2
 output $monitorMain resolution 2560x1440 position 0,0
-# output $monitorSide resolution 1920x1080 position 0,0 transform 90
 bindsym Alt+Shift+D exec swaymsg 'output $monitorLap resolution 3456x2160 position "0,0" scale 1'
 
 input type:tablet_pad map_to_output $monitorMain
@@ -229,8 +204,6 @@ exec --no-startup-id fcitx5
 exec --no-startup-id dropbox
 exec --no-startup-id dunst
 
-# exec_always apply-theme
-
 exec "~/.bin/auto_exit_fullscreen.sh"
 exec swayidle -w \
          timeout 600 'swaylock -f -C ~/.config/sway/lock-config-matugen' \
@@ -239,11 +212,9 @@ exec swayidle -w \
 
 seat seat0 hide_cursor 5000
 
-# For Screen Share / Screenshot?
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
-exec --no-startup-id /usr/lib/xdg-desktop-portal -r
+# exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr
+# exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store

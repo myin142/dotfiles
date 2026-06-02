@@ -10,7 +10,7 @@
 """"""""""""""""""""""
 " Keyboard Shortcuts "
 """"""""""""""""""""""
-vnoremap <C-c> "*y
+vnoremap <C-c> "+y
 noremap <C-s> :w<cr>
 noremap <space> :noh<cr>
 
@@ -19,6 +19,7 @@ noremap <C-/> :Commentary<cr>
 noremap <Leader>pb :CtrlPBuffer<cr>
 noremap <Leader>pr :CtrlPMRU<cr>
 noremap <Leader>ff :NERDTreeFind<cr>
+" vnoremap  <leader>y  "+y
 " noremap <Leader>fl :Autoformat<cr>
 
 " Tabs

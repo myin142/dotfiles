@@ -3,7 +3,7 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 " Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-" Plug 'spolu/dwm.vim'
+Plug 'spolu/dwm.vim'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'airblade/vim-rooter'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
