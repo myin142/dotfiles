@@ -207,9 +207,10 @@ exec --no-startup-id gammastep
 exec --no-startup-id fcitx5
 exec --no-startup-id dropbox
 exec --no-startup-id dunst
+exec --no-startup-id random-gen-wallpaper.sh
 
-exec "~/.bin/auto_exit_fullscreen.sh"
-exec "~/.bin/auto_focus_workspace.sh"
+# exec "~/.bin/auto_exit_fullscreen.sh"
+# exec "~/.bin/auto_focus_workspace.sh"
 exec swayidle -w \
          timeout 600 'swaylock -f -C ~/.config/sway/lock-config-matugen' \
          before-sleep 'swaylock -f -C ~/.config/sway/lock-config-matugen' \

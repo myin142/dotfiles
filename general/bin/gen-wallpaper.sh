@@ -19,5 +19,6 @@ FULL_PATH="$(realpath "$IMAGE")"
 echo "Setting wallpaper to: $FULL_PATH"
 
 ln -sf "$FULL_PATH" "$HOME/.wallpaper.png"
+swaymsg output "*" bg "$HOME/.wallpaper.png" fill
 create-lock.sh "$FULL_PATH"
-matugen image "$FULL_PATH"
+matugen image --source-color-index 0 "$FULL_PATH"
